@@ -1,0 +1,485 @@
+{
+    "profile": {
+        "title": "Juan Carlos Muñoz – Ingeniero Catastral y Geodesta",
+        "name": "Juan Carlos Muñoz Castañeda",
+        "degree": "Ingeniero Catastral y Geodesta",
+        "postDegree": "Especialista en Ingeniería de Software",
+        "tagline": "Más de 20 años transformando datos geográficos en decisiones — desde el trabajo de campo hasta plataformas de mapeo local y web."
+    },
+    "navtop": {
+        "hm": "Inicio",
+        "ab": "Acerca",
+        "pt": "Experiencia",
+        "rs": "Portafolio",
+        "ct": "Contacto",
+        "ed": "Educación",
+        "fl": "Proyectos Independientes",
+        "gt": "Examen GISP"
+    },
+    "navExp": {
+        "ep": "Experiencia Profesional"
+    },
+    "about": {
+        "label": "Acerca",
+        "title": "Experiencia y Habilidades",
+        "subtitle": "Más de 20 años transformando datos geográficos en decisiones, desde el trabajo de campo hasta plataformas de mapeo web.",
+        "bio1": "Ingeniero Catastral y Geodesta con especialización en Ingeniería de Software. Experiencia en Gestion Predial, diseño de bases de datos SIG, análisis espacial y producción cartográfica para proyectos de infraestructura vial, ferrea, redes de servicios publicos y proyectos ambientales.",
+        "bio2": "Apasionado por combinar la tecnología geoespacial con stacks web modernos para entregar mapas interactivos, APIs geoespaciales y sistemas de soporte local para la toma de decisiones.",
+        "compHeading": "Competencias principales",
+        "toolsHeading": "Herramientas y Tecnologías",
+        "gispTitle": "Candidato GISP",
+        "gispDesc": "GIS Certification Institute — en proceso de obtener la credencial de Profesional SIG Certificado, que abarca fundamentos de datos geoespaciales, análisis SIG, cartografía y programación."
+    },
+    "skills": [
+        {
+            "name": "SIG y Análisis Espacial",
+            "level": 92,
+            "projects": 18,
+            "total": 22
+        },
+        {
+            "name": "Catastro y Gestión Predial",
+            "level": 95,
+            "projects": 10,
+            "total": 22
+        },
+        {
+            "name": "Sensores Remotos y Fotogrametría",
+            "level": 78,
+            "projects": 3,
+            "total": 22
+        },
+        {
+            "name": "Mapeo Web (Leaflet / OpenLayers / Mapbox)",
+            "level": 82,
+            "projects": 4,
+            "total": 22
+        },
+        {
+            "name": "Bases de Datos y PostGIS",
+            "level": 74,
+            "projects": 13,
+            "total": 22
+        }
+    ],
+    "tools": [
+        {
+            "name": "ArcGIS Pro",
+            "icon": "bi-globe2"
+        },
+        {
+            "name": "QGIS",
+            "icon": "bi-geo-alt"
+        },
+        {
+            "name": "PostGIS",
+            "icon": "bi-database"
+        },
+        {
+            "name": "Leaflet.js",
+            "icon": "bi-map"
+        },
+        {
+            "name": "OpenLayers",
+            "icon": "bi-layers"
+        },
+        {
+            "name": "GeoServer",
+            "icon": "bi-bar-chart"
+        },
+        {
+            "name": "Python (GDAL)",
+            "icon": "bi-cpu"
+        },
+        {
+            "name": "PostgreSQL",
+            "icon": "bi-filetype-sql"
+        },
+        {
+            "name": "UAV / Fotogrametría",
+            "icon": "bi-drone"
+        },
+        {
+            "name": "AutoCAD / Civil3D",
+            "icon": "bi-pencil-square"
+        },
+        {
+            "name": "Sensores Remotos",
+            "icon": "bi-camera2"
+        },
+        {
+            "name": "JavaScript",
+            "icon": "bi-code-slash"
+        }
+    ],
+    "stats": [
+        {
+            "label": "Años de Experiencia",
+            "target": 20,
+            "icon": "bi-calendar3"
+        },
+        {
+            "label": "Organizaciones",
+            "target": 11,
+            "icon": "bi-geo-alt-fill"
+        },
+        {
+            "label": "Proyectos SIG",
+            "target": 25,
+            "icon": "bi-map-fill"
+        },
+        {
+            "label": "Departamentos Cubiertos",
+            "target": 8,
+            "icon": "bi-journal-richtext"
+        }
+    ],
+    "portfolio": {
+        "label": "Trabajo",
+        "title": "Portafolio",
+        "subtitle": "Una selección de proyectos SIG, catastrales y de mapeo web.",
+        "filters": {
+            "all": "Todo",
+            "gis": "SIG",
+            "cadastre": "Catastro",
+            "roads": "Vías",
+            "web": "Mapas Web"
+        },
+        "items": [
+            {
+                "title": "Visor SIG Ferroviario",
+                "cat": "gis web",
+                "img": "/assets/railway_gis.png",
+                "url": "https://cfro.geovisor.site/",
+                "tag": "SIG"
+            },
+            {
+                "title": "Sistema catastral de tierras",
+                "cat": "cadastre",
+                "img": "/assets/cadastral_land.png",
+                "url": "",
+                "tag": "Catastro"
+            },
+            {
+                "title": "SIG de Caracterización Vial",
+                "cat": "roads",
+                "img": "/assets/road_gis.png",
+                "url": "",
+                "tag": "Vías"
+            },
+            {
+                "title": "Dashboard de Análisis Espacial",
+                "cat": "gis",
+                "img": "/assets/spatial_analysis.png",
+                "url": "",
+                "tag": "SIG"
+            },
+            {
+                "title": "Mapa Web Interactivo",
+                "cat": "web",
+                "img": "/assets/interactive_map.png",
+                "url": "",
+                "tag": "Mapas Web"
+            },
+            {
+                "title": "Sistema de Información de Tierras",
+                "cat": "roads cadastre",
+                "img": "/assets/land_info.png",
+                "url": "",
+                "tag": "Catastro"
+            }
+        ]
+    },
+    "contact": {
+        "label": "Contáctame",
+        "title": "Contacto",
+        "subtitle": "Disponible para consultoría SIG, colaboración en proyectos y roles de asesoría técnica.",
+        "locHeader": "Ubicación",
+        "loc": "Bogotá D.C., Colombia",
+        "emailHeader": "Email",
+        "liHeader": "LinkedIn",
+        "gvHeader": "Visor SIG"
+    },
+    "form": {
+        "name": "Su nombre",
+        "email": "Su correo",
+        "subject": "Asunto",
+        "message": "Su mensaje...",
+        "submit": "Enviar Mensaje",
+        "success": "¡Mensaje enviado! Me pondré en contacto pronto."
+    },
+    "footer": {
+        "copy": "© 2025 Juan Carlos Muñoz Castañeda · Ingeniero Catastral y Geodesta"
+    },
+    "work_experience": [
+        {
+            "company": "Concesionaria Férrea de Occidente",
+            "position": "Especialista en Sistemas de Información Geográfica y Gestión Predial",
+            "period": "Oct 2022 - A la fecha",
+            "description": "Verificación física y jurídica de las áreas (predios privados y espacio publico) entregadas para la construcción del proyecto férreo desarrollando el respectivo sistema de información geográfica, análisis espacial y desarrollo de productos cartográficos colaborando con el área social, ambiental, redes y arqueológica del proyecto.",
+            "id": "01",
+            "url_job": "/01",
+            "Location": "Bogotá D.C., Mosquera, Madrid, Funza, Facatativa"
+        },
+        {
+            "company": "Consorcio Interventores Viales",
+            "position": "Profesional Caracterización Vial Consultor",
+            "period": "Dic 2023 - Ene 2025",
+            "description": "Revisión y ajuste de la información cartográfica usando herramientas SIG, de la caracterización vial conforme a la resolución 412 de 2020 y 20243040058145 del Ministerio de Transporte, de vías de red tercería de los municipios de Pivijay, Salamina, Zapayan, Chibolo, Remolino, Piñón y Sitio Nuevo del Departamento de Magdalena.",
+            "id": "02",
+            "url_job": "/02",
+            "Location": "Pivijay, Salamina, Zapayan, Chibolo, Remolino, Piñón y Sitio Nuevo del Departamento de Magdalena"
+        },
+        {
+            "company": "Consorcio Odessa Interventoría",
+            "position": "Profesional Caracterización Vial Consultor",
+            "period": "Nov 2022 - Ago 2023",
+            "description": "Revisión y ajuste de la información cartográfica usando herramientas SIG para la caracterización vial conforme a la resolución 412 de 2020 del Ministerio de Transporte, de vías de red tercería de los municipios de Facatativá, Fomeque, Tocancipá, Vianí, Zipacón, Tenjo, Choachí, Utica, Zipaquirá, Guayabal y La Palma del Departamento de Cundinamarca.",
+            "id": "03",
+            "url_job": "/03",
+            "Location": "Facatativá, Fomeque, Tocancipá, Vianí, Zipacón, Tenjo, Choachí, Utica, Zipaquirá, Guayabal y La Palma del Departamento de Cundinamarca"
+        },
+        {
+            "company": "Consorcio Ferroviario Verde",
+            "position": "Profesional Catastral",
+            "period": "Nov 2021 - Sep 2022",
+            "description": "Captura, análisis y visualización de la información de áreas aledañas al corredor vial, enfocando estrategias para la recuperación del espacio publico del corredor férreo, diseñando en implementando herramientas SIG para el análisis.",
+            "id": "04",
+            "url_job": "/04",
+            "Location": "Facatativa, Zipacon, Cachipay, La Mesa"
+        },
+        {
+            "company": "Catastro y SIG S.A.S.",
+            "position": "Director Técnico Cartográfico",
+            "period": "Mar 2021 - Jul 2022",
+            "description": "Coordinación de los proyectos de gestión predial y catastrales. Diseño e implementación del sistema de información geográfica para el manejo de la información predial y topográfica de los proyectos en curso. Crear los procesos y dirección de los proyectos que requieren consultoría geográfica.",
+            "id": "05",
+            "url_job": "/05",
+            "Location": "Puerto Gaitán, Puerto Boyaca, Otanche, Bogota D.C."
+        },
+        {
+            "company": "Latinoamérica de Construcciones",
+            "position": "Gestor Predial",
+            "period": "Ago 2020 - Jul 2022",
+            "description": "Diagnostico, ejecución e implementación del plan de adquisición predial para el proyecto 'URGENCIA MANIFIESTA PARA LA ATENCION DE LAS SITUACIONES DE EMERGENCIA ACAECIDAS ENTRE EL PR 106+0000 AL PR 124+0000 DE LA VIA LOS CUROS MÁLAGA, EN EL DEPARTAMENTO DE SANTANDER', diseñando e implementando herramientas SIG.",
+            "id": "06",
+            "url_job": "/06",
+            "Location": "Piedecuesta, Santa Barbara"
+        },
+        {
+            "company": "Consorcio Vial 081",
+            "position": "Gestor Predial",
+            "period": "May 2020 - Oct 2020",
+            "description": "Realizar los procesos de Saneamiento predial para la adquisición de predios para el proyecto 'TRANSVERSAL DE BOYACA RUTAS 6007 GESTION PREDIAL FASE 1'.",
+            "id": "07",
+            "url_job": "/07",
+            "Location": "Pauna, San Pablo de Borbur, Otanche"
+        },
+        {
+            "company": "Construcciones Rubau Colombia",
+            "position": "Profesional Predial y Apoyo en Obra",
+            "period": "Abr 2016 - Abr 2020",
+            "description": "Diseño e implementación del sistema de información predial para desarrollar y adelantar la gestión predial para la adquisición de áreas necesarias para la atención de la 'MEJORAMIENTO, GESTIÓN SOCIAL, PREDIAL Y AMBIENTAL DEL PROYECTO TRANSVERSAL DE BOYACA TRAMOS OTANCHE - CHIQUINQUIRA (RUTA 6007) Y CRUCE RUTA 45 (DOS Y MEDIO) - OTANCHE (RUTA 6006). EN EL DEPARTAMENTO DE BOYACÁ, PARA EL PROGRAMA VIAS PARA LA EQUIDAD - INVIAS', así como el desarrollo de una base de datos para el manejo de la información costos y cantidades de obra del proyecto, estructuración de la información final para la entrega al sistema de información HERMES del INVIAS.",
+            "id": "08",
+            "url_job": "/08",
+            "Location": "Pauna, San Pablo de Borbur, Otanche"
+        },
+        {
+            "company": "Suka S.A.",
+            "position": "Coordinador Técnico Predial",
+            "period": "Dic 2013 - Abr 2016",
+            "description": "Diseño de base de datos Geográfica para el manejo de la información. Identificación y revisión física y jurídica de los predios y mejoras afectadas por el proyecto. Gestión de los procesos de adquisición predial hasta la enajenación del predio a nombre del INVIAS.",
+            "id": "09",
+            "url_job": "/09",
+            "Location": "Otanche"
+        },
+        {
+            "company": "Grupo Roca S.A.",
+            "position": "Administrador TI",
+            "period": "Jul 2013 - Dic 2013",
+            "description": "Diseño e implementación de las bases de datos para manejo de licitaciones y pagina WEB.",
+            "id": "10",
+            "url_job": "/10",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "Operación del Relleno Sanitario Doña Juana",
+            "position": "Asistente Técnico",
+            "period": "Jun 2011 - Jul 2013",
+            "description": "Estructuración y validación de la información geográfica y alfanumérica de los indicadores de gestión para el proyecto de Operación del Relleno Sanitario Doña Juana.",
+            "id": "11",
+            "url_job": "/11",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Asistente Técnico",
+            "period": "Mar 2010 - May 2011",
+            "description": "Asistencia en diseño e implementación de la base de datos y manejo cartográfico en el Proyecto Censo Minero de Antioquia en el cual se ejecutara el levantamiento en campo de la información requerida, su digitalización en la plataforma establecida y entrega de informe con análisis de los datos obtenidos; para ello se utilizara la estructura técnica establecida por el Ministerio de Minas y Energía para el Censo Minero Nacional - SECRETARIA DE MINAS GOBERNACION DE ANTIOQUIA.",
+            "id": "12",
+            "url_job": "/12",
+            "Location": "Medellin, Antioquia"
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Asistente Técnico",
+            "period": "Dic 2008 - May 2009",
+            "description": "Ministerio de Medio Ambiente - PNUD Diseño e implementación de la aplicación de bases de datos para la validación alfanumérica y cartográfica para la información recolectada de Los planes de Gestión Integral de Residuos Solidos en el Proyecto de consultoría No. 5698 PNUD/COL/01/029 Prestar asistencia técnica en diversos temas de residuos sólidos y efectuar la evaluación de los PGIRS y su seguimiento, en el marco de las líneas de políticas establecidas por el grupo de residuos sólidos del viceministerio de agua y saneamiento.",
+            "id": "13",
+            "url_job": "/13",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Asistente Técnico",
+            "period": "Ene 2008 - Jun 2009",
+            "description": "Diseño e implementación de la aplicación de manejo de la información de la gestión del catastro de usuarios en el Proyecto de Estructuración y/o fortalecimiento institucional de entidades de servicios públicos de acueducto y alcantarillado y aseo en los municipios de los Palmitos, Sampués (acueducto veredal) Valencia y Chinú, de los departamentos de Sucre y Córdoba y ejecución de catastro de usuarios en los municipios de Oiba, departamento de Santander, Sampués (zona centro) departamento de sucre y Montelíbano departamento de Córdoba en el marco de la ley 142/94. - FONADE",
+            "id": "14",
+            "url_job": "/14",
+            "Location": "Palmitos, Sampués, Valencia, Chinú, Oiba, Montelíbano"
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Asistente Técnico",
+            "period": "Feb 2008 - Feb 2009",
+            "description": "Diseño, implementación y manejo de una herramienta para manejar los APUs de los insumos que maneja la EAAB en el Proyecto Adelantar la consultaría para asegurar el mejoramiento, el uso y aplicabilidad del sistema de avaluo de infraestructura SAI del acueducto de Bogotá, conforme a sus procesos, objetivos y estructura actual. - Empresa de Acueducto y Alcantarillado de Bogotá (EAAB)",
+            "id": "15",
+            "url_job": "/15",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Asistente Técnico",
+            "period": "Ene 2008 - Ago 2008",
+            "description": "Elaboración de la Metodología, Plan de calidad y cronograma del Proyecto, Depuración de la información de las bases de datos, Revisión de la información cartográfica del módulo en el Proyecto Actualización, complementación de la estructura y desarrollo de las labores de mantenimiento del módulo del banco de proyectos a partir de los requisitos funcionales contemplados en los procedimientos de ingeniera de software que se adelantan en la Entidad y puesta en funcionamiento el Modulo del SIRE denominado Banco de Proyectos para la Dirección de Prevención y Atención de Emergencias. - DPAE - FOPAE",
+            "id": "16",
+            "url_job": "/16",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Asistente Técnico Predial",
+            "period": "Dic 2007 - Oct 2008",
+            "description": "Elaboración de la Metodología, Plan de calidad, cronograma del Proyecto y mapa de procesos, elaboración de la ficha predial, Generación la Geodatabase correspondiente para la migración al sistema de información SIGUE, en el Proyecto Realizar Estudios catastrales y jurídicos para el saneamiento predial de la conducción Simaya y otros predios de interés conexos a los sistemas de abastecimiento de la ciudad para la Empresa de Acueducto y Alcantarillado de Bogotá EAAB.",
+            "id": "17",
+            "url_job": "/17",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Asistente Técnico",
+            "period": "Dic 2007 - Abr 2008",
+            "description": "Apoyo técnico en el proyecto de Levantar el inventario Georreferenciada de generadores de residuos y/o desechos peligrosos de por lo menos cinco (5) oficinas provinciales de la jurisdicción car, donde se identifiquen los residuos y/o desechos peligrosos de manejo prioritario y se formulen acciones tendientes a prevenir su generación y promover su manejo ambientalmente adecuado - CAR.",
+            "id": "18",
+            "url_job": "/18",
+            "Location": "Vianí"
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Coordinador de Calidad",
+            "period": "Oct 2007 - Sep 2008",
+            "description": "Elaboración de la Metodología, Plan de calidad y cronograma del Proyecto, coordinación de los profesionales de atención al usuario, Elaboración del sistema de información alfanumérico para el soporte de los datos generación automática de estadísticas de atención al usuario, Capacitación del manejo del SIG denominado SINU-POT para la atención de Norma urbana y Estratificación, en el Proyecto Prestar apoyo Técnico en la divulgación de la estratificación de Bogotá y la norma urbana de Bogotá, en supercades y cades del Distrito Capital - Secretaria Distrital de Planeación SPD.",
+            "id": "19",
+            "url_job": "/19",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Coordinador Técnico",
+            "period": "Mar 2007 - Ago 2008",
+            "description": "Elaboración de la Metodología, Plan de calidad, cronograma del Proyecto y mapa de procesos. Elaboración del sistema de información alfanumérico y cartográfico para el soporte de los datos y registros fotográficos, GEODATABASE. Elaboración de aplicaciones en AutoCAD y Excel para la generación de plano de ubicación individuales de los predios ubicados para reasentamiento. Vectorización de los predios levantados para reasentamiento, en el Proyecto Elaboración de Fichas Prediales de aproximadamente 3500 predios incorporados en el programa de reasentamiento de Familias localizadas en Zonas de Alto riesgo no Mitigable con el fin de actualizar el Plano Normativo No 6 suelo de Protección por Riesgo del Plan de Ordenamiento Territorial de Bogotá - DPAE - FOPAE.",
+            "id": "20",
+            "url_job": "/20",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Coordinador de Calidad",
+            "period": "Ago 2006 - Mar 2007",
+            "description": "Identificación de las inconsistencias de dibujo de los predios actualizados, Corrección de la cartógrafa digitalizada, Capacitación de los dibujantes del proyecto, en el proyecto IGAC PNUD/COL/01/039 referente a la consultoría en actualización catastral de varios municipios de la costa atlántica zona urbana. - Instituto Geográfico Agustín Codazzi (IGAC)",
+            "id": "21",
+            "url_job": "/21",
+            "Location": "Mompox, Barranco de Loba, Hatillo de Loba, San Fernando, Margarita, San Martin de Loba, Pinillos, Cicuco, Talaigua Nuevo"
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Digitalizador Predial",
+            "period": "Abr 2006 - Ago 2006",
+            "description": "Dibujante a escala 1:500 a nivel predial, Elaboración de planos de conjunto 1:2000 a nivel Municipal, Vectorización de Zonas homogéneas físicas y geoeconómicas, en el proyecto IGAC PNUD/COL/01/039 referente a la consultoría en actualización catastral de varios municipios de la costa atlántica zona urbana. - Instituto Geográfico Agustín Codazzi (IGAC)",
+            "id": "22",
+            "url_job": "/22",
+            "Location": "Mompox, Barranco de Loba, Hatillo de Loba, San Fernando, Margarita, San Martin de Loba, Pinillos, Cicuco, Talaigua Nuevo"
+        }
+    ],
+    "education": [
+        {
+            "institution": "Universidad Internacional de La Rioja (UNIR)",
+            "url": "https://www.unir.net/",
+            "degree": "Especialización en Ingeniería de Software",
+            "year": "2024",
+            "description": "Estudios avanzados en arquitectura de software, metodologías ágiles y gestión de proyectos tecnológicos."
+        },
+        {
+            "institution": "Miami City University - MIU",
+            "url": "https://miuniversity.edu/en/",
+            "degree": "Continuing Education Certificate in Data & Business Analytics",
+            "year": "2022",
+            "description": "Certificación en análisis de bases de datos, analisis de negocios y toma de decisiones basadas en datos."
+        },
+        {
+            "institution": "Universidad Distrital Francisco José de Caldas",
+            "url": "https://www.udistrital.edu.co/",
+            "degree": "Ingeniería Catastral y Geodesia",
+            "year": "2016",
+            "description": "Formación integral en ciencias de la tierra, cartografía, fotogrametría, sensores remotos, sistemas de información geográfica y avalúos."
+        },
+        {
+            "institution": "Falcon Academia de Aviación",
+            "url": "https://falconaviacion.com.co/",
+            "degree": "Operador de Aeronaves no Tripuladas – DRONE",
+            "year": "2016",
+            "description": "Piloto certificado de drones para levantamientos fotogramétricos y captura de datos espaciales."
+        }
+    ],
+    "freelancer_projects": [
+        {
+            "id": "f1-circuits",
+            "title": "F1 Circuits",
+            "client": "Atlas Geoespacial Interactivo",
+            "period": "2024",
+            "description": "Atlas interactivo de circuitos de Grandes Premios de Fórmula 1 que visualiza 40 pistas legendarias con geometrías viales en GeoJSON de alta precisión, imágenes satelitales, panel de telemetría HUD y simulación de vueltas en tiempo real.",
+            "tools": [
+                "Leaflet",
+                "GeoJSON",
+                "Telemetría HUD",
+                "Simulación de Vuelta"
+            ],
+            "link": "/freelancer/f1",
+            "badge": "App Interactiva"
+        },
+        {
+            "id": "f1",
+            "title": "Visor Web SIG Personalizado",
+            "client": "Cliente Privado",
+            "period": "2024",
+            "description": "Desarrollo de una aplicación de mapeo web personalizada utilizando React y Leaflet para visualizar conjuntos de datos geoespaciales complejos, integrando múltiples capas WMS/WFS y estilos personalizados.",
+            "tools": [
+                "React",
+                "Leaflet",
+                "GeoServer"
+            ]
+        },
+        {
+            "id": "f2",
+            "title": "Scripts de Procesamiento de Geodatos",
+            "client": "Consultor Ambiental",
+            "period": "2023",
+            "description": "Automatización de flujos de trabajo de procesamiento de datos espaciales utilizando Python y GDAL/OGR, reduciendo el tiempo de procesamiento manual en un 80% para evaluaciones de impacto ambiental a gran escala.",
+            "tools": [
+                "Python",
+                "GDAL",
+                "Pandas"
+            ]
+        }
+    ]
+}

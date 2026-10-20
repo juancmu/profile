@@ -1,0 +1,493 @@
+{
+    "profile": {
+        "title": "Juan Carlos Muñoz – Cadastral and Geodesic Engineer",
+        "name": "Juan Carlos Muñoz Castañeda",
+        "degree": "Cadastral and Geodesic Engineer",
+        "postDegree": "Software Engineering Specialist",
+        "tagline": "Over 20 years transforming geographic data into decisions — from fieldwork to local and web mapping platforms."
+    },
+    "navtop": {
+        "hm": "Home",
+        "ab": "About",
+        "pt": "Experience",
+        "rs": "Portfolio",
+        "ct": "Contact",
+        "ed": "Education",
+        "fl": "Freelancer Projects",
+        "gt": "GISP Test"
+    },
+    "navExp": {
+        "ep": "Professional Experience"
+    },
+    "about": {
+        "label": "About",
+        "title": "Expertise & Skills",
+        "subtitle": "Over 20 years transforming geographic data into decisions — from fieldwork to web mapping platforms.",
+        "bio1": "Cadastral and Geodesic Engineer with a Software Engineering specialization. Experienced in land acquisition, GIS database design, spatial analysis, and cartographic production for large-scale infrastructure and rail corridor projects across Colombia.",
+        "bio2": "Passionate about combining geospatial technology with modern web stacks to deliver interactive maps, geospatial APIs, and decision-support systems.",
+        "compHeading": "Core competencies",
+        "toolsHeading": "Tools & Technologies",
+        "gispTitle": "GISP Candidate",
+        "gispDesc": "GIS Certification Institute — pursuing the Certified GIS Professional credential, covering geospatial data fundamentals, GIS analysis, cartography, and programming."
+    },
+    "skills": [
+        {
+            "name": "GIS & Spatial Analysis",
+            "level": 92,
+            "projects": 18,
+            "total": 22
+        },
+        {
+            "name": "Cadastre & Land Management",
+            "level": 95,
+            "projects": 10,
+            "total": 22
+        },
+        {
+            "name": "Remote Sensing & Photogrammetry",
+            "level": 78,
+            "projects": 3,
+            "total": 22
+        },
+        {
+            "name": "Web Mapping (Leaflet / OpenLayers)",
+            "level": 82,
+            "projects": 4,
+            "total": 22
+        },
+        {
+            "name": "Databases & PostGIS",
+            "level": 74,
+            "projects": 18,
+            "total": 22
+        }
+    ],
+    "tools": [
+        {
+            "name": "ArcGIS Pro",
+            "icon": "bi-globe2"
+        },
+        {
+            "name": "QGIS",
+            "icon": "bi-geo-alt"
+        },
+        {
+            "name": "PostGIS",
+            "icon": "bi-database"
+        },
+        {
+            "name": "Leaflet.js",
+            "icon": "bi-map"
+        },
+        {
+            "name": "OpenLayers",
+            "icon": "bi-layers"
+        },
+        {
+            "name": "GeoServer",
+            "icon": "bi-bar-chart"
+        },
+        {
+            "name": "Python (GDAL)",
+            "icon": "bi-cpu"
+        },
+        {
+            "name": "PostgreSQL",
+            "icon": "bi-filetype-sql"
+        },
+        {
+            "name": "GNSS / GPS",
+            "icon": "bi-satellite"
+        },
+        {
+            "name": "UAV / Photogrammetry",
+            "icon": "bi-drone"
+        },
+        {
+            "name": "AutoCAD / Civil3D",
+            "icon": "bi-pencil-square"
+        },
+        {
+            "name": "Remote Sensing",
+            "icon": "bi-camera2"
+        },
+        {
+            "name": "JavaScript",
+            "icon": "bi-code-slash"
+        },
+        {
+            "name": "Git",
+            "icon": "bi-git"
+        }
+    ],
+    "stats": [
+        {
+            "label": "Years of Experience",
+            "target": 20,
+            "icon": "bi-calendar3"
+        },
+        {
+            "label": "Organizations",
+            "target": 11,
+            "icon": "bi-geo-alt-fill"
+        },
+        {
+            "label": "GIS Projects",
+            "target": 25,
+            "icon": "bi-map-fill"
+        },
+        {
+            "label": "Departments Covered",
+            "target": 8,
+            "icon": "bi-journal-richtext"
+        }
+    ],
+    "portfolio": {
+        "label": "Work",
+        "title": "Portfolio",
+        "subtitle": "A selection of GIS, cadastral, and web-mapping projects.",
+        "filters": {
+            "all": "All",
+            "gis": "GIS",
+            "cadastre": "Cadastre",
+            "roads": "Roads",
+            "web": "Web Maps"
+        },
+        "items": [
+            {
+                "title": "Railway GIS Viewer",
+                "cat": "gis web",
+                "img": "/assets/railway_gis.png",
+                "url": "https://cfro.geovisor.site/",
+                "tag": "GIS"
+            },
+            {
+                "title": "Cadastral Land System",
+                "cat": "cadastre",
+                "img": "/assets/cadastral_land.png",
+                "url": "",
+                "tag": "Cadastre"
+            },
+            {
+                "title": "Road Characterization GIS",
+                "cat": "roads",
+                "img": "/assets/road_gis.png",
+                "url": "",
+                "tag": "Roads"
+            },
+            {
+                "title": "Spatial Analysis Dashboard",
+                "cat": "gis",
+                "img": "/assets/spatial_analysis.png",
+                "url": "",
+                "tag": "GIS"
+            },
+            {
+                "title": "Interactive Web Map",
+                "cat": "web",
+                "img": "/assets/interactive_map.png",
+                "url": "",
+                "tag": "Web Maps"
+            },
+            {
+                "title": "Land Information System",
+                "cat": "roads cadastre",
+                "img": "/assets/land_info.png",
+                "url": "",
+                "tag": "Cadastre"
+            }
+        ]
+    },
+    "contact": {
+        "label": "Get in touch",
+        "title": "Contact",
+        "subtitle": "Available for GIS consulting, project collaboration, and technical advisory roles.",
+        "locHeader": "Location",
+        "loc": "Bogotá D.C., Colombia",
+        "emailHeader": "Email",
+        "liHeader": "LinkedIn",
+        "gvHeader": "GIS Viewer"
+    },
+    "form": {
+        "name": "Your Name",
+        "email": "Your Email",
+        "subject": "Subject",
+        "message": "Your message...",
+        "submit": "Send Message",
+        "success": "Message sent! I'll get back to you soon."
+    },
+    "footer": {
+        "copy": "© 2025 Juan Carlos Muñoz Castañeda · Cadastral & Geodesic Engineer"
+    },
+    "work_experience": [
+        {
+            "company": "Concesionaria Férrea de Occidente",
+            "position": "Geographic Information Systems and Land Management Specialist",
+            "period": "Oct 2022 - Present",
+            "description": "Verification of land areas assigned for the railway project construction. Development of GIS, spatial analysis, and cartographic products in coordination with the social, environmental, utility, and archaeology teams.",
+            "id": "01",
+            "url_job": "/01",
+            "Location": "Bogotá D.C., Mosquera, Madrid, Funza, Facatativa"
+        },
+        {
+            "company": "Consorcio Interventores Viales",
+            "position": "Road Characterization Consultant",
+            "period": "Dec 2023 - Jan 2025",
+            "description": "Review and adjustment of cartographic information using GIS tools for road characterization in compliance with Resolutions 412 of 2020 and 20243040058145 of 2024 issued by the Ministry of Transport, applied to tertiary road networks.",
+            "id": "02",
+            "url_job": "/02",
+            "Location": "Pivijay, Salamina, Zapayan, Chibolo, Remolino, Piñón y Sitio Nuevo del Departamento de Magdalena"
+        },
+        {
+            "company": "Consorcio Odessa Interventoría",
+            "position": "Road Characterization Consultant",
+            "period": "Nov 2022 - Aug 2023",
+            "description": "Review and adjustment of cartographic data using GIS tools for road characterization according to Resolution 412 of 2020 from the Ministry of Transport, covering tertiary roads.",
+            "id": "03",
+            "url_job": "/03",
+            "Location": "Facatativá, Fomeque, Tocancipá, Vianí, Zipacón, Tenjo, Choachí, Utica, Zipaquirá, Guayabal y La Palma del Departamento de Cundinamarca"
+        },
+        {
+            "company": "Consorcio Ferroviario Verde",
+            "position": "Cadastral Professional",
+            "period": "Nov 2021 - Sep 2022",
+            "description": "Collection, analysis, and visualization of geospatial data from areas adjacent to the railway corridor. Design and implementation of GIS tools focused on the recovery of public space along the railway corridor.",
+            "id": "04",
+            "url_job": "/04",
+            "Location": "Facatativa, Zipacon, Cachipay, La Mesa"
+        },
+        {
+            "company": "Catastro y SIG S.A.S.",
+            "position": "Technical Cartographic Director",
+            "period": "Mar 2021 - Jul 2022",
+            "description": "Coordination of cadastral and land management projects. Design and implementation of GIS for cadastral and topographic administration of ongoing projects. Establishing processes and directing projects that require geographic consulting.",
+            "id": "05",
+            "url_job": "/05",
+            "Location": "Puerto Gaitán, Puerto Boyaca, Otanche, Bogota D.C."
+        },
+        {
+            "company": "Latinoamérica de Construcciones",
+            "position": "Land Acquisition Manager",
+            "period": "Aug 2020 - Jul 2022",
+            "description": "Diagnosis, execution, and implementation of the land acquisition plan for the project 'Urgent Action for Emergency Situations Occurring Between PR 106+0000 and PR 124+0000 on the Los Curos - Málaga Road', designing and implementing GIS tools.",
+            "id": "06",
+            "url_job": "/06",
+            "Location": "Piedecuesta, Santa Barbara"
+        },
+        {
+            "company": "Consorcio Vial 081",
+            "position": "Land Acquisition Manager",
+            "period": "May 2020 - Oct 2020",
+            "description": "Carried out land clearing processes for the acquisition of properties for the 'Transversal de Boyacá Routes 6007 Land Management Phase 1' project.",
+            "id": "07",
+            "url_job": "/07",
+            "Location": "Pauna, San Pablo de Borbur, Otanche"
+        },
+        {
+            "company": "Construcciones Rubau Colombia",
+            "position": "Land and Construction Support Professional",
+            "period": "Apr 2016 - Apr 2020",
+            "description": "Design and implementation of the land information system to develop and advance land management for the acquisition of areas needed for the 'Improvement, Social, Property and Environmental Management of the Transversal de Boyacá Project', and structuring of final information for delivery to INVIAS' HERMES information system. - INVIAS', así como el desarrollo de una base de datos para el manejo de la información costos y cantidades de obra del proyecto, estructuración de la información final para la entrega al sistema de información HERMES del INVIAS.",
+            "id": "08",
+            "url_job": "/08",
+            "Location": "Pauna, San Pablo de Borbur, Otanche"
+        },
+        {
+            "company": "Suka S.A.",
+            "position": "Technical Land Coordinator",
+            "period": "Dec 2013 - Apr 2016",
+            "description": "Design of geographic database for information management. Identification and physical/legal review of properties and improvements affected by the project. Management of land acquisition processes up to the transfer of the property to INVIAS.",
+            "id": "09",
+            "url_job": "/09",
+            "Location": "Otanche"
+        },
+        {
+            "company": "Grupo Roca S.A.",
+            "position": "IT Administrator",
+            "period": "Jul 2013 - Dec 2013",
+            "description": "Design and implementation of databases for bid management and development of the institutional webpage.",
+            "id": "10",
+            "url_job": "/10",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "Operación del Relleno Sanitario Doña Juana",
+            "position": "Technical Assistant",
+            "period": "Jun 2011 - Jul 2013",
+            "description": "Structuring and validation of geographic and alphanumeric information for the management indicators of the Doña Juana Landfill Operation project.",
+            "id": "11",
+            "url_job": "/11",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Technical Assistant",
+            "period": "Mar 2010 - May 2011",
+            "description": "Assisted in the design and implementation of the database and cartographic management for the Antioquia Mining Census Project, executing field data collection, digitization, and report delivery. - SECRETARIA DE MINAS GOBERNACION DE ANTIOQUIA.",
+            "id": "12",
+            "url_job": "/12",
+            "Location": "Medellin, Antioquia"
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Technical Assistant",
+            "period": "Dec 2008 - May 2009",
+            "description": "Design and implementation of a database application for alphanumeric and cartographic validation of information collected from Integral Solid Waste Management Plans, providing technical assistance in various solid waste topics.",
+            "id": "13",
+            "url_job": "/13",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Technical Assistant",
+            "period": "Jan 2008 - Jun 2009",
+            "description": "Design and implementation of a user cadastre management application for the 'Structuring and/or institutional strengthening of public aqueduct, sewerage, and sanitation entities' project within the framework of Law 142/94. - FONADE",
+            "id": "14",
+            "url_job": "/14",
+            "Location": "Palmitos, Sampués, Valencia, Chinú, Oiba, Montelíbano"
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Technical Assistant",
+            "period": "Feb 2008 - Feb 2009",
+            "description": "Design, implementation, and management of a tool to handle the APUs of inputs managed by EAAB in the consulting project to ensure the improvement, use, and applicability of the SAI infrastructure appraisal system. - Empresa de Acueducto y Alcantarillado de Bogotá (EAAB)",
+            "id": "15",
+            "url_job": "/15",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Technical Assistant",
+            "period": "Jan 2008 - Aug 2008",
+            "description": "Elaboration of Methodology, Quality Plan, and Project Schedule. Cleanup of database information and review of cartographic module information in the Update, Structure Complementation, and Maintenance project. - DPAE - FOPAE",
+            "id": "16",
+            "url_job": "/16",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Property Technical Assistant",
+            "period": "Dec 2007 - Oct 2008",
+            "description": "Creation of property records and generation of the corresponding Geodatabase for migration to the SIGUE information system, in the project conducting cadastral and legal studies for property clearance.",
+            "id": "17",
+            "url_job": "/17",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Technical Assistant",
+            "period": "Dec 2007 - Apr 2008",
+            "description": "Technical support for the Georeferenced inventory project of hazardous waste generators identifying priority management hazardous waste and formulating actions to prevent generation. - CAR.",
+            "id": "18",
+            "url_job": "/18",
+            "Location": "Vianí"
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Quality Coordinator",
+            "period": "Oct 2007 - Sep 2008",
+            "description": "Development of an alphanumeric information system for data support and automatic generation of customer service statistics. Training in the handling of the GIS called SINU-POT for urban norm and stratification attention. - Secretaria Distrital de Planeación SPD.",
+            "id": "19",
+            "url_job": "/19",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Technical Coordinator",
+            "period": "Mar 2007 - Aug 2008",
+            "description": "Development of an alphanumeric and cartographic information system (GEODATABASE) for data support. Creation of AutoCAD and Excel applications to generate individual location maps for properties slated for resettlement. - DPAE - FOPAE.",
+            "id": "20",
+            "url_job": "/20",
+            "Location": "Bogota D.C."
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Quality Coordinator",
+            "period": "Aug 2006 - Mar 2007",
+            "description": "Identification of drawing inconsistencies in updated properties, correction of digitized cartography, and training of project draftsmen in the IGAC PNUD/COL/01/039 project regarding consulting in urban cadastral updates. - Instituto Geográfico Agustín Codazzi (IGAC)",
+            "id": "21",
+            "url_job": "/21",
+            "Location": "Mompox, Barranco de Loba, Hatillo de Loba, San Fernando, Margarita, San Martin de Loba, Pinillos, Cicuco, Talaigua Nuevo"
+        },
+        {
+            "company": "CIC Geomática",
+            "position": "Parcel Property Digitizer",
+            "period": "Apr 2006 - Aug 2006",
+            "description": "Draftsman at a 1:500 scale at the property level, elaboration of 1:2000 scale aggregate maps at the municipal level, and vectorization of physical and geoeconomic homogeneous zones. - Instituto Geográfico Agustín Codazzi (IGAC)",
+            "id": "22",
+            "url_job": "/22",
+            "Location": "Mompox, Barranco de Loba, Hatillo de Loba, San Fernando, Margarita, San Martin de Loba, Pinillos, Cicuco, Talaigua Nuevo"
+        }
+    ],
+    "education": [
+        {
+            "institution": "Universidad Internacional de La Rioja (UNIR)",
+            "url": "https://www.unir.net/",
+            "degree": "Software Engineering Specialist",
+            "year": "2024",
+            "description": "Advanced studies in software architecture, agile methodologies, and technology project management."
+        },
+        {
+            "institution": "Miami City University - MIU",
+            "url": "https://miuniversity.edu/en",
+            "degree": "Continuing Education Certificate in Data & Business Analytics",
+            "year": "2022",
+            "description": "Certification in database analysis, business intelligence, and data-driven decision making."
+        },
+        {
+            "institution": "Universidad Distrital Francisco José de Caldas",
+            "url": "https://www.udistrital.edu.co/",
+            "degree": "Cadastral and Geodesic Engineering",
+            "year": "2016",
+            "description": "Comprehensive training in earth sciences, cartography, photogrammetry, remote sensing, geographic information systems, and land valuation."
+        },
+        {
+            "institution": "Falcon Academia de Aviación",
+            "url": "https://falconaviacion.com.co/",
+            "degree": "Unmanned Aircraft Operator – DRONE",
+            "year": "2016",
+            "description": "Certified drone pilot for photogrammetric surveys and spatial data capture."
+        }
+    ],
+    "freelancer_projects": [
+        {
+            "id": "f1-circuits",
+            "title": "F1 Circuits",
+            "client": "Interactive Geospatial Atlas",
+            "period": "2024",
+            "description": "Interactive Formula 1 Grand Prix Circuits Atlas displaying 40 legendary race tracks worldwide with high-precision GeoJSON road geometries, satellite imagery, telemetry HUD, and real-time lap simulation.",
+            "tools": [
+                "Leaflet",
+                "GeoJSON",
+                "Telemetry HUD",
+                "Lap Simulation"
+            ],
+            "link": "/freelancer/f1",
+            "badge": "Interactive App"
+        },
+        {
+            "id": "f1",
+            "title": "Custom GIS Web Viewer",
+            "client": "Private Client",
+            "period": "2024",
+            "description": "Developed a custom web mapping application using React and Leaflet for visualizing complex geospatial datasets, integrating multiple WMS/WFS layers and custom styling.",
+            "tools": [
+                "React",
+                "Leaflet",
+                "GeoServer"
+            ]
+        },
+        {
+            "id": "f2",
+            "title": "Geodata Processing Scripts",
+            "client": "Environmental Consultant",
+            "period": "2023",
+            "description": "Automated spatial data processing workflows using Python and GDAL/OGR, reducing manual processing time by 80% for large-scale environmental impact assessments.",
+            "tools": [
+                "Python",
+                "GDAL",
+                "Pandas"
+            ]
+        }
+    ]
+}

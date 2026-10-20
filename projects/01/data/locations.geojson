@@ -1,0 +1,401 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.0852784246484,
+                    4.6610058160193
+                ]
+            },
+            "properties": {
+                "id": "01",
+                "position": "Profesional de Tierras",
+                "company": "Concesionaria Férrea de Occidente",
+                "period": "Oct 2022 - A la fecha",
+                "raw_location": "Bogotá D.C., Mosquera, Madrid, Funza, Facatativa",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.62193565236943,
+                    10.455885589803094
+                ]
+            },
+            "properties": {
+                "id": "02",
+                "position": "Profesional Caracterización Vial Consultor",
+                "company": "Consorcio Interventores Viales",
+                "period": "Dic 2023 - Ene 2025",
+                "raw_location": "Pivijay, Salamina, Zapayan, Chibolo, Remolino, Piñón y Sitio Nuevo del Departamento de Magdalena",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.34879531627378,
+                    4.800278124241553
+                ]
+            },
+            "properties": {
+                "id": "03",
+                "position": "Profesional Caracterización Vial Consultor",
+                "company": "Consorcio Odessa Interventoría",
+                "period": "Nov 2022 - Ago 2023",
+                "raw_location": "Facatativá, Fomeque, Tocancipá, Vianí, Zipacón, Tenjo, Choachí, Utica, Zipaquirá, Guayabal y La Palma del Departamento de Cundinamarca",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.3564691808435,
+                    4.8057337877554085
+                ]
+            },
+            "properties": {
+                "id": "04",
+                "position": "Profesional Catastral",
+                "company": "Consorcio Ferroviario Verde",
+                "period": "Nov 2021 - Sep 2022",
+                "raw_location": "Facatativa, Zipacon, Cachipay, La Mesa",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -72.08009927216972,
+                    4.302331068347327
+                ]
+            },
+            "properties": {
+                "id": "05",
+                "position": "Director Técnico Cartográfico",
+                "company": "Catastro y SIG S.A.S.",
+                "period": "Mar 2021 - Jul 2022",
+                "raw_location": "Puerto Gaitán, Puerto Boyaca, Otanche, Bogota D.C.",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -73.05858432815481,
+                    6.990478668870984
+                ]
+            },
+            "properties": {
+                "id": "06",
+                "position": "Gestor Predial",
+                "company": "Latinoamérica de Construcciones",
+                "period": "Ago 2020 - Jul 2022",
+                "raw_location": "Piedecuesta, Santa Barbara",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -73.99152003534074,
+                    5.691318056768859
+                ]
+            },
+            "properties": {
+                "id": "07",
+                "position": "Gestor Predial",
+                "company": "Consorcio Vial 081",
+                "period": "May 2020 - Oct 2020",
+                "raw_location": "Pauna, San Pablo de Borbur, Otanche",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -73.99122538503426,
+                    5.687756004964046
+                ]
+            },
+            "properties": {
+                "id": "08",
+                "position": "Profesional Predial y Apoyo en Obra",
+                "company": "Construcciones Rubau Colombia",
+                "period": "Abr 2016 - Abr 2020",
+                "raw_location": "Pauna, San Pablo de Borbur, Otanche",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.17604598719771,
+                    5.6524608792456545
+                ]
+            },
+            "properties": {
+                "id": "09",
+                "position": "Coordinador Técnico Predial",
+                "company": "Suka S.A.",
+                "period": "Dic 2013 - Abr 2016",
+                "raw_location": "Otanche",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.07380261926853,
+                    4.660336132722947
+                ]
+            },
+            "properties": {
+                "id": "10",
+                "position": "Administrador TI",
+                "company": "Grupo Roca S.A.",
+                "period": "Jul 2013 - Dic 2013",
+                "raw_location": "Bogota D.C.",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.07409266387272,
+                    4.663324428527059
+                ]
+            },
+            "properties": {
+                "id": "11",
+                "position": "Asistente Técnico",
+                "company": "Operación del Relleno Sanitario Doña Juana",
+                "period": "Jun 2011 - Jul 2013",
+                "raw_location": "Bogota D.C.",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.60715277496979,
+                    6.264189032329852
+                ]
+            },
+            "properties": {
+                "id": "12",
+                "position": "Asistente Técnico",
+                "company": "CIC Geomática",
+                "period": "Mar 2010 - May 2011",
+                "raw_location": "Medellin, Antioquia",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.08326345338872,
+                    4.647413383870246
+                ]
+            },
+            "properties": {
+                "id": "13",
+                "position": "Asistente Técnico",
+                "company": "CIC Geomática",
+                "period": "Dic 2008 - May 2009",
+                "raw_location": "Bogota D.C.",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -76.18512910020755,
+                    8.236163588460874
+                ]
+            },
+            "properties": {
+                "id": "14",
+                "position": "Asistente Técnico",
+                "company": "CIC Geomática",
+                "period": "Ene 2008 - Jun 2009",
+                "raw_location": "Palmitos, Sampués, Valencia, Chinú, Oiba, Montelíbano",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.07955674638056,
+                    4.6537012415353365
+                ]
+            },
+            "properties": {
+                "id": "15",
+                "position": "Asistente Técnico",
+                "company": "CIC Geomática",
+                "period": "Feb 2008 - Feb 2009",
+                "raw_location": "Bogota D.C.",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.0923551616276,
+                    4.66156970628414
+                ]
+            },
+            "properties": {
+                "id": "16",
+                "position": "Asistente Técnico",
+                "company": "CIC Geomática",
+                "period": "Ene 2008 - Ago 2008",
+                "raw_location": "Bogota D.C.",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.07389079057957,
+                    4.655268057667874
+                ]
+            },
+            "properties": {
+                "id": "17",
+                "position": "Asistente Técnico Predial",
+                "company": "CIC Geomática",
+                "period": "Dic 2007 - Oct 2008",
+                "raw_location": "Bogota D.C.",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.5559149836954,
+                    4.8667233648072905
+                ]
+            },
+            "properties": {
+                "id": "18",
+                "position": "Asistente Técnico",
+                "company": "CIC Geomática",
+                "period": "Dic 2007 - Abr 2008",
+                "raw_location": "Vianí",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.07995486989726,
+                    4.6516704054666
+                ]
+            },
+            "properties": {
+                "id": "19",
+                "position": "Coordinador de Calidad",
+                "company": "CIC Geomática",
+                "period": "Oct 2007 - Sep 2008",
+                "raw_location": "Bogota D.C.",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.08188839537071,
+                    4.656093111979399
+                ]
+            },
+            "properties": {
+                "id": "20",
+                "position": "Coordinador Técnico",
+                "company": "CIC Geomática",
+                "period": "Mar 2007 - Ago 2008",
+                "raw_location": "Bogota D.C.",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.42432931833746,
+                    9.223416615529894
+                ]
+            },
+            "properties": {
+                "id": "21",
+                "position": "Coordinador de Calidad",
+                "company": "CIC Geomática",
+                "period": "Ago 2006 - Mar 2007",
+                "raw_location": "Mompox, Barranco de Loba, Hatillo de Loba, San Fernando, Margarita, San Martin de Loba, Pinillos, Cicuco, Talaigua Nuevo",
+                "url": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.41816130762321,
+                    9.232722709306913
+                ]
+            },
+            "properties": {
+                "id": "22",
+                "position": "Digitalizador Predial",
+                "company": "CIC Geomática",
+                "period": "Abr 2006 - Ago 2006",
+                "raw_location": "Mompox, Barranco de Loba, Hatillo de Loba, San Fernando, Margarita, San Martin de Loba, Pinillos, Cicuco, Talaigua Nuevo",
+                "url": ""
+            }
+        }
+    ]
+}

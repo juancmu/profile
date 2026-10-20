@@ -1,0 +1,728 @@
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface2: #1c2333;
+            --border: #30363d;
+            --border2: #21262d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-dim: #1f3a5f;
+            --green: #3fb950;
+            --green-dim: #12261e;
+            --red: #f85149;
+            --red-dim: #2d1015;
+            --amber: #e3b341;
+            --amber-dim: #2e1f07;
+            --purple: #bc8cff;
+            --purple-dim: #2a1f4a;
+            --teal: #39d353;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: .05em;
+            color: var(--accent);
+        }
+
+        .logo span {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .header-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .timer-box {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--amber);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timer-box .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--amber);
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .3
+            }
+        }
+
+        .progress-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 11px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .q-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+        }
+
+        .q-btn {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 5px;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            color: var(--text-muted);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all .15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .q-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .q-btn.active {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .q-btn.answered {
+            background: var(--green-dim);
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .q-btn.flagged {
+            background: var(--amber-dim);
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+
+        .q-btn.correct {
+            background: var(--green-dim);
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .q-btn.wrong {
+            background: var(--red-dim);
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .legend {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border2);
+            font-size: 13px;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-val {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .question-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .question-card.active {
+            display: block;
+        }
+
+        .q-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .q-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .q-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 3px 10px;
+        }
+
+        .q-domain {
+            font-size: 11px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 6px;
+            border: 1px solid;
+        }
+
+        .domain-cartography {
+            color: var(--purple);
+            border-color: var(--purple-dim);
+            background: var(--purple-dim);
+        }
+
+        .domain-spatial-analysis {
+            color: var(--teal);
+            border-color: #12261e;
+            background: #12261e;
+        }
+
+        .domain-data-management {
+            color: var(--amber);
+            border-color: var(--amber-dim);
+            background: var(--amber-dim);
+        }
+
+        .domain-gis-design {
+            color: var(--accent);
+            border-color: var(--accent-dim);
+            background: var(--accent-dim);
+        }
+
+        .domain-programming {
+            color: #f78166;
+            border-color: #2d1b15;
+            background: #2d1b15;
+        }
+
+        .domain-ethics {
+            color: #79c0ff;
+            border-color: #0d2137;
+            background: #0d2137;
+        }
+
+        .flag-btn {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px 12px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all .15s;
+            white-space: nowrap;
+        }
+
+        .flag-btn:hover,
+        .flag-btn.flagged {
+            border-color: var(--amber);
+            color: var(--amber);
+            background: var(--amber-dim);
+        }
+
+        .q-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all .15s;
+            background: var(--surface2);
+            user-select: none;
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+        }
+
+        .option.selected {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .option.correct {
+            border-color: var(--green);
+            background: var(--green-dim);
+        }
+
+        .option.wrong {
+            border-color: var(--red);
+            background: var(--red-dim);
+        }
+
+        .option.disabled {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            flex-shrink: 0;
+            color: var(--text-muted);
+            background: var(--surface);
+            transition: all .15s;
+        }
+
+        .option.selected .option-letter {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .option.correct .option-letter {
+            background: var(--green);
+            border-color: var(--green);
+            color: #fff;
+        }
+
+        .option.wrong .option-letter {
+            background: var(--red);
+            border-color: var(--red);
+            color: #fff;
+        }
+
+        .option-text {
+            font-size: 14px;
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .explanation {
+            margin-top: 1.5rem;
+            padding: 1rem 1.25rem;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        .explanation strong {
+            color: var(--accent);
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .btn {
+            padding: 9px 20px;
+            border-radius: 8px;
+            border: 1px solid;
+            font-size: 14px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            cursor: pointer;
+            transition: all .15s;
+            font-weight: 500;
+        }
+
+        .btn-ghost {
+            background: none;
+            border-color: var(--border);
+            color: var(--text-muted);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--text-muted);
+            color: var(--text);
+        }
+
+        .btn-primary {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-danger {
+            background: var(--red-dim);
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .btn-danger:hover {
+            background: var(--red);
+            color: #fff;
+        }
+
+        .progress-bar-wrap {
+            height: 3px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: width .3s;
+        }
+
+        .results-screen {
+            display: none;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .results-screen.active {
+            display: block;
+        }
+
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 3px solid;
+        }
+
+        .score-circle.pass {
+            border-color: var(--green);
+            background: var(--green-dim);
+        }
+
+        .score-circle.fail {
+            border-color: var(--red);
+            background: var(--red-dim);
+        }
+
+        .score-pct {
+            font-family: 'Syne', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .score-circle.pass .score-pct {
+            color: var(--green);
+        }
+
+        .score-circle.fail .score-pct {
+            color: var(--red);
+        }
+
+        .score-label {
+            font-size: 11px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .results-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: .5rem;
+        }
+
+        .results-sub {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 14px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .result-stat {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .result-stat-val {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .result-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .domain-breakdown {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .domain-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border2);
+            font-size: 13px;
+        }
+
+        .domain-row:last-child {
+            border-bottom: none;
+        }
+
+        .domain-bar-wrap {
+            flex: 1;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .domain-bar {
+            height: 100%;
+            border-radius: 3px;
+            transition: width .5s;
+        }
+
+        .start-screen {
+            max-width: 620px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .start-screen h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: .75rem;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .info-card-val {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .info-card-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .domain-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .domain-tag {
+            font-size: 11px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        @media(max-width:900px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Rail Tracker v4.2</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="../lib/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="../lib/leaflet/L.Control.Layers.Tree.css" crossorigin="" />
+  <link rel="stylesheet" href="../lib/leaflet/L.Control.Locate/L.Control.Locate.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+<body>
+  
+  <div class="dashboard-container">
+    
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="brand-icon">
+        <i class="bi bi-globe"></i>
+      </div>
+      <ul class="nav-links">
+        <li class="active"><i class="bi bi-grid"></i><span>Dashboard</span></li>
+        <li><a href="../mapCFRO2.html" style="color: inherit; text-decoration: none;"><i class="bi bi-map"></i><span>Map</span></a></li>
+        <li><i class="bi bi-diagram-3"></i><span>Networks</span></li>
+        <li><i class="bi bi-briefcase"></i><span>Assets</span></li>
+        <li><i class="bi bi-bar-chart"></i><span>Analytics</span></li>
+        <li><i class="bi bi-exclamation-triangle" style="color: #ff3c3c;"></i><span style="color: #ff3c3c;">Alerts</span></li>
+        <li><i class="bi bi-gear"></i><span>Settings</span></li>
+      </ul>
+      <div class="logout">
+        <i class="bi bi-box-arrow-right"></i>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-title">
+          <h1>REGIOTRAM LANDS TRACKER <span>v4.2</span></h1>
+        </div>
+        
+        <div class="header-controls">
+          <!-- Dashboard link (Optional, based on image) -->
+          <!-- Search Land -->
+          <div class="custom-input-group">
+            <i class="bi bi-search"></i>
+            <input type="text" id="searchBox" placeholder="Search Land...">
+            <div class="results-dropdown" id="results" style="display:none;"></div>
+          </div>
+
+          <!-- Search PK -->
+          <div class="custom-input-group">
+            <input type="text" id="a1mSearchBox" placeholder="Search by PK...like (3+000) type 3000">
+            <div class="results-dropdown" id="a1mResults" style="display:none;"></div>
+          </div>
+
+          <!-- Section Filter -->
+          <div class="custom-input-group">
+            <select id="sectionFilter">
+              <option value="">All Sections (Tramos)</option>
+              <option value="1">Tramo 1</option>
+              <option value="2">Tramo 2</option>
+              <option value="3">Tramo 3</option>
+              <option value="4">Tramo 4</option>
+              <option value="5">Tramo 5</option>
+              <option value="6">Tramo 6</option>
+              <option value="7">Tramo 7</option>
+              <option value="8">Tramo 8</option>
+              <option value="9">Tramo 9</option>
+              <option value="10">Tramo 10</option>
+              <option value="11">Tramo 11</option>
+              <option value="12">Tramo 12</option>
+              <option value="13">Tramo 13</option>
+              <option value="14">Tramo 14</option>
+              <option value="15">Tramo 15</option>
+              <option value="16">Tramo 16</option>
+              <option value="17">Tramo 17</option>
+              <option value="18">Tramo 18</option>
+            </select>
+          </div>
+
+          <!-- Rotate Control Placeholder -->
+          <div id="rotate-control-container" style="font-size: 14px; color: var(--text-muted); display: flex; align-items: center; gap: 5px;">
+            Push and Hold to Rotate.
+            <i class="bi bi-arrow-up-down"></i>
+          </div>
+
+          <div class="time-display" id="clockDisplay">14:32:05 UTC</div>
+          <div class="system-status">
+            SYSTEM<br>ONLINE <span class="status-dot"></span>
+          </div>
+          <div class="user-profile">
+            <i class="bi bi-person-circle"></i>
+          </div>
+        </div>
+      </header>
+
+      <!-- Grid Layout -->
+      <div class="content-grid">
+        
+        <!-- Center Map Area -->
+        <div class="panel map-panel">
+          <div id="map"></div>
+          <div class="map-controls">
+            <button id="btnZoomIn"><i class="bi bi-plus"></i></button>
+            <button id="btnZoomOut"><i class="bi bi-dash"></i></button>
+            <button id="btnLocate"><i class="bi bi-crosshair"></i></button>
+          </div>
+          <div class="map-legend">
+            <div class="legend-item"><span class="dot efr"></span> Project Lands</div>
+            <div class="legend-item"><span class="dot util"></span> Utilities</div>
+            <div class="legend-item"><span class="dot comp"></span> Secondary</div>
+          </div>
+        </div>
+
+        <!-- Right Side: Overview -->
+        <div class="panel stats-panel border-cyan">
+          <div class="panel-header">
+            <h2>NETWORK OVERVIEW</h2>
+            <i class="bi bi-three-dots"></i>
+          </div>
+          <div class="stat-list">
+            <div class="stat-item">
+              <div class="stat-label"><i class="bi bi-globe-americas text-cyan"></i> Total Lands</div>
+              <div class="stat-value text-cyan" id="valTotal">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label"><i class="bi bi-check-circle text-green"></i> Delivered</div>
+              <div class="stat-value text-green" id="valDelivered">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label"><i class="bi bi-exclamation-triangle text-red"></i> Pending</div>
+              <div class="stat-value text-red" id="valPending">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Alert Feed (Replaces Live Traffic) -->
+        <div class="panel alerts-panel border-orange">
+          <div class="panel-header text-orange">
+            <h2>ALERT FEED</h2>
+            <i class="bi bi-chevron-up"></i>
+          </div>
+          <div class="alert-feed" id="alertFeedContainer">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+
+        <!-- Bottom Left: Operational Efficiency (Bar Chart) -->
+        <div class="panel chart-panel border-cyan-dim">
+          <div class="panel-header">
+            <h2>DELIVERY PROGRESS</h2>
+            <span>Sectors <i class="bi bi-chevron-down"></i></span>
+          </div>
+          <div class="chart-container">
+            <canvas id="progressChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Bottom Center: Asset Status (Donut Chart) -->
+        <div class="panel donut-panel border-cyan-dim">
+          <div class="panel-header">
+            <h2>ASSET STATUS</h2>
+            <i class="bi bi-three-dots"></i>
+          </div>
+          <div class="donut-container" style="position: relative;">
+            <canvas id="statusChart"></canvas>
+            <div class="donut-center-text" id="donutCenterText">0%</div>
+          </div>
+          <div class="donut-legend">
+            <div><span class="dot green"></span> Delivered</div>
+            <div><span class="dot red"></span> Pending</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- jQuery & Leaflet -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="../lib/leaflet/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-rotate@0.2.8/dist/leaflet-rotate.js"></script>
+  <script src="../lib/leaflet/L.Control.Layers.Tree.js"></script>
+  <script src="../lib/leaflet/L.Control.Locate/L.Control.Locate.min.js"></script>
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="./js/dashboard.js"></script>
+</body>
+</html>

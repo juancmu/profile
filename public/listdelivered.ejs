@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables Bootstrap 5 -->
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f5;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: var(--primary-gradient);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.025em;
+            color: white !important;
+        }
+
+        .container-fluid {
+            padding: 2rem;
+        }
+
+        .card {
+            border: none;
+            border-radius: 1.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .card-header {
+            background: transparent;
+            padding: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #0f172a;
+            margin: 0;
+        }
+
+        .table-container {
+            padding: 1.5rem;
+        }
+
+        table.dataTable {
+            border-collapse: separate !important;
+            border-spacing: 0 0.5rem !important;
+        }
+
+        table.dataTable thead th {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #64748b;
+            padding: 1rem 1.5rem !important;
+            border-bottom: 2px solid #f1f5f9 !important;
+        }
+
+        table.dataTable tbody tr {
+            transition: all 0.2s;
+            border-radius: 0.5rem;
+        }
+
+        table.dataTable tbody tr:hover {
+            background-color: #f8fafc !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        table.dataTable tbody td {
+            padding: 1.25rem 1.5rem !important;
+            vertical-align: middle;
+            border-bottom: 1px solid #f1f5f9 !important;
+        }
+
+        .badge-sector {
+            padding: 0.5em 1em;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .sector-urbano {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .sector-suburbano {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .row-overdue {
+            background-color: #fee2e2 !important;
+        }
+
+        .row-overdue:hover {
+            background-color: #fecaca !important;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s;
+        }
+
+        .spinner-grow {
+            width: 3rem;
+            height: 3rem;
+            color: #16a34a;
+        }
+
+        #delivered-table_filter input {
+            border-radius: 2rem;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #e2e8f0;
+            margin-left: 0.5rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        #delivered-table_filter input:focus {
+            border-color: #16a34a;
+            box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
+        }
+
+        .chart-container-header {
+            width: 280px;
+            height: 120px;
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .container-fluid { padding: 1rem; }
+            .card-header { padding: 1.25rem; }
+            .table-container { padding: 0.75rem; }
+        }
+        @media (max-width: 768px) {
+            .container-fluid { padding: 0.5rem; }
+            .card-header { flex-direction: column !important; align-items: flex-start !important; gap: 1rem; padding: 1rem; }
+            .chart-container-header { width: 100% !important; height: 100px; }
+            .table-container { padding: 0.25rem; overflow-x: auto; }
+            table.dataTable { min-width: 600px; }
+            .d-flex.justify-content-between.align-items-center.mb-3 { flex-direction: column !important; gap: 0.75rem; align-items: stretch !important; }
+            #delivered-table_filter input { width: 100%; margin-left: 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading" class="loading-overlay">
+        <div class="spinner-grow" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h4 class="mt-4 fw-light text-muted">Aggregating Delivered Land Data...</h4>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center py-3">
+                <h5 class="card-title text-uppercase m-0">Areas Delivered Register</h5>
+                <div class="chart-container-header d-flex align-items-center">
+                    <canvas id="deliveredPieChart"></canvas>
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="delivered-table" class="table table-hover w-100">
+                    <thead>
+                        <tr>
+                            <th>Parcel ID</th>
+                            <th>Type</th>
+                            <th>Estimate Date</th>
+                            <th>Delivery Date</th>
+                            <th>Difference</th>
+                            <th>PK Ref</th>
+                            <th>Sector</th>
+                            <th>ACTA No</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Data will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 CFRO - Regiotram GIS System
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+
+    <script>
+        async function loadGeoJSON(url) {
+            const resp = await fetch(url);
+            if (!resp.ok) throw new Error(`Failed to load ${url}`);
+            return resp.json();
+        }
+
+        $(document).ready(async function () {
+            try {
+                const urls = [
+                    { url: '/data/landsEFR.geojson', type: 'Project' },
+                    { url: '/data/landsUtil.geojson', type: 'Utilities' },
+                    { url: '/data/landsComp.geojson', type: 'Secondary' }
+                ];
+
+                const results = await Promise.all(urls.map(u => loadGeoJSON(u.url)));
+                const tableBody = $('#table-body');
+                
+                let lateCount = 0;
+                let onTimeCount = 0;
+                let noDateCount = 0;
+
+                results.forEach((data, index) => {
+                    const type = urls[index].type;
+                    const features = data.features || [];
+
+                    features.forEach(f => {
+                        const p = f.properties || {};
+                        const status = p.EFR_ENTRG || "";
+
+                        // Filter for DELIVERED
+                        if (status.toUpperCase() === "DELIVERED") {
+                            const dateMaxTs = p.dateMax ? new Date(p.dateMax).getTime() : null;
+                            const dateDelTs = p.DATE_DEL ? new Date(p.DATE_DEL).getTime() : null;
+
+                            const dateMaxStr = dateMaxTs ? new Date(dateMaxTs).toISOString().split('T')[0] : 'N/A';
+                            const dateDelStr = dateDelTs ? new Date(dateDelTs).toISOString().split('T')[0] : 'N/A';
+
+                            let diffDaysStr = 'N/A';
+                            let isLate = false;
+                            let diffClass = 'text-muted';
+                            let sortDiffValue = -999999;
+
+                            if (dateMaxTs && dateDelTs) {
+                                // Difference in days: positive means delivered late
+                                const diffDays = Math.round((dateDelTs - dateMaxTs) / (1000 * 60 * 60 * 24));
+                                diffDaysStr = Math.abs(diffDays) + (diffDays > 0 ? ' days late' : ' days early');
+                                sortDiffValue = diffDays;
+                                
+                                if (diffDays === 0) diffDaysStr = 'On time';
+
+                                if (diffDays > 0) {
+                                    diffClass = 'text-danger fw-bold';
+                                    isLate = true;
+                                    lateCount++;
+                                } else {
+                                    diffClass = 'text-success fw-bold';
+                                    onTimeCount++;
+                                }
+                            } else {
+                                noDateCount++;
+                            }
+
+                            const pkRef = p.PK_DE_REFE || p.PK_DE_REF || 'N/A';
+                            const sector = p.SECTOR || 'UNKNOWN';
+                            const sectorClass = sector.toUpperCase() === 'URBANO' ? 'sector-urbano' : 'sector-suburbano';
+                            const rowClass = isLate ? 'row-overdue' : '';
+
+                            const actaNo = p.ACTA_No || 'N/A';
+                            const row = `
+                                <tr class="${rowClass}">
+                                    <td class="fw-bold">${p.PARCEL_ID || 'N/A'}</td>
+                                    <td><span class="badge bg-secondary opacity-75">${type}</span></td>
+                                    <td>${dateMaxStr}</td>
+                                    <td><span class="fw-semibold">${dateDelStr}</span></td>
+                                    <td data-order="${sortDiffValue}"><span class="${diffClass}">${diffDaysStr}</span></td>
+                                    <td><code>${pkRef}</code></td>
+                                    <td><span class="badge-sector ${sectorClass}">${sector}</span></td>
+                                    <td>${actaNo}</td>
+                                </tr>
+                            `;
+                            tableBody.append(row);
+                        }
+                    });
+                });
+
+                // Render Pie Chart
+                const ctx = document.getElementById('deliveredPieChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Late', 'On Time/Early', 'No Dates'],
+                        datasets: [{
+                            data: [lateCount, onTimeCount, noDateCount],
+                            backgroundColor: ['#dc2626', '#16a34a', '#9ca3af'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { 
+                                display: true,
+                                position: 'right',
+                                labels: {
+                                    boxWidth: 12,
+                                    font: { size: 11 }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                        const val = context.raw;
+                                        if (total === 0) return context.label + ": 0";
+                                        const pct = ((val / total) * 100).toFixed(1);
+                                        return `${context.label}: ${val} (${pct}%)`;
+                                    }
+                                }
+                            },
+                            datalabels: {
+                                color: '#fff',
+                                font: { weight: 'bold', size: 11 },
+                                formatter: (val, ctx) => {
+                                    if (val === 0) return '';
+                                    const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                                    const pct = ((val / total) * 100).toFixed(0);
+                                    return `${val}\n(${pct}%)`; 
+                                },
+                                textAlign: 'center'
+                            }
+                        }
+                    },
+                    plugins: [ChartDataLabels]
+                });
+
+                // Initialize DataTable
+                const table = $('#delivered-table').DataTable({
+                    order: [[4, 'desc']],
+                    pageLength: 25,
+                    language: {
+                        search: "_INPUT_",
+                        searchPlaceholder: "Search any field..."
+                    },
+                    dom: '<"d-flex justify-content-between align-items-center mb-3"liBf>rtip',
+                    buttons: [
+                        {
+                            extend: 'excelHtml5',
+                            text: '<i class="bi bi-file-earmark-excel me-1"></i> Export to XLSX',
+                            className: 'btn btn-success btn-sm rounded-pill px-3 shadow-sm border-0',
+                            title: 'Delivered_Areas_Report_' + new Date().toISOString().split('T')[0],
+                            exportOptions: {
+                                columns: [0, 1, 2, 3, 4, 5, 6, 7] 
+                            }
+                        }
+                    ],
+                    initComplete: function () {
+                        this.api().columns().every(function () {
+                            var column = this;
+                            var headerText = $(column.header()).text().trim().toUpperCase();
+                            
+                            // Target columns: TYPE, SECTOR
+                            if (headerText === 'TYPE' || headerText === 'SECTOR') {
+                                var select = $('<select class="form-select form-select-sm mt-2 fw-normal" style="min-width: 100px; display: inline-block; width: auto;"><option value="">All</option></select>')
+                                    .appendTo($(column.header()))
+                                    .on('change', function () {
+                                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                                        column.search(val ? '^' + val + '$' : '', true, false).draw();
+                                    });
+
+                                // Prevent sorting when clicking the select
+                                select.on('click', function(e) {
+                                    e.stopPropagation();
+                                });
+
+                                var uniqueData = [];
+                                column.data().unique().sort().each(function (d, j) {
+                                    var text = $('<div>').html(d).text().trim();
+                                    if (text && uniqueData.indexOf(text) === -1) {
+                                        uniqueData.push(text);
+                                    }
+                                });
+                                
+                                uniqueData.sort().forEach(function(val) {
+                                    select.append('<option value="' + val + '">' + val + '</option>');
+                                });
+                            }
+                        });
+                    }
+                });
+
+                $('#loading').fadeOut();
+
+            } catch (err) {
+                console.error(err);
+                alert('Error loading data. Check console for details.');
+                $('#loading').hide();
+            }
+        });
+    </script>
+</body>
+</html>

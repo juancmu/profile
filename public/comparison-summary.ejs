@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <style>
+    .col-project {
+      border-left: 3px solid red !important;
+      border-right: 3px solid red !important;
+    }
+
+    .col-project-top {
+      border-top: 3px solid red !important;
+      border-left: 3px solid red !important;
+      border-right: 3px solid red !important;
+    }
+
+    .col-project-bottom {
+      border-bottom: 3px solid red !important;
+      border-left: 3px solid red !important;
+      border-right: 3px solid red !important;
+    }
+
+    .col-util {
+      border-left: 3px solid blue !important;
+      border-right: 3px solid blue !important;
+    }
+
+    .col-util-top {
+      border-top: 3px solid blue !important;
+      border-left: 3px solid blue !important;
+      border-right: 3px solid blue !important;
+    }
+
+    .col-util-bottom {
+      border-bottom: 3px solid blue !important;
+      border-left: 3px solid blue !important;
+      border-right: 3px solid blue !important;
+    }
+
+    .col-secondary {
+      border-left: 3px solid green !important;
+      border-right: 3px solid green !important;
+    }
+
+    .col-secondary-top {
+      border-top: 3px solid green !important;
+      border-left: 3px solid green !important;
+      border-right: 3px solid green !important;
+    }
+
+    .col-secondary-bottom {
+      border-bottom: 3px solid green !important;
+      border-left: 3px solid green !important;
+      border-right: 3px solid green !important;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+  <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="mb-0">Comparison Summary Dashboard</h2>
+      <div class="d-flex gap-2">
+        <a href="/COMPARISON" class="btn btn-outline-secondary btn-sm">Open Full Comparison</a>
+        <a href="/LANDS" class="btn btn-outline-primary btn-sm">Lands Dashboard</a>
+      </div>
+    </div>
+
+
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title text-uppercase fw-bold mb-3">Regiotram Lands Requirements</h5>
+        <div class="row align-items-center">
+          <div class="col-lg-9">
+            <div class="table-responsive">
+              <table class="table table-sm table-bordered align-middle mb-0">
+                <thead>
+                  <tr class="text-center text-white" style="background-color:#0b2756;">
+                    <th colspan="5" class="py-2">STATUS DELIVERY — ALL LANDS</th>
+                  </tr>
+                  <tr class="text-center text-white" style="background-color:#1665c0;">
+                    <th>Status</th>
+                    <th class="col-project-top">Project</th>
+                    <th class="col-util-top">Utilities</th>
+                    <th class="col-secondary-top">Secondary</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="background-color:rgba(34, 197, 94, 0.8); color:#fff;">
+                    <th>Delivered</th>
+                    <td class="text-end fw-semibold col-project" id="sum-deliv-project">0</td>
+                    <td class="text-end fw-semibold col-util" id="sum-deliv-utilities">0</td>
+                    <td class="text-end fw-semibold col-secondary" id="sum-deliv-secondary">0</td>
+                    <td class="text-end fw-bold" id="sum-deliv-total">0</td>
+                  </tr>
+                  <tr style="background-color:rgba(248, 113, 113, 0.8); color:#fff;">
+                    <th>No Delivered</th>
+                    <td class="text-end fw-semibold col-project" id="sum-node-project">0</td>
+                    <td class="text-end fw-semibold col-util" id="sum-node-utilities">0</td>
+                    <td class="text-end fw-semibold col-secondary" id="sum-node-secondary">0</td>
+                    <td class="text-end fw-bold" id="sum-node-total">0</td>
+                  </tr>
+                  <tr style="background-color:#f9fafb;">
+                    <th>Totals</th>
+                    <td class="text-end fw-bold col-project-bottom" id="sum-total-project">0</td>
+                    <td class="text-end fw-bold col-util-bottom" id="sum-total-utilities">0</td>
+                    <td class="text-end fw-bold col-secondary-bottom" id="sum-total-secondary">0</td>
+                    <td class="text-end fw-bold" id="sum-total-all">0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-3 text-center">
+            <div class="mt-1 fw-bold text-muted small">OVERALL STATUS</div>
+            <div style="height:150px; position:relative;">
+              <canvas id="global-pie"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h5 class="mb-2">Status by Land Type</h5>
+    <div class="row g-3 mb-4">
+      <div class="col-12 col-md-4">
+        <div class="card shadow-sm h-100" style="border:2px solid red;">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="text-muted mb-1">Project Lands</h6>
+              <h4 id="project-total" class="mb-2">0</h4>
+              <p class="mb-1 small text-success">Delivered: <span id="project-delivered">0</span></p>
+              <p class="mb-0 small text-danger">No Delivered: <span id="project-nodelivered">0</span></p>
+            </div>
+            <div style="width:140px;height:140px;position:relative;">
+              <canvas id="pie-project"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card shadow-sm h-100" style="border:2px solid blue;">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="text-muted mb-1">Utilities Lands</h6>
+              <h4 id="utilities-total" class="mb-2">0</h4>
+              <p class="mb-1 small text-success">Delivered: <span id="utilities-delivered">0</span></p>
+              <p class="mb-0 small text-danger">No Delivered: <span id="utilities-nodelivered">0</span></p>
+            </div>
+            <div style="width:140px;height:140px;position:relative;">
+              <canvas id="pie-utilities"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card shadow-sm h-100" style="border:2px solid green;">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="text-muted mb-1">Secondary Lands</h6>
+              <h4 id="secondary-total" class="mb-2">0</h4>
+              <p class="mb-1 small text-success">Delivered: <span id="secondary-delivered">0</span></p>
+              <p class="mb-0 small text-danger">No Delivered: <span id="secondary-nodelivered">0</span></p>
+            </div>
+            <div style="width:140px;height:140px;position:relative;">
+              <canvas id="pie-secondary"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title mb-3">Areas Required for Regiotram Project (Actas)</h5>
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered align-middle mb-0 text-center">
+            <thead>
+              <tr class="table-light">
+                <th rowspan="2" class="text-start">TIPO DE AREA</th>
+                <th rowspan="2">INICIAL</th>
+                <th colspan="9">ACTAS DE REQUERIMIENTO</th>
+                <th rowspan="2">TOTALES</th>
+              </tr>
+              <tr class="table-light">
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="text-start">Project</th>
+                <td id="acta-project-initial">0</td>
+                <td id="acta-project-1">0</td>
+                <td id="acta-project-2">0</td>
+                <td id="acta-project-3">0</td>
+                <td id="acta-project-4">0</td>
+                <td id="acta-project-5">0</td>
+                <td id="acta-project-6">0</td>
+                <td id="acta-project-7">0</td>
+                <td id="acta-project-8">0</td>
+                <td id="acta-project-9">0</td>
+                <td class="fw-bold" id="acta-project-total">0</td>
+              </tr>
+              <tr>
+                <th class="text-start">Secondary</th>
+                <td id="acta-secondary-initial">0</td>
+                <td id="acta-secondary-1">0</td>
+                <td id="acta-secondary-2">0</td>
+                <td id="acta-secondary-3">0</td>
+                <td id="acta-secondary-4">0</td>
+                <td id="acta-secondary-5">0</td>
+                <td id="acta-secondary-6">0</td>
+                <td id="acta-secondary-7">0</td>
+                <td id="acta-secondary-8">0</td>
+                <td id="acta-secondary-9">0</td>
+                <td class="fw-bold" id="acta-secondary-total">0</td>
+              </tr>
+              <tr>
+                <th class="text-start">Utilities</th>
+                <td id="acta-utilities-initial">0</td>
+                <td id="acta-utilities-1">0</td>
+                <td id="acta-utilities-2">0</td>
+                <td id="acta-utilities-3">0</td>
+                <td id="acta-utilities-4">0</td>
+                <td id="acta-utilities-5">0</td>
+                <td id="acta-utilities-6">0</td>
+                <td id="acta-utilities-7">0</td>
+                <td id="acta-utilities-8">0</td>
+                <td id="acta-utilities-9">0</td>
+                <td class="fw-bold" id="acta-utilities-total">0</td>
+              </tr>
+              <tr class="table-light fw-bold">
+                <th class="text-start">Totals</th>
+                <td id="acta-total-initial">0</td>
+                <td id="acta-total-1">0</td>
+                <td id="acta-total-2">0</td>
+                <td id="acta-total-3">0</td>
+                <td id="acta-total-4">0</td>
+                <td id="acta-total-5">0</td>
+                <td id="acta-total-6">0</td>
+                <td id="acta-total-7">0</td>
+                <td id="acta-total-8">0</td>
+                <td id="acta-total-9">0</td>
+                <td id="acta-total-total">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Delivery Status by Land Type</h5>
+            <div style="height:300px; position:relative;">
+              <canvas id="lands-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Lands by Sector</h5>
+            <div style="height:300px; position:relative;">
+              <canvas id="sector-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="card-title mb-0">All Lands Status</h5>
+          <button id="export-all-lands" class="btn btn-success btn-sm">
+            Export to Excel
+          </button>
+        </div>
+        <div class="row g-2 mb-3">
+          <div class="col-12 col-md-3">
+            <label for="filter-sector" class="form-label mb-1">Sector</label>
+            <select id="filter-sector" class="form-select form-select-sm">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-3">
+            <label for="filter-status" class="form-label mb-1">Status</label>
+            <select id="filter-status" class="form-select form-select-sm">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-3">
+            <label for="filter-type" class="form-label mb-1">Type</label>
+            <select id="filter-type" class="form-select form-select-sm">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-3">
+            <label for="filter-acta" class="form-label mb-1">ACTA_No.</label>
+            <select id="filter-acta" class="form-select form-select-sm">
+              <option value="">All</option>
+            </select>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div class="d-flex align-items-center gap-2">
+            <label for="page-size" class="form-label mb-0">Show</label>
+            <select id="page-size" class="form-select form-select-sm" style="width:auto;">
+              <option value="10">10</option>
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            <span>entries</span>
+          </div>
+          <small class="text-muted" id="table-summary"></small>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm align-middle mb-0" id="summary-table">
+            <thead class="table-light">
+              <tr>
+                <th class="sortable-header" data-sort-key="refName" style="cursor:pointer;">RefName <span
+                    class="sort-indicator">▲</span></th>
+                <th class="sortable-header" data-sort-key="sector" style="cursor:pointer;">Sector <span
+                    class="sort-indicator text-muted">↕</span></th>
+                <th class="sortable-header" data-sort-key="status" style="cursor:pointer;">Status <span
+                    class="sort-indicator text-muted">↕</span></th>
+                <th class="sortable-header" data-sort-key="type" style="cursor:pointer;">Type <span
+                    class="sort-indicator text-muted">↕</span></th>
+                <th class="sortable-header" data-sort-key="actaNo" style="cursor:pointer;">ACTA_No. <span
+                    class="sort-indicator text-muted">↕</span></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+          <nav aria-label="All Lands Status paging">
+            <ul class="pagination pagination-sm mb-0" id="table-pagination"></ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadGeoJSON(url) {
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) return null;
+        return await resp.json();
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function normalizeStatus(value) {
+      const status = String(value || "UNKNOWN").toUpperCase();
+      if (status === "NOT_DELIVERED") return "NO DELIVERED";
+      return status;
+    }
+
+    function makeTypeStats() {
+      return { total: 0, delivered: 0, notDelivered: 0 };
+    }
+
+    (async function init() {
+      const urls = [
+        { url: "/data/landsEFR.geojson", type: "Project" },
+        { url: "/data/landsUtil.geojson", type: "Utilities" },
+        { url: "/data/landsComp.geojson", type: "Secondary" }
+      ];
+
+      const results = await Promise.all(urls.map(u => loadGeoJSON(u.url)));
+      const grouped = {};
+
+      results.forEach((data, index) => {
+        if (!data || !data.features) return;
+        const currentType = urls[index].type;
+
+        data.features.forEach((feature) => {
+          const props = feature.properties || {};
+          let refName = props.RefName;
+          const parcelId = props.PARCEL_ID;
+
+          if (!refName || !parcelId) return;
+
+          refName = String(refName).trim();
+          const currentStatus = normalizeStatus(props.EFR_ENTRG);
+          const currentActa = props.ACTA_No;
+
+          if (!grouped[refName]) {
+
+            console.log(refName + "(-->)" + props.SECTOR)
+            grouped[refName] = {
+              sector: props.SECTOR || "UNKNOWN",
+              status: currentStatus,
+              type: currentType,
+              actaNo: currentActa,
+              parcels: new Set()
+            };
+          } else if (currentStatus === "NO DELIVERED") {
+            // Keep group as "NO DELIVERED" if any parcel is late
+            grouped[refName].status = "NO DELIVERED";
+          }
+
+          if ((grouped[refName].actaNo === null || grouped[refName].actaNo === undefined || grouped[refName].actaNo === '') &&
+            currentActa !== null && currentActa !== undefined && currentActa !== '') {
+            grouped[refName].actaNo = currentActa;
+          }
+
+          grouped[refName].parcels.add(String(parcelId).trim());
+        });
+      });
+
+      const processedData = Object.entries(grouped).map(([refName, dataObj]) => ({
+        refName,
+        sector: dataObj.sector,
+        status: dataObj.status,
+        type: dataObj.type,
+        actaNo: dataObj.actaNo
+      })).sort((a, b) => a.refName.localeCompare(b.refName, undefined, { numeric: true, sensitivity: "base" }));
+
+      const statsByType = {
+        Project: makeTypeStats(),
+        Utilities: makeTypeStats(),
+        Secondary: makeTypeStats()
+      };
+      const sectorStats = {
+        SUBURBANO: { Project: makeTypeStats(), Utilities: makeTypeStats(), Secondary: makeTypeStats() },
+        URBANO: { Project: makeTypeStats(), Utilities: makeTypeStats(), Secondary: makeTypeStats() }
+      };
+
+      processedData.forEach(row => {
+        const type = statsByType[row.type] ? row.type : "Project";
+        const statusNorm = normalizeStatus(row.status);
+        const isDelivered = statusNorm === "DELIVERED";
+        const sector = (row.sector || "UNKNOWN").toUpperCase() === "URBANO" ? "URBANO" : "SUBURBANO";
+
+        statsByType[type].total += 1;
+        if (isDelivered) statsByType[type].delivered += 1;
+        else statsByType[type].notDelivered += 1;
+
+        sectorStats[sector][type].total += 1;
+        if (isDelivered) sectorStats[sector][type].delivered += 1;
+        else sectorStats[sector][type].notDelivered += 1;
+      });
+
+      const projectStats = statsByType.Project;
+      const utilitiesStats = statsByType.Utilities;
+      const secondaryStats = statsByType.Secondary;
+      const overallDelivered = projectStats.delivered + utilitiesStats.delivered + secondaryStats.delivered;
+      const overallNoDelivered = projectStats.notDelivered + utilitiesStats.notDelivered + secondaryStats.notDelivered;
+      const overallTotal = projectStats.total + utilitiesStats.total + secondaryStats.total;
+
+      document.getElementById("sum-deliv-project").textContent = projectStats.delivered;
+      document.getElementById("sum-deliv-utilities").textContent = utilitiesStats.delivered;
+      document.getElementById("sum-deliv-secondary").textContent = secondaryStats.delivered;
+      document.getElementById("sum-deliv-total").textContent = overallDelivered;
+
+      document.getElementById("sum-node-project").textContent = projectStats.notDelivered;
+      document.getElementById("sum-node-utilities").textContent = utilitiesStats.notDelivered;
+      document.getElementById("sum-node-secondary").textContent = secondaryStats.notDelivered;
+      document.getElementById("sum-node-total").textContent = overallNoDelivered;
+
+      document.getElementById("sum-total-project").textContent = projectStats.total;
+      document.getElementById("sum-total-utilities").textContent = utilitiesStats.total;
+      document.getElementById("sum-total-secondary").textContent = secondaryStats.total;
+      document.getElementById("sum-total-all").textContent = overallTotal;
+
+      document.getElementById("project-total").textContent = projectStats.total;
+      document.getElementById("project-delivered").textContent = projectStats.delivered;
+      document.getElementById("project-nodelivered").textContent = projectStats.notDelivered;
+      document.getElementById("utilities-total").textContent = utilitiesStats.total;
+      document.getElementById("utilities-delivered").textContent = utilitiesStats.delivered;
+      document.getElementById("utilities-nodelivered").textContent = utilitiesStats.notDelivered;
+      document.getElementById("secondary-total").textContent = secondaryStats.total;
+      document.getElementById("secondary-delivered").textContent = secondaryStats.delivered;
+      document.getElementById("secondary-nodelivered").textContent = secondaryStats.notDelivered;
+
+      const tbody = document.querySelector("#summary-table tbody");
+      const sectorFilter = document.getElementById("filter-sector");
+      const statusFilter = document.getElementById("filter-status");
+      const typeFilter = document.getElementById("filter-type");
+      const actaFilter = document.getElementById("filter-acta");
+      const exportBtn = document.getElementById("export-all-lands");
+      const pageSizeSelect = document.getElementById("page-size");
+      const tableSummaryEl = document.getElementById("table-summary");
+      const paginationEl = document.getElementById("table-pagination");
+
+      let filteredRowsForExport = [...processedData];
+      let filteredRows = [...processedData];
+      let currentPage = 1;
+      let pageSize = Number(pageSizeSelect.value);
+      let sortBy = "refName";
+      let sortOrder = "asc";
+
+      function renderStatusTable(rows) {
+        tbody.innerHTML = rows.map(row => {
+          const badgeClass = normalizeStatus(row.status) === "NO DELIVERED" ? "bg-danger" : "bg-success";
+          const actaText = (row.actaNo !== null && row.actaNo !== undefined && row.actaNo !== "") ? row.actaNo : "INITIAL";
+          return `
+          <tr>
+            <td>${row.refName}</td>
+            <td>${row.sector}</td>
+            <td><span class="badge ${badgeClass}">${row.status}</span></td>
+            <td>${row.type}</td>
+            <td>${actaText}</td>
+          </tr>
+        `;
+        }).join("");
+      }
+
+      function renderPagination() {
+        paginationEl.innerHTML = "";
+        const totalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize));
+        const safePage = Math.min(currentPage, totalPages);
+        currentPage = safePage;
+
+        function addPageItem(label, page, disabled, active = false) {
+          const li = document.createElement("li");
+          li.className = `page-item${disabled ? " disabled" : ""}${active ? " active" : ""}`;
+          const a = document.createElement("a");
+          a.className = "page-link";
+          a.href = "#";
+          a.textContent = label;
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (disabled || page === currentPage) return;
+            currentPage = page;
+            renderCurrentPage();
+          });
+          li.appendChild(a);
+          paginationEl.appendChild(li);
+        }
+
+        addPageItem("Prev", currentPage - 1, currentPage === 1);
+        for (let p = 1; p <= totalPages; p++) {
+          if (totalPages <= 7 || p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1) {
+            addPageItem(String(p), p, false, p === currentPage);
+          } else if (p === 2 || p === totalPages - 1) {
+            const li = document.createElement("li");
+            li.className = "page-item disabled";
+            li.innerHTML = `<span class="page-link">...</span>`;
+            paginationEl.appendChild(li);
+          }
+        }
+        addPageItem("Next", currentPage + 1, currentPage === totalPages);
+      }
+
+      function renderCurrentPage() {
+        const totalFiltered = filteredRows.length;
+        const totalAll = processedData.length;
+        const startIdx = totalFiltered === 0 ? 0 : (currentPage - 1) * pageSize;
+        const endIdx = Math.min(startIdx + pageSize, totalFiltered);
+        const pageRows = filteredRows.slice(startIdx, endIdx);
+
+        renderStatusTable(pageRows);
+        renderPagination();
+
+        if (totalFiltered === 0) {
+          tableSummaryEl.textContent = `Showing 0 to 0 of 0 entries (filtered from ${totalAll} total entries)`;
+        } else {
+          tableSummaryEl.textContent = `Showing ${startIdx + 1} to ${endIdx} of ${totalFiltered} entries (filtered from ${totalAll} total entries)`;
+        }
+      }
+
+      function sortRows(rows) {
+        const direction = sortOrder === "desc" ? -1 : 1;
+
+        const sorted = [...rows].sort((a, b) => {
+          let av = a[sortBy];
+          let bv = b[sortBy];
+
+          if (sortBy === "status") {
+            av = normalizeStatus(av);
+            bv = normalizeStatus(bv);
+          } else if (sortBy === "actaNo") {
+            av = (av !== null && av !== undefined && av !== "") ? String(av) : "INITIAL";
+            bv = (bv !== null && bv !== undefined && bv !== "") ? String(bv) : "INITIAL";
+            if (av === "INITIAL" && bv !== "INITIAL") return -1 * direction;
+            if (bv === "INITIAL" && av !== "INITIAL") return 1 * direction;
+            const na = Number(av);
+            const nb = Number(bv);
+            if (!Number.isNaN(na) && !Number.isNaN(nb)) return (na - nb) * direction;
+          }
+
+          return String(av || "").localeCompare(String(bv || ""), undefined, { numeric: true, sensitivity: "base" }) * direction;
+        });
+
+        return sorted;
+      }
+
+      function updateSortIndicators() {
+        document.querySelectorAll("#summary-table thead th.sortable-header").forEach(th => {
+          const key = th.getAttribute("data-sort-key");
+          const indicator = th.querySelector(".sort-indicator");
+          if (!indicator) return;
+
+          if (key === sortBy) {
+            indicator.textContent = sortOrder === "asc" ? "▲" : "▼";
+            indicator.classList.remove("text-muted");
+          } else {
+            indicator.textContent = "↕";
+            indicator.classList.add("text-muted");
+          }
+        });
+      }
+
+      function applyFilters() {
+        const selectedSector = sectorFilter.value;
+        const selectedStatus = statusFilter.value;
+        const selectedType = typeFilter.value;
+        const selectedActa = actaFilter.value;
+        filteredRows = processedData.filter(row => {
+          const okSector = !selectedSector || String(row.sector).toUpperCase() === selectedSector;
+          const okStatus = !selectedStatus || normalizeStatus(row.status) === selectedStatus;
+          const okType = !selectedType || String(row.type) === selectedType;
+          const rowActa = (row.actaNo !== null && row.actaNo !== undefined && row.actaNo !== "") ? String(row.actaNo) : "INITIAL";
+          const okActa = !selectedActa || rowActa === selectedActa;
+          return okSector && okStatus && okType && okActa;
+        });
+        filteredRows = sortRows(filteredRows);
+        filteredRowsForExport = filteredRows;
+        currentPage = 1;
+        renderCurrentPage();
+      }
+
+      const uniqueSectors = Array.from(new Set(processedData.map(r => String(r.sector || "UNKNOWN").toUpperCase()))).sort();
+      uniqueSectors.forEach(sector => {
+        sectorFilter.insertAdjacentHTML("beforeend", `<option value="${sector}">${sector}</option>`);
+      });
+
+      const uniqueStatuses = Array.from(new Set(processedData.map(r => normalizeStatus(r.status)))).sort();
+      uniqueStatuses.forEach(status => {
+        statusFilter.insertAdjacentHTML("beforeend", `<option value="${status}">${status}</option>`);
+      });
+
+      const uniqueTypes = Array.from(new Set(processedData.map(r => String(r.type || "")))).filter(Boolean).sort();
+      uniqueTypes.forEach(type => {
+        typeFilter.insertAdjacentHTML("beforeend", `<option value="${type}">${type}</option>`);
+      });
+
+      const uniqueActas = Array.from(new Set(processedData.map(r => {
+        return (r.actaNo !== null && r.actaNo !== undefined && r.actaNo !== "") ? String(r.actaNo) : "INITIAL";
+      }))).sort((a, b) => {
+        if (a === "INITIAL") return -1;
+        if (b === "INITIAL") return 1;
+        return Number(a) - Number(b);
+      });
+      uniqueActas.forEach(acta => {
+        actaFilter.insertAdjacentHTML("beforeend", `<option value="${acta}">${acta}</option>`);
+      });
+
+      sectorFilter.addEventListener("change", applyFilters);
+      statusFilter.addEventListener("change", applyFilters);
+      typeFilter.addEventListener("change", applyFilters);
+      actaFilter.addEventListener("change", applyFilters);
+      document.querySelectorAll("#summary-table thead th.sortable-header").forEach(th => {
+        th.addEventListener("click", () => {
+          const key = th.getAttribute("data-sort-key");
+          if (sortBy === key) {
+            sortOrder = sortOrder === "asc" ? "desc" : "asc";
+          } else {
+            sortBy = key;
+            sortOrder = "asc";
+          }
+          updateSortIndicators();
+          applyFilters();
+        });
+      });
+      pageSizeSelect.addEventListener("change", () => {
+        pageSize = Number(pageSizeSelect.value);
+        currentPage = 1;
+        renderCurrentPage();
+      });
+      filteredRows = sortRows(filteredRows);
+      filteredRowsForExport = filteredRows;
+      updateSortIndicators();
+      renderCurrentPage();
+
+      exportBtn.addEventListener("click", () => {
+        const rows = filteredRowsForExport.map(row => ({
+          RefName: row.refName,
+          Sector: row.sector,
+          Status: normalizeStatus(row.status),
+          Type: row.type,
+          "ACTA_No.": (row.actaNo !== null && row.actaNo !== undefined && row.actaNo !== "") ? row.actaNo : "INITIAL"
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(rows);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "All Lands Status");
+        const dateStamp = new Date().toISOString().slice(0, 10);
+        XLSX.writeFile(workbook, `all_lands_status_${dateStamp}.xlsx`);
+      });
+
+      const actaTemplate = () => ({ INITIAL: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, total: 0 });
+      const actaByType = {
+        Project: actaTemplate(),
+        Secondary: actaTemplate(),
+        Utilities: actaTemplate()
+      };
+
+      processedData.forEach(row => {
+        const type = actaByType[row.type] ? row.type : "Project";
+        const actaNum = Number(row.actaNo);
+        let bucket = "INITIAL";
+        if (Number.isInteger(actaNum) && actaNum >= 1 && actaNum <= 9) bucket = actaNum;
+        actaByType[type][bucket] += 1;
+        actaByType[type].total += 1;
+      });
+
+      function fillActaRow(typeKey, prefix) {
+        document.getElementById(`acta-${prefix}-initial`).textContent = actaByType[typeKey].INITIAL;
+        for (let i = 1; i <= 9; i++) {
+          document.getElementById(`acta-${prefix}-${i}`).textContent = actaByType[typeKey][i];
+        }
+        document.getElementById(`acta-${prefix}-total`).textContent = actaByType[typeKey].total;
+      }
+      fillActaRow("Project", "project");
+      fillActaRow("Secondary", "secondary");
+      fillActaRow("Utilities", "utilities");
+
+      const totalActa = actaTemplate();
+      ["Project", "Secondary", "Utilities"].forEach(type => {
+        totalActa.INITIAL += actaByType[type].INITIAL;
+        for (let i = 1; i <= 9; i++) totalActa[i] += actaByType[type][i];
+        totalActa.total += actaByType[type].total;
+      });
+      document.getElementById("acta-total-initial").textContent = totalActa.INITIAL;
+      for (let i = 1; i <= 9; i++) document.getElementById(`acta-total-${i}`).textContent = totalActa[i];
+      document.getElementById("acta-total-total").textContent = totalActa.total;
+
+      function renderPie(canvasId, delivered, notDelivered, showLegend = false) {
+        const total = delivered + notDelivered;
+        return new Chart(document.getElementById(canvasId).getContext("2d"), {
+          type: "pie",
+          plugins: [ChartDataLabels],
+          data: {
+            labels: ["Delivered", "No Delivered"],
+            datasets: [{
+              data: [delivered, notDelivered],
+              backgroundColor: ["rgba(34, 197, 94, 0.85)", "rgba(239, 68, 68, 0.85)"],
+              borderColor: "#fff",
+              borderWidth: 1
+            }]
+          },
+          options: {
+            maintainAspectRatio: false,
+            plugins: {
+              datalabels: {
+                color: "#fff",
+                font: { weight: "bold", size: 11 },
+                formatter: (value) => {
+                  if (!value || total === 0) return "";
+                  return Math.round((value / total) * 100) + "%";
+                }
+              },
+              legend: { display: showLegend, position: "top" }
+            }
+          }
+        });
+      }
+
+      renderPie("global-pie", overallDelivered, overallNoDelivered, true);
+      renderPie("pie-project", projectStats.delivered, projectStats.notDelivered);
+      renderPie("pie-utilities", utilitiesStats.delivered, utilitiesStats.notDelivered);
+      renderPie("pie-secondary", secondaryStats.delivered, secondaryStats.notDelivered);
+
+      const categoryBorderPlugin = {
+        id: "categoryBorderPlugin",
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart;
+          const meta0 = chart.getDatasetMeta(0);
+          const meta1 = chart.getDatasetMeta(1);
+          const borderColors = ["red", "blue", "green"];
+
+          ctx.save();
+          for (let i = 0; i < 3; i++) {
+            if (meta0.data[i] && meta1.data[i]) {
+              const b0 = meta0.data[i];
+              const b1 = meta1.data[i];
+              const barWidth = b0.width;
+              const barX = b0.x - barWidth / 2;
+              const topY = b1.y;
+              const bottomY = b0.base;
+
+              ctx.strokeStyle = borderColors[i];
+              ctx.lineWidth = 3;
+              ctx.strokeRect(barX, topY, barWidth, bottomY - topY);
+            }
+          }
+          ctx.restore();
+        }
+      };
+
+      new Chart(document.getElementById("lands-chart").getContext("2d"), {
+        type: "bar",
+        plugins: [ChartDataLabels, categoryBorderPlugin],
+        data: {
+          labels: ["Project Lands", "Utilities Lands", "Secondary Lands"],
+          datasets: [
+            {
+              label: "Delivered",
+              data: [projectStats.delivered, utilitiesStats.delivered, secondaryStats.delivered],
+              backgroundColor: "rgba(34, 197, 94, 0.8)",
+              stack: "status"
+            },
+            {
+              label: "No Delivered",
+              data: [projectStats.notDelivered, utilitiesStats.notDelivered, secondaryStats.notDelivered],
+              backgroundColor: "rgba(248, 113, 113, 0.8)",
+              stack: "status"
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            datalabels: {
+              color: "#fff",
+              font: { weight: "bold", size: 11 },
+              formatter: (value) => value > 0 ? value : ""
+            },
+            legend: { position: "bottom" }
+          },
+          scales: {
+            x: { stacked: true },
+            y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } }
+          }
+        }
+      });
+
+      const sectorLabels = ["Project Lands", "Utilities Lands", "Secondary Lands", "Project Lands", "Utilities Lands", "Secondary Lands"];
+      const sectorDeliveredData = [
+        sectorStats.SUBURBANO.Project.delivered,
+        sectorStats.SUBURBANO.Utilities.delivered,
+        sectorStats.SUBURBANO.Secondary.delivered,
+        sectorStats.URBANO.Project.delivered,
+        sectorStats.URBANO.Utilities.delivered,
+        sectorStats.URBANO.Secondary.delivered
+      ];
+      const sectorNoDeliveredData = [
+        sectorStats.SUBURBANO.Project.notDelivered,
+        sectorStats.SUBURBANO.Utilities.notDelivered,
+        sectorStats.SUBURBANO.Secondary.notDelivered,
+        sectorStats.URBANO.Project.notDelivered,
+        sectorStats.URBANO.Utilities.notDelivered,
+        sectorStats.URBANO.Secondary.notDelivered
+      ];
+
+      const sectorGroupsPlugin = {
+        id: "sectorGroupsPlugin",
+        afterDraw(chart) {
+          const { ctx, chartArea: { top }, scales: { x } } = chart;
+          const subCenter = (x.getPixelForValue(0) + x.getPixelForValue(2)) / 2;
+          const urbCenter = (x.getPixelForValue(3) + x.getPixelForValue(5)) / 2;
+          const subTotal = sectorDeliveredData.slice(0, 3).reduce((a, b) => a + b, 0) + sectorNoDeliveredData.slice(0, 3).reduce((a, b) => a + b, 0);
+          const urbTotal = sectorDeliveredData.slice(3, 6).reduce((a, b) => a + b, 0) + sectorNoDeliveredData.slice(3, 6).reduce((a, b) => a + b, 0);
+          ctx.save();
+          ctx.font = "bold 12px sans-serif";
+          ctx.fillStyle = "#666";
+          ctx.textAlign = "center";
+          ctx.fillText(`SUBURBANO (${subTotal})`, subCenter, top - 8);
+          ctx.fillText(`URBANO (${urbTotal})`, urbCenter, top - 8);
+          ctx.restore();
+        }
+      };
+
+      const sectorBorderPlugin = {
+        id: "sectorBorderPlugin",
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart;
+          const meta0 = chart.getDatasetMeta(0);
+          const meta1 = chart.getDatasetMeta(1);
+          const borderColors = ["red", "blue", "green"];
+
+          ctx.save();
+          for (let i = 0; i < 6; i++) {
+            if (meta0.data[i] && meta1.data[i]) {
+              const b0 = meta0.data[i];
+              const b1 = meta1.data[i];
+              const barWidth = b0.width;
+              const barX = b0.x - barWidth / 2;
+              const topY = b1.y;
+              const bottomY = b0.base;
+
+              ctx.strokeStyle = borderColors[i % 3];
+              ctx.lineWidth = 2;
+              ctx.strokeRect(barX, topY, barWidth, bottomY - topY);
+            }
+          }
+          ctx.restore();
+        }
+      };
+
+      new Chart(document.getElementById("sector-chart").getContext("2d"), {
+        type: "bar",
+        plugins: [ChartDataLabels, sectorGroupsPlugin, sectorBorderPlugin],
+        data: {
+          labels: sectorLabels,
+          datasets: [
+            {
+              label: "Delivered",
+              data: sectorDeliveredData,
+              backgroundColor: "rgba(34, 197, 94, 0.8)",
+              stack: "s1"
+            },
+            {
+              label: "No Delivered",
+              data: sectorNoDeliveredData,
+              backgroundColor: "rgba(248, 113, 113, 0.8)",
+              stack: "s1"
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 30 } },
+          plugins: {
+            datalabels: {
+              color: "#fff",
+              font: { weight: "bold", size: 10 },
+              formatter: (value) => value > 0 ? value : ""
+            },
+            legend: { position: "bottom" }
+          },
+          scales: {
+            x: { stacked: true },
+            y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } }
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+
+</html>

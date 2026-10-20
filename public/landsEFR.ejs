@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS (reuse main styles) -->
+  <link rel="stylesheet" href="/css/geovisor.css">
+
+  <!-- Chart.js and DataLabels -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+  <style>
+    .lang-toggle-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f1f5f9;
+      border-radius: 50px;
+      padding: 4px 12px;
+      border: 1px solid #cbd5e1;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .lang-toggle-wrapper span {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #475569;
+      transition: color 0.2s;
+    }
+
+    .lang-toggle-wrapper span.active-lang {
+      color: #1665c0;
+    }
+
+    .form-check-input:checked {
+      background-color: #1665c0;
+      border-color: #1665c0;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+  <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="mb-0" data-i18n="title">Lands Dashboard</h2>
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+
+        <!-- Language Toggle -->
+        <label class="lang-toggle-wrapper mb-0" for="langToggle" title="Switch Language / Cambiar Idioma">
+          <span id="label-en" class="active-lang">EN</span>
+          <input class="form-check-input mt-0" type="checkbox" id="langToggle" role="switch">
+          <span id="label-es">ES</span>
+        </label>
+
+        <a href="/LISTLATE" class="btn btn-danger d-flex align-items-center gap-2 shadow-sm"
+          style="border-radius: 50px; padding: 6px 20px; font-weight: 500; background: linear-gradient(135deg, #dc2626, #991b1b); border: none;">
+          <i class="bi bi-calendar-x-fill"></i>
+          <span data-i18n="noDeliveredBtn">NO DELIVERED LANDS LIST</span>
+        </a>
+        <a href="/DELIVERED" class="btn btn-success d-flex align-items-center gap-2 shadow-sm"
+          style="border-radius: 50px; padding: 6px 20px; font-weight: 500; background: linear-gradient(135deg, #71a284, #118758); border: none;">
+          <i class="bi bi-calendar-x-fill"></i>
+          <span data-i18n="deliveredBtn">DELIVERED LANDS LIST</span>
+        </a>
+        <a href="/COMPARISON" class="btn btn-light d-flex align-items-center gap-2 shadow-sm"
+          style="border-radius: 50px; padding: 6px 20px; font-weight: 500; background: linear-gradient(135deg, #adc019, #a2d61e); border: none;">
+          <i class="bi bi-calendar-x-fill"></i>
+          <span data-i18n="deliveredBtn">AREAS DIVISIONS</span>
+        </a>
+        <a href="/" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+          <i class="bi bi-arrow-left"></i> <span data-i18n="mapBtn">Map</span>
+        </a>
+      </div>
+    </div>
+
+
+
+    <!-- Resume table similar to XLSX SUMMARY -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title text-uppercase fw-bold mb-3" data-i18n="tableTitle">Regiotram Lands Requirements</h5>
+        <div class="row align-items-center">
+          <div class="col-lg-9">
+            <div class="table-responsive">
+              <style>
+                .col-project {
+                  border-left: 3px solid red !important;
+                  border-right: 3px solid red !important;
+                }
+
+                .col-project-top {
+                  border-top: 3px solid red !important;
+                  border-left: 3px solid red !important;
+                  border-right: 3px solid red !important;
+                }
+
+                .col-project-bottom {
+                  border-bottom: 3px solid red !important;
+                  border-left: 3px solid red !important;
+                  border-right: 3px solid red !important;
+                }
+
+                .col-util {
+                  border-left: 3px solid blue !important;
+                  border-right: 3px solid blue !important;
+                }
+
+                .col-util-top {
+                  border-top: 3px solid blue !important;
+                  border-left: 3px solid blue !important;
+                  border-right: 3px solid blue !important;
+                }
+
+                .col-util-bottom {
+                  border-bottom: 3px solid blue !important;
+                  border-left: 3px solid blue !important;
+                  border-right: 3px solid blue !important;
+                }
+
+                .col-secondary {
+                  border-left: 3px solid green !important;
+                  border-right: 3px solid green !important;
+                }
+
+                .col-secondary-top {
+                  border-top: 3px solid green !important;
+                  border-left: 3px solid green !important;
+                  border-right: 3px solid green !important;
+                }
+
+                .col-secondary-bottom {
+                  border-bottom: 3px solid green !important;
+                  border-left: 3px solid green !important;
+                  border-right: 3px solid green !important;
+                }
+              </style>
+              <table class="table table-sm table-bordered align-middle mb-0"
+                style="border-collapse: separate; border-spacing: 0; border: 2px solid black;">
+                <thead>
+                  <tr class="text-center text-white" style="background-color:#0b2756;">
+                    <th colspan="5" class="py-2" data-i18n="tableHeader">STATUS DELIVERY — ALL LANDS</th>
+                  </tr>
+                  <tr class="text-center text-white" style="background-color:#1665c0;">
+                    <th style="width:18%;" data-i18n="colStatus">Status</th>
+                    <th style="width:20%;" class="col-project-top" data-i18n="colProject">Project</th>
+                    <th style="width:20%;" class="col-util-top" data-i18n="colUtilities">Utilities</th>
+                    <th style="width:20%;" class="col-secondary-top" data-i18n="colSecondary">Secondary</th>
+                    <th style="width:22%;" data-i18n="colTotal">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="color: white !important;">
+                    <th class="text-uppercase" style="background-color:rgba(34, 197, 94, 0.8) !important;"
+                      data-i18n="rowDelivered">Delivered
+                    </th>
+                    <td class="text-end fw-semibold col-project"
+                      style="background-color:rgba(34, 197, 94, 0.8) !important;" id="sum-deliv-project">0</td>
+                    <td class="text-end fw-semibold col-util"
+                      style="background-color:rgba(34, 197, 94, 0.8) !important;" id="sum-deliv-utilities">0</td>
+                    <td class="text-end fw-semibold col-secondary"
+                      style="background-color:rgba(34, 197, 94, 0.8) !important;" id="sum-deliv-secondary">0</td>
+                    <td class="text-end fw-bold" style="background-color:rgba(34, 197, 94, 0.8) !important;"
+                      id="sum-deliv-total">0</td>
+                  </tr>
+                  <tr style="color: white !important;">
+                    <th class="text-uppercase" style="background-color:rgba(248, 113, 113, 0.8) !important;"
+                      data-i18n="rowNoDelivered">No
+                      Delivered
+                    </th>
+                    <td class="text-end fw-semibold col-project"
+                      style="background-color:rgba(248, 113, 113, 0.8) !important;" id="sum-node-project">0</td>
+                    <td class="text-end fw-semibold col-util"
+                      style="background-color:rgba(248, 113, 113, 0.8) !important;" id="sum-node-utilities">0</td>
+                    <td class="text-end fw-semibold col-secondary"
+                      style="background-color:rgba(248, 113, 113, 0.8) !important;" id="sum-node-secondary">0</td>
+                    <td class="text-end fw-bold" style="background-color:rgba(248, 113, 113, 0.8) !important;"
+                      id="sum-node-total">0</td>
+                  </tr>
+                  <tr style="background-color:#f9fafb;">
+                    <th class="text-uppercase" data-i18n="rowTotals">Totals</th>
+                    <td class="text-end fw-bold col-project-bottom" id="sum-total-project">0</td>
+                    <td class="text-end fw-bold col-util-bottom" id="sum-total-utilities">0</td>
+                    <td class="text-end fw-bold col-secondary-bottom" id="sum-total-secondary">0</td>
+                    <td class="text-end fw-bold" id="sum-total-all">0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-3 text-center">
+            <div class="mt-1 fw-bold text-muted small" data-i18n="overallStatus">OVERALL STATUS</div>
+            <div style="height: 150px; position: relative;">
+              <canvas id="global-pie"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h5 class="mb-0" data-i18n="sectionTitle">Status by Land Type</h5>
+    </div>
+
+    <div class="row g-3 mb-4" id="cards-row">
+      <div class="col-12 col-md-4">
+        <div class="card shadow-sm h-100 land-card" data-land="project" style="border: 2px solid red;">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-subtitle text-muted mb-1" data-i18n="projectLands">Project Lands</h6>
+              <h4 class="card-title mb-2" id="efr-total">0</h4>
+              <p class="mb-1 small text-success"><span data-i18n="deliveredLabel">Delivered:</span> <span
+                  id="efr-delivered">0</span></p>
+              <p class="mb-0 small text-danger"><span data-i18n="noDeliveredLabel">No Delivered:</span> <span
+                  id="efr-nodelivered">0</span></p>
+            </div>
+            <div style="width: 150px; height: 150px; position: relative;">
+              <canvas id="pie-project"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card shadow-sm h-100 land-card" data-land="utilities" style="border: 2px solid blue;">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-subtitle text-muted mb-1" data-i18n="utilitiesLands">Utilities Lands</h6>
+              <h4 class="card-title mb-2" id="util-total">0</h4>
+              <p class="mb-1 small text-success"><span data-i18n="deliveredLabel">Delivered:</span> <span
+                  id="util-delivered">0</span></p>
+              <p class="mb-0 small text-danger"><span data-i18n="noDeliveredLabel">No Delivered:</span> <span
+                  id="util-nodelivered">0</span></p>
+            </div>
+            <div style="width: 150px; height: 150px; position: relative;">
+              <canvas id="pie-utilities"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card shadow-sm h-100 land-card" data-land="secondary" style="border: 2px solid green;">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-subtitle text-muted mb-1" data-i18n="secondaryLands">Secondary Lands</h6>
+              <h4 class="card-title mb-2" id="comp-total">0</h4>
+              <p class="mb-1 small text-success"><span data-i18n="deliveredLabel">Delivered:</span> <span
+                  id="comp-delivered">0</span></p>
+              <p class="mb-0 small text-danger"><span data-i18n="noDeliveredLabel">No Delivered:</span> <span
+                  id="comp-nodelivered">0</span></p>
+            </div>
+            <div style="width: 150px; height: 150px; position: relative;">
+              <canvas id="pie-secondary"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-12 col-md-6 mb- mb-md-0">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title mb-2" style="background: transparent;" data-i18n="chartTitle1">
+              Delivery Status by Land Type
+            </h5>
+            <div style="height: 300px; position: relative; z-index: 2000;">
+              <canvas id="lands-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title mb-3" data-i18n="chartTitle2">Lands by Sector</h5>
+            <div style="height: 300px; position: relative;">
+              <canvas id="sector-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ─── Translations ────────────────────────────────────────────────────────────
+    const translations = {
+      en: {
+        title: "Lands Dashboard",
+        noDeliveredBtn: "NO DELIVERED LANDS LIST",
+        deliveredBtn: "DELIVERED LANDS LIST",
+        mapBtn: "Map",
+        tableTitle: "Regiotram Lands Requirements",
+        tableHeader: "STATUS DELIVERY — ALL LANDS",
+        colStatus: "Status",
+        colProject: "Project",
+        colUtilities: "Utilities",
+        colSecondary: "Secondary",
+        colTotal: "Total",
+        rowDelivered: "Delivered",
+        rowNoDelivered: "No Delivered",
+        rowTotals: "Totals",
+        overallStatus: "OVERALL STATUS",
+        sectionTitle: "Status by Land Type",
+        projectLands: "Project Lands",
+        utilitiesLands: "Utilities Lands",
+        secondaryLands: "Secondary Lands",
+        deliveredLabel: "Delivered:",
+        noDeliveredLabel: "No Delivered:",
+        chartTitle1: "Delivery Status by Land Type",
+        chartTitle2: "Lands by Sector",
+        delivered: "Delivered",
+        noDelivered: "No Delivered"
+      },
+      es: {
+        title: "Panel de Predios",
+        noDeliveredBtn: "LISTA DE PREDIOS NO ENTREGADOS",
+        deliveredBtn: "LISTA DE PREDIOS ENTREGADOS",
+        mapBtn: "Mapa",
+        tableTitle: "Requerimientos de Predios Regiotram",
+        tableHeader: "ESTADO DE ENTREGA — TODOS LOS PREDIOS",
+        colStatus: "Estado",
+        colProject: "Proyecto",
+        colUtilities: "Servicios",
+        colSecondary: "Secundario",
+        colTotal: "Total",
+        rowDelivered: "Entregado",
+        rowNoDelivered: "No Entregado",
+        rowTotals: "Totales",
+        overallStatus: "ESTADO GENERAL",
+        sectionTitle: "Estado por Tipo de Predio",
+        projectLands: "Predios de Proyecto",
+        utilitiesLands: "Predios de Servicios",
+        secondaryLands: "Predios Secundarios",
+        deliveredLabel: "Entregado:",
+        noDeliveredLabel: "No Entregado:",
+        chartTitle1: "Estado de Entrega por Tipo de Predio",
+        chartTitle2: "Predios por Sector",
+        delivered: "Entregado",
+        noDelivered: "No Entregado"
+      }
+    };
+
+    let currentLang = 'en';
+
+    // Chart instance references (set after init)
+    let landsBarChart = null;
+    let sectorBarChart = null;
+    let globalPieChart = null;
+    let projectPieChart = null;
+    let utilitiesPieChart = null;
+    let secondaryPieChart = null;
+
+    function applyLang(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+
+      // Update all static data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+
+      // Toggle active label styling
+      document.getElementById('label-en').classList.toggle('active-lang', lang === 'en');
+      document.getElementById('label-es').classList.toggle('active-lang', lang === 'es');
+
+      // Update Chart.js instances
+      if (landsBarChart) {
+        landsBarChart.data.labels = [t.projectLands, t.utilitiesLands, t.secondaryLands];
+        landsBarChart.data.datasets[0].label = t.delivered;
+        landsBarChart.data.datasets[1].label = t.noDelivered;
+        landsBarChart.update();
+      }
+
+      if (sectorBarChart) {
+        const newLabels = [];
+        ["SUBURBANO", "URBANO"].forEach(() => {
+          newLabels.push(t.projectLands, t.utilitiesLands, t.secondaryLands);
+        });
+        sectorBarChart.data.labels = newLabels;
+        sectorBarChart.data.datasets[0].label = t.delivered;
+        sectorBarChart.data.datasets[1].label = t.noDelivered;
+        sectorBarChart.update();
+      }
+
+      [globalPieChart, projectPieChart, utilitiesPieChart, secondaryPieChart].forEach(chart => {
+        if (chart) {
+          chart.data.labels = [t.delivered, t.noDelivered];
+          chart.update();
+        }
+      });
+    }
+
+    // Toggle event
+    document.getElementById('langToggle').addEventListener('change', function () {
+      applyLang(this.checked ? 'es' : 'en');
+    });
+
+    // ─── Data loading ────────────────────────────────────────────────────────────
+    async function loadGeoJSON(url) {
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error(`Failed to load ${url}`);
+      return resp.json();
+    }
+
+    function summarize(features) {
+      let delivered = 0;
+      let notDelivered = 0;
+
+      features.forEach(f => {
+        const status = (f.properties && f.properties.EFR_ENTRG) || "";
+        if (status === "DELIVERED") {
+          delivered++;
+        } else {
+          notDelivered++;
+        }
+      });
+
+      return {
+        total: features.length,
+        delivered,
+        notDelivered
+      };
+    }
+
+    (async function init() {
+      try {
+        const [
+          landsEfr,
+          landsUtil,
+          landsComp
+        ] = await Promise.all([
+          loadGeoJSON("/data/landsEFR.geojson"),
+          loadGeoJSON("/data/landsUtil.geojson"),
+          loadGeoJSON("/data/landsComp.geojson")
+        ]);
+
+        const efrFeatures = landsEfr.features || [];
+        const utilFeatures = landsUtil.features || [];
+        const compFeatures = landsComp.features || [];
+
+        const efrStats = summarize(efrFeatures);
+        const utilStats = summarize(utilFeatures);
+        const compStats = summarize(compFeatures);
+
+        function summarizeDetailedSector(features, type, statsObj) {
+          features.forEach(f => {
+            const sector = (f.properties && f.properties.SECTOR) || "UNKNOWN";
+            const status = (f.properties && f.properties.EFR_ENTRG) === "DELIVERED" ? "DELIVERED" : "NOT_DELIVERED";
+
+            if (!statsObj[sector]) statsObj[sector] = {};
+            if (!statsObj[sector][type]) statsObj[sector][type] = { DELIVERED: 0, NOT_DELIVERED: 0 };
+
+            statsObj[sector][type][status]++;
+          });
+        }
+
+        const detailedStats = {};
+        summarizeDetailedSector(efrFeatures, "Project", detailedStats);
+        summarizeDetailedSector(utilFeatures, "Utilities", detailedStats);
+        summarizeDetailedSector(compFeatures, "Secondary", detailedStats);
+
+        // Update cards and summary totals
+        document.getElementById("efr-total").textContent = efrStats.total;
+        document.getElementById("efr-delivered").textContent = efrStats.delivered;
+        document.getElementById("efr-nodelivered").textContent = efrStats.notDelivered;
+
+        document.getElementById("util-total").textContent = utilStats.total;
+        document.getElementById("util-delivered").textContent = utilStats.delivered;
+        document.getElementById("util-nodelivered").textContent = utilStats.notDelivered;
+
+        document.getElementById("comp-total").textContent = compStats.total;
+        document.getElementById("comp-delivered").textContent = compStats.delivered;
+        document.getElementById("comp-nodelivered").textContent = compStats.notDelivered;
+
+        // Table totals
+        document.getElementById("sum-deliv-project").textContent = efrStats.delivered;
+        document.getElementById("sum-deliv-utilities").textContent = utilStats.delivered;
+        document.getElementById("sum-deliv-secondary").textContent = compStats.delivered;
+        document.getElementById("sum-deliv-total").textContent = efrStats.delivered + utilStats.delivered + compStats.delivered;
+
+        document.getElementById("sum-node-project").textContent = efrStats.notDelivered;
+        document.getElementById("sum-node-utilities").textContent = utilStats.notDelivered;
+        document.getElementById("sum-node-secondary").textContent = compStats.notDelivered;
+        document.getElementById("sum-node-total").textContent = efrStats.notDelivered + utilStats.notDelivered + compStats.notDelivered;
+
+        document.getElementById("sum-total-project").textContent = efrStats.total;
+        document.getElementById("sum-total-utilities").textContent = utilStats.total;
+        document.getElementById("sum-total-secondary").textContent = compStats.total;
+        const grandTotal = efrStats.total + utilStats.total + compStats.total;
+        document.getElementById("sum-total-all").textContent = grandTotal;
+
+        // Render Global Summary Pie Chart
+        const globalStats = {
+          total: grandTotal,
+          delivered: efrStats.delivered + utilStats.delivered + compStats.delivered,
+          notDelivered: efrStats.notDelivered + utilStats.notDelivered + compStats.notDelivered
+        };
+        globalPieChart = renderCardPie("global-pie", globalStats, true);
+
+        // Custom plugin to draw colored borders around each bar stack
+        const categoryBorderPlugin = {
+          id: 'categoryBorderPlugin',
+          afterDatasetsDraw(chart) {
+            const { ctx } = chart;
+            ctx.save();
+
+            const meta0 = chart.getDatasetMeta(0); // Delivered (bottom)
+            const meta1 = chart.getDatasetMeta(1); // No Delivered (top)
+
+            const borderColors = ['red', 'blue', 'green'];
+
+            for (let i = 0; i < 3; i++) {
+              if (meta0.data[i] && meta1.data[i]) {
+                const bar0 = meta0.data[i];
+                const bar1 = meta1.data[i];
+
+                const barWidth = bar0.width;
+                const barX = bar0.x - barWidth / 2;
+
+                const topY = bar1.y;
+                const bottomY = bar0.base;
+
+                ctx.strokeStyle = borderColors[i];
+                ctx.lineWidth = 3;
+                ctx.strokeRect(barX, topY, barWidth, bottomY - topY);
+
+                const total = meta0.data[i].$context.raw + meta1.data[i].$context.raw;
+                if (total > 0) {
+                  ctx.fillStyle = '#666';
+                  ctx.font = 'bold 12px sans-serif';
+                  ctx.textAlign = 'center';
+                  ctx.fillText(total, bar0.x, topY - 10);
+                }
+              }
+            }
+            ctx.restore();
+          }
+        };
+
+        const t = translations[currentLang];
+        const ctx = document.getElementById("lands-chart").getContext("2d");
+        landsBarChart = new Chart(ctx, {
+          type: "bar",
+          plugins: [ChartDataLabels, categoryBorderPlugin],
+          data: {
+            labels: [t.projectLands, t.utilitiesLands, t.secondaryLands],
+            datasets: [
+              {
+                label: t.delivered,
+                backgroundColor: "rgba(34, 197, 94, 0.8)",
+                data: [efrStats.delivered, utilStats.delivered, compStats.delivered],
+                stack: "status"
+              },
+              {
+                label: t.noDelivered,
+                backgroundColor: "rgba(248, 113, 113, 0.8)",
+                data: [efrStats.notDelivered, utilStats.notDelivered, compStats.notDelivered],
+                stack: "status"
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+              padding: {
+                top: 40
+              }
+            },
+            plugins: {
+              datalabels: {
+                color: '#fff',
+                font: { weight: 'bold', size: 12 },
+                formatter: (value) => value > 0 ? value : ''
+              },
+              legend: {
+                position: "bottom"
+              },
+              tooltip: {
+                mode: "index",
+                intersect: false
+              }
+            },
+            scales: {
+              x: {
+                stacked: true
+              },
+              y: {
+                stacked: true,
+                beginAtZero: true,
+                grace: '15%',
+                ticks: {
+                  precision: 0
+                }
+              }
+            }
+          }
+        });
+
+        // Render pie charts in cards
+        function renderCardPie(canvasId, stats, legendAction = false, borderColor = '#ffffff') {
+          const pieCtx = document.getElementById(canvasId).getContext("2d");
+          const tl = translations[currentLang];
+          return new Chart(pieCtx, {
+            type: "pie",
+            plugins: [ChartDataLabels],
+            data: {
+              labels: [tl.delivered, tl.noDelivered],
+              datasets: [{
+                data: [stats.delivered, stats.notDelivered],
+                backgroundColor: [
+                  "rgba(34, 197, 94, 0.8)",
+                  "rgba(248, 113, 113, 0.8)"
+                ]
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                datalabels: {
+                  formatter: (value, context) => {
+                    let total = stats.total || 1;
+                    if (value === 0) return '';
+                    let percentage = Math.round((value / total) * 100) + '%';
+                    return percentage;
+                  },
+                  color: '#fff',
+                  font: {
+                    weight: 'bold',
+                    size: 11
+                  }
+                },
+                legend: {
+                  display: legendAction
+                },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      let label = context.label || '';
+                      if (label) {
+                        label += ': ';
+                      }
+                      if (context.parsed !== null) {
+                        let total = stats.total || 1;
+                        let percentage = Math.round((context.parsed / total) * 100) + '%';
+                        label += context.parsed + ' (' + percentage + ')';
+                      }
+                      return label;
+                    }
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        if (efrStats.total > 0) projectPieChart = renderCardPie("pie-project", efrStats, false, "red");
+        if (utilStats.total > 0) utilitiesPieChart = renderCardPie("pie-utilities", utilStats, false, "blue");
+        if (compStats.total > 0) secondaryPieChart = renderCardPie("pie-secondary", compStats, false, "green");
+
+        // Build Detailed Sector Grouped Stacked Bar Chart
+        const sectorKeys = ["SUBURBANO", "URBANO"];
+        const types = ["Project", "Utilities", "Secondary"];
+        const typeKeys = ["projectLands", "utilitiesLands", "secondaryLands"];
+
+        const sectorLabels = [];
+        const deliveredData = [];
+        const notDeliveredData = [];
+
+        sectorKeys.forEach(s => {
+          types.forEach((type, idx) => {
+            sectorLabels.push(t[typeKeys[idx]]);
+            const stats = (detailedStats[s] && detailedStats[s][type]) || { DELIVERED: 0, NOT_DELIVERED: 0 };
+            deliveredData.push(stats.DELIVERED);
+            notDeliveredData.push(stats.NOT_DELIVERED);
+          });
+        });
+
+        const sectorCtx = document.getElementById("sector-chart").getContext("2d");
+
+        const sectorGroupsPlugin = {
+          id: 'sectorGroups',
+          afterDraw: (chart) => {
+            const { ctx, chartArea: { top, bottom, left, right }, scales: { x } } = chart;
+            ctx.save();
+            ctx.font = 'bold 12px sans-serif';
+            ctx.fillStyle = '#666';
+            ctx.textAlign = 'center';
+
+            const subCenter = (x.getPixelForValue(0) + x.getPixelForValue(2)) / 2;
+            const urbCenter = (x.getPixelForValue(3) + x.getPixelForValue(5)) / 2;
+
+            const meta0 = chart.getDatasetMeta(0);
+            const meta1 = chart.getDatasetMeta(1);
+
+            let subTotal = 0;
+            let urbTotal = 0;
+            for (let i = 0; i < 3; i++) {
+              if (meta0.data[i]) subTotal += meta0.data[i].$context.raw + meta1.data[i].$context.raw;
+              if (meta0.data[i + 3]) urbTotal += meta0.data[i + 3].$context.raw + meta1.data[i + 3].$context.raw;
+            }
+
+            ctx.fillText(`SUBURBANO (${subTotal})`, subCenter, top - 10);
+            ctx.fillText(`URBANO (${urbTotal})`, urbCenter, top - 10);
+
+            const dividerX = (x.getPixelForValue(2) + x.getPixelForValue(3)) / 2;
+            ctx.beginPath();
+            ctx.strokeStyle = '#ddd';
+            ctx.lineWidth = 1;
+            ctx.moveTo(dividerX, top - 20);
+            ctx.lineTo(dividerX, bottom);
+            ctx.stroke();
+
+            const borderColors = ['red', 'blue', 'green'];
+
+            for (let i = 0; i < 6; i++) {
+              if (meta0.data[i] && meta1.data[i]) {
+                const bar0 = meta0.data[i];
+                const bar1 = meta1.data[i];
+                const barWidth = bar0.width;
+                const barX = bar0.x - barWidth / 2;
+                const topY = bar1.y;
+                const bottomY = bar0.base;
+
+                ctx.strokeStyle = borderColors[i % 3];
+                ctx.lineWidth = 2;
+                ctx.strokeRect(barX, topY, barWidth, bottomY - topY);
+
+                const total = meta0.data[i].$context.raw + meta1.data[i].$context.raw;
+                if (total > 0) {
+                  ctx.fillStyle = '#666';
+                  ctx.font = 'bold 10px sans-serif';
+                  ctx.textAlign = 'center';
+                  ctx.fillText(total, bar0.x, topY - 5);
+                }
+              }
+            }
+
+            ctx.restore();
+          }
+        };
+
+        sectorBarChart = new Chart(sectorCtx, {
+          type: "bar",
+          plugins: [ChartDataLabels, sectorGroupsPlugin],
+          data: {
+            labels: sectorLabels,
+            datasets: [
+              {
+                label: t.delivered,
+                data: deliveredData,
+                backgroundColor: "rgba(34, 197, 94, 0.8)",
+                stack: 'S1'
+              },
+              {
+                label: t.noDelivered,
+                data: notDeliveredData,
+                backgroundColor: "rgba(248, 113, 113, 0.8)",
+                stack: 'S1'
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+              padding: { top: 60 }
+            },
+            plugins: {
+              datalabels: {
+                color: '#fff',
+                font: { weight: 'bold', size: 10 },
+                formatter: (value) => value > 0 ? value : ''
+              },
+              legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                  boxWidth: 15,
+                  padding: 15,
+                  font: { size: 12 }
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  title: (items) => {
+                    const idx = items[0].dataIndex;
+                    const sector = idx < 3 ? "SUBURBANO" : "URBANO";
+                    return `${sector} - ${items[0].label}`;
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                grid: { display: false },
+                ticks: { font: { size: 10 } }
+              },
+              y: {
+                beginAtZero: true,
+                max: 300,
+                ticks: { precision: 0 }
+              }
+            }
+          }
+        });
+
+      } catch (err) {
+        console.error(err);
+        alert("Error loading lands statistics. Check console for details.");
+      }
+    })();
+  </script>
+</body>
+
+</html>
