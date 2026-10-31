@@ -21,7 +21,7 @@ export default function Experience() {
                                 </div>
                                 <div className="timeline-meta">
                                     <span className="timeline-period">{job.period}</span>
-                                    <Link to={`/job/${job.id}`} className="timeline-link" target="_blank">{viewMore}</Link>
+                                    <Link to={`/job/${job.id}`} className="timeline-link">{viewMore}</Link>
                                 </div>
                             </div>
                             <div className="timeline-body">

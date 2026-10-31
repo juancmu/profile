@@ -35,7 +35,6 @@ export default function F1CircuitsPage() {
     }, [])
 
     const backLabel = lang === 'es' ? 'Volver a Freelancer' : 'Back to Freelancer'
-    const openNewTabLabel = lang === 'es' ? 'Abrir en pestaña nueva' : 'Open in new tab'
     const fullscreenLabel = lang === 'es' ? (isFullscreen ? 'Salir de pantalla completa' : 'Pantalla completa') : (isFullscreen ? 'Exit Fullscreen' : 'Fullscreen')
     const subtitle = lang === 'es'
         ? '40 Circuitos Mundiales •  Geometrías GeoJSON'

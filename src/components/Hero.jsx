@@ -15,7 +15,6 @@ export default function Hero() {
     const { profile, navExp, navtop } = data
     const mapRef = useRef(null)
     const mapInstanceRef = useRef(null)
-    const canvasRef = useRef(null)
 
     // ─── Leaflet Map ────────────────────────────────────────────────────────
     useEffect(() => {

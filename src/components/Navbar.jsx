@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useLang } from '../App'
 
 export default function Navbar() {
     const { lang, setLang, data } = useLang()
-    const { pathname } = useLocation()
     const nav = data.navtop
 
     useEffect(() => {

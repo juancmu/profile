@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { QUESTIONS as INITIAL_QUESTIONS } from './gispQuestions';
 
@@ -82,12 +82,6 @@ export default function GispTestPage() {
   const toggleFlag = () => {
     const newFlagged = [...flagged];
     newFlagged[currentQ] = !newFlagged[currentQ];
-    setFlagged(newFlagged);
-  };
-
-  const toggleFlagQ = (idx) => {
-    const newFlagged = [...flagged];
-    newFlagged[idx] = !newFlagged[idx];
     setFlagged(newFlagged);
   };
 

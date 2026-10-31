@@ -21,7 +21,7 @@ export default function JobPage() {
 
     useEffect(() => {
         if (id) {
-            import(`../../projects/${id}/${id}.jsx`)
+            import(`../projects/${id}/${id}.jsx`)
                 .then((module) => {
                     setProjectComp(() => module.default)
                 })
@@ -39,7 +39,6 @@ export default function JobPage() {
     }, [])
 
     const backLabel = lang === 'es' ? 'Volver a Experiencia' : 'Back to Experience'
-    const viewLabel = lang === 'es' ? 'Ver proyecto' : 'View project'
     const notFoundTitle = lang === 'es' ? 'Experiencia no encontrada' : 'Experience not found'
     const notFoundSub = lang === 'es' ? 'El ID solicitado no existe.' : 'The requested job ID does not exist.'
 
