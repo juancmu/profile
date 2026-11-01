@@ -458,6 +458,21 @@
             "badge": "App Interactiva"
         },
         {
+            "id": "minard-map",
+            "title": "Carte Figurative — Mapa de Minard",
+            "client": "Cartografía Histórica Interactiva",
+            "period": "2024",
+            "description": "Edición interactiva del célebre gráfico estadístico de Charles Joseph Minard (1869) sobre la campaña de Napoleón en Rusia (1812–1813), integrando bandas poligonales de flujo de tropas en GeoJSON, recorrido cronológico de 27 hitos y gráfico sincronizado de temperaturas invernales.",
+            "tools": [
+                "Leaflet",
+                "GeoJSON",
+                "SVG / D3",
+                "Story Map"
+            ],
+            "link": "/freelancer/minard",
+            "badge": "App Interactiva"
+        },
+        {
             "id": "f1",
             "title": "Visor Web SIG Personalizado",
             "client": "Cliente Privado",

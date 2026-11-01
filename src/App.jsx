@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import JobPage from './pages/JobPage'
 import FreelancerPage from './pages/FreelancerPage'
 import F1CircuitsPage from './pages/F1CircuitsPage'
+import MinardMapPage from './pages/MinardMapPage'
 import GispTestPage from './pages/GispTestPage'
 
 import enData from './i18n/lang-en.json'
@@ -51,6 +52,7 @@ export default function App() {
         <Route path="/job/:id" element={<JobPage />} />
         <Route path="/freelancer" element={<FreelancerPage />} />
         <Route path="/freelancer/f1" element={<F1CircuitsPage />} />
+        <Route path="/freelancer/minard" element={<MinardMapPage />} />
         <Route path="/f1-circuits" element={<F1CircuitsPage />} />
         <Route path="/gisp-test" element={<GispTestPage />} />
       </Routes>

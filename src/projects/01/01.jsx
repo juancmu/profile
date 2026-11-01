@@ -25,6 +25,13 @@ export default function Project01() {
                         style={{ width: '100%', height: '100%', border: 'none', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
                     ></iframe>
                 </div>
+                <div className="mapLocation" style={{ width: '100%', height: '75vh', marginTop: '20px' }}>
+                    <iframe
+                        src="/src/projects/01/actas/actas/index.html"
+                        title="Map Actas"
+                        style={{ width: '100%', height: '100%', border: 'none', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                    ></iframe>
+                </div>
             </div>
         </div>
     )

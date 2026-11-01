@@ -466,6 +466,21 @@
             "badge": "Interactive App"
         },
         {
+            "id": "minard-map",
+            "title": "Carte Figurative — Minard Map",
+            "client": "Interactive Historical Cartography",
+            "period": "2024",
+            "description": "Interactive adaptation of Charles Joseph Minard's renowned 1869 statistical graphic of Napoleon's 1812 Russian campaign, featuring GeoJSON troop flow polygons, a 27-event chronological story tour, and a synchronized winter temperature and attrition chart.",
+            "tools": [
+                "Leaflet",
+                "GeoJSON",
+                "SVG Chart",
+                "Story Map"
+            ],
+            "link": "/freelancer/minard",
+            "badge": "Interactive App"
+        },
+        {
             "id": "f1",
             "title": "Custom GIS Web Viewer",
             "client": "Private Client",

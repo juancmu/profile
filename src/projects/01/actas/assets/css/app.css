@@ -1,0 +1,440 @@
+html, body, #container {
+  height: 100%;
+  width: 100%;
+  /* overflow: hidden; */
+}
+body {
+  padding-top: 50px;
+}
+input[type="radio"], input[type="checkbox"] {
+  margin: 0;
+}
+
+#container {
+display: grid;
+grid-template-columns: 1fr 3fr 1fr;
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+
+
+
+#sidebar {
+  grid-area: 1 / 1 / 2 / 2;
+  display: block;
+  width: 250px;
+  height: 100%;
+  max-width: 100%;
+  float: left;
+}
+
+#map {
+  grid-area: 1 / 2 / 2 / 3; 
+  width: auto;
+  height: 100%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+#images {
+  grid-area: 1 / 3 / 2 / 4; 
+  padding: 12px 15px;
+  overflow-y: auto;
+  height: 100%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#loading {
+  position: absolute;
+  width: 220px;
+  height: 19px;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -110px;
+  z-index: 20001;
+}
+#features {
+  margin: 0px;
+  border: none;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+    box-shadow: none;
+}
+#sidebar-hide-btn {
+  margin-top: -2px;
+}
+
+#aboutTabsContent {
+  padding-top: 10px;
+}
+.progress-bar-full {
+  width: 100%;
+}
+.white {
+  color: #FFFFFF;
+}
+.panel-heading{
+   width: 250px;
+}
+.panel-body{
+  width: 250px;
+}
+.feature-row {
+  cursor: pointer;
+  width: 250px;
+}
+.sidebar-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.sidebar-table {
+  position: absolute;
+  width: 100%;
+  top: 103px;
+  bottom: 0px;
+  overflow: auto;
+}
+.leaflet-control-layers {
+  overflow: auto;
+}
+.leaflet-control-layers label {
+  font-weight: normal;
+  margin-bottom: 0px;
+}
+.leaflet-control-layers-list input[type="radio"], input[type="checkbox"] {
+  margin: 2px;
+}
+.table {
+  margin-bottom: 0px;
+}
+.navbar .navbar-brand {
+  font-weight: bold;
+  font-size: 25px;
+  color: #FFFFFF;
+}
+.navbar-collapse.in {
+  overflow-y: hidden;
+}
+.navbar-header .navbar-icon-container {
+  margin-right: 15px;
+}
+.navbar-header .navbar-icon {
+  line-height: 50px;
+  height: 50px;
+}
+.navbar-header a.navbar-icon {
+  margin-left: 25px;
+}
+.typeahead {
+  background-color: #FFFFFF;
+}
+
+.my-label-class {
+  white-space: nowrap;   /* Evita que el texto se parta en varias líneas */
+  font-weight: bold;     /* Pone el texto en negrilla */
+
+}
+
+.tt-dropdown-menu {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 4px;
+  padding: 4px 0;
+  width: 100%;
+  max-height: 300px;
+  overflow: auto;
+}
+.tt-suggestion {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 3px 10px;
+}
+.tt-suggestion.tt-cursor {
+  background-color: #0097CF;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+.tt-suggestion p {
+  margin: 0;
+}
+.tt-suggestion + .tt-suggestion {
+  border-top: 1px solid #ccc;
+}
+.typeahead-header {
+  margin: 0 5px 5px 5px;
+  padding: 3px 0;
+  border-bottom: 2px solid #333;
+}
+.has-feedback .form-control-feedback {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+}
+
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+
+
+
+.custom-icon-pk{
+  font-weight: bold;
+  color: red;
+  white-space: nowrap;
+  text-decoration: underline;
+
+
+}
+
+
+@media (max-width: 992px) {
+  .navbar .navbar-brand {
+    font-size: 18px;
+  }
+}
+@media (max-width: 767px){
+  #sidebar {
+    display: none;
+  }
+  .url-break {
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+      hyphens: auto;
+  }
+  .dropdown-menu a i{
+    color: #FFFFFF;
+  }
+}
+/* Print Handling */
+@media print {
+  .navbar {
+    display: none !important;
+  }
+  .leaflet-control-container {
+    display: none !important;
+  }
+}
+
+/* Search Results Table (Blue Rectangle at bottom of map) */
+#search-table-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 230px;
+  max-height: 45vh;
+  background: #ffffff;
+  z-index: 1005;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  border-top: 3px solid #337ab7;
+  font-family: inherit;
+  transition: height 0.2s ease, transform 0.2s ease;
+}
+
+#search-table-container.minimized {
+  height: 38px !important;
+}
+
+#search-table-container.minimized #search-table-content {
+  display: none !important;
+}
+
+#search-table-header {
+  height: 38px;
+  min-height: 38px;
+  background: #f5f7fa;
+  border-bottom: 1px solid #ddd;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+#search-table-header .table-title {
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+  margin-left: 6px;
+}
+
+#search-table-header #table-results-badge {
+  background-color: #337ab7;
+  margin-left: 6px;
+  font-size: 11px;
+}
+
+#search-table-header #table-search-query {
+  font-size: 12px;
+  margin-left: 8px;
+  font-style: italic;
+}
+
+#search-table-header .table-header-right button {
+  margin-left: 4px;
+}
+
+#search-table-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  background: #fff;
+}
+
+#actas-search-table {
+  margin-bottom: 0;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+#actas-search-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f0f3f6;
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #ccc !important;
+  z-index: 2;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+#actas-search-table thead th.sortable-th {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease;
+}
+
+#actas-search-table thead th.sortable-th:hover {
+  background: #e2e8f0;
+}
+
+.sort-arrows {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+  font-size: 11px;
+  color: #cbd5e1;
+  vertical-align: middle;
+  gap: 0;
+}
+
+.sort-arrows i {
+  line-height: 0.65;
+  height: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.sort-arrows i:hover {
+  color: #64748b;
+}
+
+#actas-search-table thead th.sorted-asc .sort-arrows .sort-asc,
+#actas-search-table thead th.sorted-desc .sort-arrows .sort-desc {
+  color: #475569;
+}
+
+#actas-search-table tbody tr {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+#actas-search-table tbody tr:hover {
+  background-color: #e8f4fc !important;
+}
+
+#actas-search-table tbody tr.active-row {
+  background-color: #d9edf7 !important;
+  font-weight: 600;
+}
+
+#map.has-search-table .leaflet-bottom {
+  bottom: 235px !important;
+  transition: bottom 0.2s ease;
+}
+
+#map.has-search-table.minimized-table .leaflet-bottom {
+  bottom: 44px !important;
+}
+
+@media (max-width: 767px) {
+  #search-table-container {
+    height: 180px;
+    max-height: 35vh;
+  }
+  #map.has-search-table .leaflet-bottom {
+    bottom: 185px !important;
+  }
+}
+
+/* Active Acta Label on Map (NEW_FOLDER) */
+.acta-map-label {
+  background: transparent !important;
+  border: none !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  z-index: 10000 !important;
+}
+
+.acta-map-label-content {
+  display: inline-block;
+  background: #ffffff;
+  color: #1a2a3a;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 2px solid #d9534f;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+  pointer-events: none;
+  line-height: 1.2;
+  position: relative;
+}
+
+.acta-map-label-content::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 8px solid #d9534f;
+}
+
+.acta-map-label-content::after {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 6px solid #ffffff;
+}
+
+
