@@ -773,6 +773,11 @@ img {
   white-space: nowrap;
 }
 
+.historical-river-path {
+  cursor: pointer;
+  transition: stroke 0.2s ease, stroke-width 0.2s ease, stroke-opacity 0.2s ease;
+}
+
 /* ==========================================================================
    Bottom Temperature & Attrition Panel (Minard's Tableau Graphique)
    ========================================================================== */

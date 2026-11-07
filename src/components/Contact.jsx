@@ -1,16 +1,58 @@
+import { useState } from 'react'
 import { useLang } from '../App'
+
+const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/jcmunozcastaneda@gmail.com'
 
 export default function Contact() {
     const { data } = useLang()
     const { contact, form } = data
+    const [status, setStatus] = useState('idle') // 'idle' | 'sending' | 'success' | 'error'
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        const fd = new FormData(e.target)
+        const formEl = e.currentTarget
+        const fd = new FormData(formEl)
+
+        // Honeypot spam check
+        if (fd.get('_honey')) return
+
+        const name = fd.get('name')
+        const email = fd.get('email')
         const subject = fd.get('subject')
-        const body = `Name: ${fd.get('name')}\nEmail: ${fd.get('email')}\n\n${fd.get('message')}`
-        window.location.href = `mailto:jcmunozcastaneda@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-        e.target.reset()
+        const message = fd.get('message')
+
+        setStatus('sending')
+
+        try {
+            const response = await fetch(FORMSUBMIT_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    subject,
+                    message,
+                    _replyto: email,
+                    _subject: `[Portfolio Contact] ${subject}`,
+                    _template: 'table',
+                    _captcha: 'false',
+                }),
+            })
+
+            const result = await response.json()
+
+            if (response.ok && result.success !== 'false' && result.success !== false) {
+                setStatus('success')
+                formEl.reset()
+            } else {
+                setStatus('error')
+            }
+        } catch {
+            setStatus('error')
+        }
     }
 
     return (
@@ -37,7 +79,7 @@ export default function Contact() {
                             <div className="contact-icon"><i className="bi bi-linkedin"></i></div>
                             <div>
                                 <h4>{contact.liHeader}</h4>
-                                <a href="https://www.linkedin.com/in/jcmunoz" target="_blank" rel="noreferrer">linkedin.com/in/jcmunoz</a>
+                                <a href="https://www.linkedin.com/in/jcmunozc" target="_blank" rel="noreferrer">linkedin.com/in/jcmunozc</a>
                             </div>
                         </div>
                         <div className="contact-info-item">
@@ -48,23 +90,110 @@ export default function Contact() {
                             </div>
                         </div>
                         <div className="social-links">
-                            <a href="https://www.linkedin.com/in/jcmunoz" target="_blank" rel="noreferrer" className="social-link" title="LinkedIn"><i className="bi bi-linkedin"></i></a>
+                            <a href="https://www.linkedin.com/in/jcmunozc" target="_blank" rel="noreferrer" className="social-link" title="LinkedIn"><i className="bi bi-linkedin"></i></a>
                             <a href="https://github.com/" target="_blank" rel="noreferrer" className="social-link" title="GitHub"><i className="bi bi-github"></i></a>
                             <a href="mailto:jcmunozcastaneda@gmail.com" className="social-link" title="Email"><i className="bi bi-envelope-fill"></i></a>
                         </div>
                     </div>
 
                     <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
-                        <form className="contact-form" onSubmit={handleSubmit}>
+                        <form
+                            className="contact-form"
+                            action="https://formsubmit.co/jcmunozcastaneda@gmail.com"
+                            method="POST"
+                            onSubmit={handleSubmit}
+                            onInput={() => {
+                                if (status === 'success' || status === 'error') {
+                                    setStatus('idle')
+                                }
+                            }}
+                        >
+                            {/* Honeypot spam protection */}
+                            <input
+                                type="text"
+                                name="_honey"
+                                className="visually-hidden"
+                                tabIndex={-1}
+                                autoComplete="off"
+                                aria-hidden="true"
+                            />
+                            <input type="hidden" name="_captcha" value="false" />
+                            <input type="hidden" name="_template" value="table" />
+
                             <div className="form-row">
-                                <input type="text" className="form-control" name="name" placeholder={form.name} required />
-                                <input type="email" className="form-control" name="email" placeholder={form.email} required />
+                                <div>
+                                    <label htmlFor="contact-name" className="visually-hidden">{form.name}</label>
+                                    <input
+                                        id="contact-name"
+                                        type="text"
+                                        className="form-control"
+                                        name="name"
+                                        placeholder={form.name}
+                                        autoComplete="name"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="contact-email" className="visually-hidden">{form.email}</label>
+                                    <input
+                                        id="contact-email"
+                                        type="email"
+                                        className="form-control"
+                                        name="email"
+                                        placeholder={form.email}
+                                        autoComplete="email"
+                                        autoCorrect="off"
+                                        autoCapitalize="off"
+                                        spellCheck={false}
+                                        required
+                                    />
+                                </div>
                             </div>
-                            <input type="text" className="form-control" name="subject" placeholder={form.subject} required />
-                            <textarea className="form-control" name="message" placeholder={form.message} required></textarea>
-                            <button type="submit" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>
-                                <i className="bi bi-send-fill"></i> <span>{form.submit}</span>
-                            </button>
+                            <div>
+                                <label htmlFor="contact-subject" className="visually-hidden">{form.subject}</label>
+                                <input
+                                    id="contact-subject"
+                                    type="text"
+                                    className="form-control"
+                                    name="subject"
+                                    placeholder={form.subject}
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="contact-message" className="visually-hidden">{form.message}</label>
+                                <textarea
+                                    id="contact-message"
+                                    className="form-control"
+                                    name="message"
+                                    placeholder={form.message}
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <div className="form-actions">
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                    disabled={status === 'sending'}
+                                >
+                                    <i className={status === 'sending' ? 'bi bi-hourglass-split' : 'bi bi-send-fill'}></i>{' '}
+                                    <span>{status === 'sending' ? form.sending : form.submit}</span>
+                                </button>
+
+                                <div aria-live="polite" className="form-status-wrap">
+                                    {status === 'success' && (
+                                        <p className="form-feedback form-feedback-success">
+                                            <i className="bi bi-check-circle-fill"></i> {form.success}
+                                        </p>
+                                    )}
+                                    {status === 'error' && (
+                                        <p className="form-feedback form-feedback-error">
+                                            <i className="bi bi-exclamation-triangle-fill"></i> {form.error}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

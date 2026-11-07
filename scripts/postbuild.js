@@ -14,7 +14,22 @@ if (fs.existsSync(projectsDir)) {
   console.log("✓ Copied src/projects/ to dist/projects/")
 }
 
-// 2. Read dist/index.html
+// 2. Preserve standalone freelancer iframe entry points as app.html
+// On case-insensitive filesystems (macOS/Windows), dist/freelancer/f1 and dist/freelancer/F1
+// share the same directory, so writing the SPA fallback to index.html would overwrite the iframe HTML.
+const standaloneApps = ["F1", "MINARD"]
+for (const appName of standaloneApps) {
+  const srcAppHtml = path.join(rootDir, "public", "freelancer", appName, "index.html")
+  const publicAppCopy = path.join(rootDir, "public", "freelancer", appName, "app.html")
+  const distAppHtml = path.join(distDir, "freelancer", appName, "app.html")
+  if (fs.existsSync(srcAppHtml)) {
+    fs.copyFileSync(srcAppHtml, publicAppCopy)
+    fs.mkdirSync(path.dirname(distAppHtml), { recursive: true })
+    fs.copyFileSync(srcAppHtml, distAppHtml)
+  }
+}
+
+// 3. Read dist/index.html
 const indexHtmlPath = path.join(distDir, "index.html")
 if (!fs.existsSync(indexHtmlPath)) {
   console.error("dist/index.html does not exist!")
@@ -22,10 +37,11 @@ if (!fs.existsSync(indexHtmlPath)) {
 }
 const indexHtml = fs.readFileSync(indexHtmlPath, "utf8")
 
-// 3. Static fallback routes for static web servers (e.g. Live Server, GitHub Pages, Apache)
+// 4. Static fallback routes for static web servers (e.g. Live Server, GitHub Pages, Apache)
 const routes = [
   "freelancer",
   "freelancer/f1",
+  "freelancer/minard",
   "f1-circuits",
   "gisp-test",
 ]

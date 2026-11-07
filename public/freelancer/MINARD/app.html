@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carte Figurative — Napoleon's 1812 Russian Campaign (Minard Map)</title>
+  <!-- Google Fonts for 19th-century archival cartography + clean tabular numbers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Leaflet 1.9.4 CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-theme="parchment">
+  <div class="app-shell">
+    <!-- Top Archival Header -->
+    <header class="top-header">
+      <div class="brand-block">
+        <span class="cartographer-badge">Charles Joseph Minard · Paris, 20 Nov 1869 (Adapted Interactive Edition)</span>
+        <h1 class="main-title">Carte Figurative des pertes successives en hommes de l’Armée Française dans la campagne de Russie 1812–1813</h1>
+      </div>
+
+      <div class="kpi-strip" aria-label="Campaign summary metrics">
+        <button
+          id="btn-original-map"
+          class="kpi-item kpi-btn-original"
+          type="button"
+          commandfor="original-map-dialog"
+          command="show-modal"
+          title="Open original 1869 Minard map"
+        >
+          <span class="kpi-label" id="original-map-btn-sub">1869 Lithograph</span>
+          <span class="kpi-value kpi-advance" id="original-map-btn-label">📜 Original Map</span>
+        </button>
+        <div class="kpi-item">
+          <span class="kpi-label">Initial Crossing (Kowno)</span>
+          <span class="kpi-value kpi-advance">422,000 <small>men</small></span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">Reached Moscow</span>
+          <span class="kpi-value kpi-moscow">100,000 <small>men</small></span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">Returned (Main &amp; Flanks)</span>
+          <span class="kpi-value kpi-retreat">10,000 <small>men (2.4%)</small></span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">Coldest Recorded</span>
+          <span class="kpi-value kpi-cold">−37.5°C <small>(−30°R)</small></span>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <button id="btn-tour-toggle" class="btn btn-primary" type="button" title="Play guided chronological tour">
+          <span class="icon-play" aria-hidden="true">▶</span>
+          <span id="tour-btn-label">Story Tour</span>
+        </button>
+        <button id="btn-reset-view" class="btn btn-secondary" type="button" title="Reset map zoom to full campaign extent">
+          Full Extent
+        </button>
+        <button id="btn-theme-toggle" class="btn btn-secondary" type="button" title="Switch between 1869 Parchment and Dark Slate themes">
+          Theme: Parchment
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace: Map + Synchronized Chart + Narrative Sidebar -->
+    <main class="workspace-grid">
+      <!-- Left/Center Column: Map Canvas & Bottom Temperature/Attrition Graph -->
+      <section class="map-and-chart-col" aria-label="Interactive Minard Map and Temperature Graph">
+        <!-- Map Filter Bar -->
+        <div class="map-toolbar" role="toolbar" aria-label="Map layer and route controls">
+          <div class="filter-group">
+            <span class="toolbar-label">Phase:</span>
+            <button class="chip active" data-filter-phase="all" type="button">All Phases</button>
+            <button class="chip" data-filter-phase="Advance" type="button">
+              <span class="swatch swatch-advance"></span>Advance (Jun–Sep)
+            </button>
+            <button class="chip" data-filter-phase="Retreat" type="button">
+              <span class="swatch swatch-retreat"></span>Retreat (Oct–Dec)
+            </button>
+          </div>
+
+          <div class="filter-group">
+            <span class="toolbar-label">Corps / Route:</span>
+            <select id="select-route" class="toolbar-select" aria-label="Filter by army route">
+              <option value="all">All Routes (Main + Northern Flanks)</option>
+              <option value="main">Main Corps (Kowno ↔ Moscow)</option>
+              <option value="polotsk">Oudinot / Saint-Cyr (Kowno ↔ Polotsk → Studienska)</option>
+              <option value="riga">Macdonald (Kowno ↔ Riga)</option>
+            </select>
+          </div>
+
+          <div class="filter-group toggles-group">
+            <label class="toggle-label">
+              <input type="checkbox" id="chk-troop-labels" checked />
+              <span>Troop Band Labels</span>
+            </label>
+            <label class="toggle-label">
+              <input type="checkbox" id="chk-connect-path" checked />
+              <span>Chronological Path</span>
+            </label>
+            <label class="toggle-label">
+              <input type="checkbox" id="chk-rivers" checked />
+              <span>Key Rivers</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Leaflet Map Container -->
+        <div class="map-wrapper">
+          <div id="minard-map" role="application" aria-label="Interactive Leaflet map of Napoleon's 1812 Russian campaign"></div>
+
+          <!-- Floating Legend on Map -->
+          <aside id="map-legend" class="map-legend" aria-label="Map Legend">
+            <div class="legend-header">
+              <h2 class="legend-title">Minard Flow &amp; Markers</h2>
+              <button
+                id="btn-legend-toggle"
+                class="legend-toggle-btn"
+                type="button"
+                aria-expanded="true"
+                aria-controls="legend-body"
+                title="Hide / Show Legend"
+              >
+                <svg class="legend-sandwich-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                </svg>
+                <span id="legend-toggle-label" class="legend-toggle-text">Hide</span>
+              </button>
+            </div>
+            <div id="legend-body" class="legend-body">
+              <div class="legend-row">
+                <span class="legend-band legend-band-advance"></span>
+                <span><strong>Advance</strong> (Band width = Troop count)</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-band legend-band-retreat"></span>
+                <span><strong>Retreat</strong> (Withering winter march)</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-marker legend-marker-advance">1</span>
+                <span>Advance Waypoint (Jun–Oct 1812)</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-marker legend-marker-retreat">1</span>
+                <span>Retreat Waypoint (Oct–Dec 1812)</span>
+              </div>
+              <div class="legend-scale-note">
+                Click any flow polygon or numbered waypoint to inspect troop strength, casualties, and historical context.
+              </div>
+            </div>
+          </aside>
+
+          <!-- Floating Active Event Card (when stepping through story or clicking) -->
+          <div id="active-spotlight" class="active-spotlight" hidden>
+            <div class="spotlight-header">
+              <span id="spotlight-badge" class="phase-pill">Advance</span>
+              <span id="spotlight-date" class="spotlight-date">24 Jun 1812</span>
+              <button id="spotlight-close" class="spotlight-close" type="button" aria-label="Close spotlight">×</button>
+            </div>
+            <h3 id="spotlight-title" class="spotlight-title">Kowno / Kaunas (Lithuania)</h3>
+            <div id="spotlight-metrics" class="spotlight-metrics"></div>
+            <p id="spotlight-desc" class="spotlight-desc"></p>
+            <div class="spotlight-nav">
+              <button id="btn-prev-step" class="btn-step" type="button">← Previous Event</button>
+              <span id="spotlight-counter" class="spotlight-counter">1 / 27</span>
+              <button id="btn-next-step" class="btn-step" type="button">Next Event →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Synchronized Panel: Minard's Tableau Graphique de la Température & Troop Attrition -->
+        <section class="temperature-panel" aria-label="Tableau Graphique of Retreat Temperatures and Troop Strength by Longitude">
+          <div class="temp-panel-header">
+            <div>
+              <h2 class="temp-panel-title">
+                Tableau Graphique — Retreat Temperature (°C / °Réaumur) &amp; Surviving Troops by Longitude
+              </h2>
+              <p class="temp-panel-subtitle">
+                Aligned West-to-East (24.0°E Kaunas ↔ 37.6°E Moscow) with the map above. Hover or click any point to highlight the corresponding stage on the map.
+              </p>
+            </div>
+            <div class="temp-unit-legend">
+              <span class="temp-dot temp-dot-adv"></span> Advance Troops
+              <span class="temp-dot temp-dot-ret"></span> Retreat Troops
+              <span class="temp-dot temp-dot-cold"></span> Freezing Temp (°C)
+            </div>
+          </div>
+          <div id="minard-chart-container" class="chart-svg-container"></div>
+        </section>
+      </section>
+
+      <!-- Right Column: Narrative Timeline & Data Inspector -->
+      <aside class="narrative-sidebar" aria-label="Campaign Chronicle and Data Explorer">
+        <div class="sidebar-tabs" role="tablist">
+          <button class="tab-btn active" role="tab" aria-selected="true" data-tab="timeline" type="button">
+            Chronicle (27 Events)
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="segments" type="button">
+            Flow Bands (45)
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="notes" type="button">
+            Historical Context
+          </button>
+        </div>
+
+        <!-- Search & Quick Filter inside Timeline -->
+        <div id="timeline-search-bar" class="sidebar-search">
+          <input
+            type="search"
+            id="search-events"
+            placeholder="Search city, battle, marshal, or date..."
+            aria-label="Search campaign events"
+          />
+        </div>
+
+        <!-- Tab 1: Chronological Event List -->
+        <div id="tab-panel-timeline" class="tab-panel active" role="tabpanel">
+          <div id="timeline-list" class="timeline-list"></div>
+        </div>
+
+        <!-- Tab 2: Flow Segments Table/Cards -->
+        <div id="tab-panel-segments" class="tab-panel" role="tabpanel" hidden>
+          <div class="segments-summary">
+            <p>
+              The <code>napoleon-campain.geojson</code> layer contains <strong>45 polygonal flow buffers</strong> digitized from Minard's chart. Click any segment to zoom and inspect its troop density.
+            </p>
+          </div>
+          <div id="segments-list" class="segments-list"></div>
+        </div>
+
+        <!-- Tab 3: Historical Adaptation & Data Notes -->
+        <div id="tab-panel-notes" class="tab-panel" role="tabpanel" hidden>
+          <article class="historical-article">
+            <h3>About Minard’s 1869 Masterpiece</h3>
+            <p>
+              Published by retired French civil engineer <strong>Charles Joseph Minard</strong> (1781–1870) on November 20, 1869, the <em>Carte Figurative</em> is celebrated by Edward Tufte as potentially the best statistical graphic ever drawn. It weaves six variables into a single two-dimensional surface:
+            </p>
+            <ul>
+              <li><strong>Troop Headcount:</strong> Represented by the width of the flow zones (one millimeter per 10,000 men on the original print).</li>
+              <li><strong>Geographic Coordinates:</strong> Latitude and longitude across Lithuania, Latvia, Belarus, and Russia.</li>
+              <li><strong>Direction of Movement:</strong> Warm chamois/gold for the advance toward Moscow; dark charcoal for the catastrophic retreat.</li>
+              <li><strong>Army Detachments:</strong> Macdonald’s X Corps to Riga in the north, Oudinot/Saint-Cyr’s II &amp; VI Corps at Polotsk, and the main Grande Armée column.</li>
+              <li><strong>Dates &amp; Key Battles:</strong> From crossing the Niemen on June 24, 1812, to re-crossing at Kaunas on December 14, 1812.</li>
+              <li><strong>Freezing Winter Temperatures:</strong> Plotted on the Réaumur scale below the map, showing how the −20°R to −30°R (−25°C to −37.5°C) freezes devastated the retreating survivors at the Berezina and Molodechno.</li>
+            </ul>
+
+            <h3>Adaptations Made to the Dataset</h3>
+            <p>
+              This interactive map directly loads the three workspace GeoJSON datasets in <code>data/</code> and enriches them with historical context:
+            </p>
+            <ul>
+              <li><strong><code>data/napoleon-campain.geojson</code> (45 MultiPolygons):</strong> Rendered with proportional stroke/fill styling and interactive troop attrition calculations. Corrected the route metadata label on the 145,000-troop Smolensk–Dorogobuzh advance segment.</li>
+              <li><strong><code>data/napoleon-Adv.geojson</code> (13 Waypoints):</strong> Standardized bilingual dates (e.g., <em>Ago</em> → <em>Aug</em>), reconciled Old Style/New Style calendar ordering around Borodino (26 Aug OS / 7 Sep NS) and Mojaisk, and linked local troop estimates to each waypoint.</li>
+              <li><strong><code>data/napoleon-ret.geojson</code> (14 Waypoints):</strong> Reordered chronologically from the surprise attack at Tarutino (18 Oct) and evacuation of Moscow (19 Oct) to the final bridge crossing at Kaunas (14 Dec). Standardized place spellings (<em>Balrus</em> → <em>Belarus</em>, <em>Kaunas (Latvia)</em> → <em>Kaunas (Lithuania)</em>), translated and expanded the Vilnius retreat entry into full English while preserving the original Spanish note, and paired retreat stops with Minard's temperature readings.</li>
+            </ul>
+          </article>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Modal Dialog for Original 1869 Minard Map (minard.png) -->
+    <dialog id="original-map-dialog" class="original-map-dialog" closedby="any" aria-labelledby="original-map-dialog-title">
+      <div class="original-map-dialog-header">
+        <div class="original-map-dialog-titles">
+          <span class="cartographer-badge" id="original-map-dialog-sub">Charles Joseph Minard · Paris, 20 Nov 1869</span>
+          <h2 id="original-map-dialog-title" class="original-map-dialog-title">Original Lithograph — Carte Figurative (1869)</h2>
+        </div>
+        <div class="original-map-dialog-actions">
+          <button id="btn-open-popup-window" type="button" class="btn btn-secondary">
+            ↗ Open in Popup Window
+          </button>
+          <button
+            id="btn-close-original-dialog"
+            type="button"
+            class="btn btn-primary"
+            commandfor="original-map-dialog"
+            command="close"
+            aria-label="Close dialog"
+          >
+            ✕ Close
+          </button>
+        </div>
+      </div>
+      <div class="original-map-dialog-body">
+        <img
+          src="minard.png"
+          alt="Carte Figurative des pertes successives en hommes de l'Armée Française dans la campagne de Russie 1812–1813 by Charles Joseph Minard"
+          class="original-map-img"
+        />
+      </div>
+    </dialog>
+  </div>
+
+  <script type="module">
+    if (!("commandForElement" in HTMLButtonElement.prototype)) {
+      import("https://esm.run/invokers-polyfill").catch(() => {});
+    }
+  </script>
+  <!-- Leaflet 1.9.4 JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Pre-bundled GeoJSON fallback for direct file:// opening alongside fetch() -->
+  <script src="data/minard-fallback.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

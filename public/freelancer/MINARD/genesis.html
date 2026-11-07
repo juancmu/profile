@@ -1,0 +1,2709 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="limestone">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Atlas Biblicus — Sacred Geography of the Book of Genesis (Bereshit 1–50)</title>
+  <!-- Google Fonts: Cinzel (Inscribed Monumental Headings), EB Garamond (Scripture & Hebrew), Plus Jakarta Sans (Clean UI), JetBrains Mono (Coordinates & Verses) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Leaflet 1.9.4 CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <style>
+    /* ==========================================================================
+       Genesis Biblical Atlas — Levant Limestone & Babylonian Lapis Design System
+       ========================================================================== */
+    :root {
+      color-scheme: light dark;
+      interpolate-size: allow-keywords;
+      --in-oklab: ;
+      --in-oklch: ;
+    }
+
+    @supports (background: linear-gradient(in oklab, white, black)) {
+      :root {
+        --in-oklab: in oklab;
+        --in-oklch: in oklch;
+      }
+    }
+
+    /* Theme 1: Jerusalem Limestone, Lapis Lazuli & Olive (Light) */
+    :root,
+    [data-theme="limestone"] {
+      color-scheme: light;
+      --bg-canvas: #f3eee4;
+      --bg-surface: #faf7f0;
+      --bg-elevated: #ece4d4;
+      --bg-header: #132a3e;
+      --bg-header-end: #1d3f58;
+      --bg-glass: rgba(250, 247, 240, 0.92);
+      --border-subtle: #d5c9b4;
+      --border-strong: #b39f82;
+      --border-gold: #c99738;
+
+      --text-primary: #16222f;
+      --text-secondary: #435261;
+      --text-muted: #6c7a86;
+      --text-on-header: #f9f5eb;
+      --text-header-sub: #e6be70;
+
+      /* Primary Brand Accent: Lapis & Sinai Gold */
+      --accent-primary: #1b4d6e;
+      --accent-primary-hover: #123852;
+      --accent-gold: #c48b28;
+      --accent-water: #0e7490;
+
+      /* Four Distinct Biblical Era Palettes */
+      --era-primeval: #157359;        /* Eden Emerald */
+      --era-primeval-soft: rgba(21, 115, 89, 0.13);
+      --era-abraham: #b83b27;         /* Covenant Terracotta Crimson */
+      --era-abraham-soft: rgba(184, 59, 39, 0.13);
+      --era-isaac-jacob: #1d56b8;     /* Bethel Sapphire Lapis */
+      --era-isaac-jacob-soft: rgba(29, 86, 184, 0.13);
+      --era-joseph: #6e2dc4;          /* Royal Tyrian Amethyst */
+      --era-joseph-soft: rgba(110, 45, 196, 0.13);
+
+      --shadow-card: 0 4px 12px rgba(19, 42, 62, 0.08), 0 12px 28px rgba(19, 42, 62, 0.07);
+      --shadow-sm: 0 2px 6px rgba(19, 42, 62, 0.07);
+      --map-tile-filter: saturate(0.88) sepia(0.14) contrast(1.02);
+      --scrollbar-thumb: #b39f82;
+      --scrollbar-track: #ece4d4;
+    }
+
+    /* Theme 2: Babylonian Night — Deep Lapis & Starlight Gold (Dark) */
+    [data-theme="lapis"] {
+      color-scheme: dark;
+      --bg-canvas: #0b1322;
+      --bg-surface: #111c30;
+      --bg-elevated: #192742;
+      --bg-header: #080f1c;
+      --bg-header-end: #13223b;
+      --bg-glass: rgba(17, 28, 48, 0.91);
+      --border-subtle: #243656;
+      --border-strong: #37507a;
+      --border-gold: #d9a441;
+
+      --text-primary: #f2efe9;
+      --text-secondary: #b6c4d9;
+      --text-muted: #7c90ad;
+      --text-on-header: #f5f1e6;
+      --text-header-sub: #ecc371;
+
+      --accent-primary: #d9a441;
+      --accent-primary-hover: #e5b75c;
+      --accent-gold: #ecc371;
+      --accent-water: #38bdf8;
+
+      --era-primeval: #34d399;        /* Luminous Jade */
+      --era-primeval-soft: rgba(52, 211, 153, 0.16);
+      --era-abraham: #fb7185;         /* Rose-Terracotta Flame */
+      --era-abraham-soft: rgba(251, 113, 133, 0.16);
+      --era-isaac-jacob: #60a5fa;     /* Celestial Sapphire */
+      --era-isaac-jacob-soft: rgba(96, 165, 250, 0.16);
+      --era-joseph: #c084fc;          /* Royal Amethyst */
+      --era-joseph-soft: rgba(192, 132, 252, 0.16);
+
+      --shadow-card: 0 6px 16px rgba(0, 0, 0, 0.45), 0 16px 36px rgba(0, 0, 0, 0.35);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.38);
+      --map-tile-filter: invert(0.92) hue-rotate(188deg) saturate(0.75) brightness(0.88) contrast(1.12);
+      --scrollbar-thumb: #37507a;
+      --scrollbar-track: #111c30;
+    }
+
+    html {
+      accent-color: var(--accent-gold);
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    @supports not (scrollbar-color: auto) {
+      ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      inline-size: 100%;
+      block-size: 100dvb;
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .main-title, .spotlight-title, .legend-title {
+      text-wrap: balance;
+      margin-block: 0;
+    }
+
+    p, li, blockquote, .spotlight-desc, .timeline-desc {
+      text-wrap: pretty;
+    }
+
+    svg, canvas, img {
+      display: block;
+    }
+
+    /* ==========================================================================
+       Application Shell & Mosaic Header Banner
+       ========================================================================== */
+    .app-shell {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      inline-size: 100%;
+      block-size: 100dvb;
+    }
+
+    .top-header {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 0.7rem 0.85rem;
+      padding-inline: 1.35rem;
+      background: linear-gradient(135deg var(--in-oklab), var(--bg-header), var(--bg-header-end));
+      color: var(--text-on-header);
+      border-block-end: 3px solid var(--border-gold);
+      box-shadow: var(--shadow-card);
+      z-index: 25;
+    }
+
+    /* Mesopotamian / Levantine geometric frieze accent along bottom of header */
+    .top-header::after {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: 0;
+      block-size: 4px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--era-primeval) 0 18px,
+        var(--era-abraham) 0 36px,
+        var(--era-isaac-jacob) 0 54px,
+        var(--era-joseph) 0 72px,
+        var(--border-gold) 0 90px
+      );
+    }
+
+    .brand-block {
+      flex: 1 1 340px;
+      min-inline-size: 0;
+    }
+
+    .cartographer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.69rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-header-sub);
+      margin-block-end: 0.2rem;
+    }
+
+    .main-title {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: clamp(1.05rem, 1.45vw, 1.42rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.22;
+      color: var(--text-on-header);
+    }
+
+    /* Header KPI Pill Strip */
+    .kpi-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+    }
+
+    .kpi-item {
+      display: flex;
+      flex-direction: column;
+      padding-block: 0.32rem;
+      padding-inline: 0.75rem;
+      background-color: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(230, 190, 112, 0.28);
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+    }
+
+    .kpi-btn-original {
+      cursor: pointer;
+      text-align: start;
+      border-color: var(--border-gold);
+      background: linear-gradient(135deg var(--in-oklab), rgba(230, 190, 112, 0.24), rgba(230, 190, 112, 0.06));
+      transition: transform 0.14s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    }
+
+    .kpi-btn-original:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+      background: linear-gradient(135deg var(--in-oklab), rgba(230, 190, 112, 0.34), rgba(230, 190, 112, 0.14));
+    }
+
+    .kpi-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(249, 245, 235, 0.72);
+    }
+
+    .kpi-value {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .kpi-value small {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: rgba(249, 245, 235, 0.78);
+    }
+
+    .kpi-gold { color: var(--text-header-sub); }
+    .kpi-emerald { color: #6ee7b7; }
+    .kpi-crimson { color: #fda4af; }
+    .kpi-water { color: #7dd3fc; }
+
+    /* Header Action Controls */
+    .header-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding-block: 0.45rem;
+      padding-inline: 0.85rem;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--text-on-header);
+    }
+
+    .btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-color: var(--text-header-sub);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg var(--in-oklab), #d4972b, #b37414);
+      border-color: #f3c878;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg var(--in-oklab), #e0a63b, #c2811b);
+    }
+
+    .btn-primary.playing {
+      background: linear-gradient(135deg var(--in-oklab), #b83b27, #8f2616);
+      border-color: #fca5a5;
+    }
+
+    /* ==========================================================================
+       Workspace Split: Left Biblical Gazetteer Drawer + Right Map & Chart
+       ========================================================================== */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 410px minmax(0, 1fr);
+      min-block-size: 0;
+      inline-size: 100%;
+    }
+
+    /* Left Column: Biblical Gazetteer & Explorer */
+    .narrative-sidebar {
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      background-color: var(--bg-surface);
+      border-inline-end: 1px solid var(--border-subtle);
+      min-block-size: 0;
+      z-index: 10;
+    }
+
+    .sidebar-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background-color: var(--bg-elevated);
+      border-block-end: 1px solid var(--border-subtle);
+      padding: 0.3rem 0.4rem 0;
+      gap: 0.25rem;
+    }
+
+    .tab-btn {
+      padding-block: 0.58rem;
+      padding-inline: 0.4rem;
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid transparent;
+      border-block-end: none;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+      background-color: rgba(196, 139, 40, 0.1);
+    }
+
+    .tab-btn.active {
+      color: var(--accent-primary);
+      background-color: var(--bg-surface);
+      border-color: var(--border-subtle);
+      box-shadow: 0 -2px 0 var(--border-gold) inset;
+    }
+
+    .sidebar-search {
+      padding: 0.65rem 0.85rem;
+      border-block-end: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+    }
+
+    .sidebar-search input {
+      inline-size: 100%;
+      padding: 0.48rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-family: inherit;
+    }
+
+    .sidebar-search input:focus {
+      outline: 2px solid var(--accent-gold);
+      border-color: transparent;
+    }
+
+    .tab-panel {
+      overflow-y: auto;
+      padding: 0.75rem 0.85rem;
+      min-block-size: 0;
+    }
+
+    /* Gazetteer Place Cards */
+    .timeline-list,
+    .segments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    /* Deferred rendering for off-screen cards in long 58-item list */
+    .timeline-card,
+    .segment-card {
+      content-visibility: auto;
+      contain-intrinsic-size: auto none auto 138px;
+    }
+
+    .timeline-card {
+      position: relative;
+      padding: 0.78rem 0.9rem;
+      border-radius: 10px;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-inline-start: 5px solid var(--era-primeval);
+      cursor: pointer;
+      transition: transform 0.14s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .timeline-card.era-primeval { border-inline-start-color: var(--era-primeval); }
+    .timeline-card.era-abraham { border-inline-start-color: var(--era-abraham); }
+    .timeline-card.era-isaac_jacob { border-inline-start-color: var(--era-isaac-jacob); }
+    .timeline-card.era-joseph { border-inline-start-color: var(--era-joseph); }
+
+    .timeline-card:hover {
+      transform: translateX(3px);
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .timeline-card.active {
+      background-color: var(--bg-elevated);
+      border-color: var(--border-gold);
+      box-shadow: var(--shadow-card);
+    }
+
+    .timeline-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      margin-block-end: 0.25rem;
+    }
+
+    .timeline-step-num {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .timeline-date-badge {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.69rem;
+      color: var(--text-secondary);
+      background-color: var(--bg-surface);
+      padding: 0.12rem 0.48rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .timeline-title {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-block-end: 0.18rem;
+    }
+
+    .hebrew-subtitle {
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--accent-gold);
+      margin-block: 0 0.35rem;
+    }
+
+    .timeline-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-block-end: 0.35rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.69rem;
+      color: var(--text-secondary);
+    }
+
+    .timeline-desc {
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.45;
+      color: var(--text-secondary);
+      margin-block: 0;
+    }
+
+    /* ==========================================================================
+       Right Column: Map Canvas, Floating Filter Bar & Bottom Scripture Graph
+       ========================================================================== */
+    .map-and-chart-col {
+      display: grid;
+      grid-template-rows: auto minmax(260px, 1fr) 210px;
+      min-block-size: 0;
+      min-inline-size: 0;
+    }
+
+    /* Filter Toolbar */
+    .map-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+      padding-block: 0.55rem;
+      padding-inline: 1.1rem;
+      background-color: var(--bg-elevated);
+      border-block-end: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.38rem;
+    }
+
+    .toolbar-label {
+      font-family: "Cinzel", serif;
+      font-weight: 700;
+      font-size: 0.74rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-inline-end: 0.2rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.38rem;
+      padding-block: 0.3rem;
+      padding-inline: 0.72rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .chip:hover {
+      border-color: var(--border-gold);
+      color: var(--text-primary);
+    }
+
+    .chip.active {
+      background-color: var(--bg-header);
+      color: var(--text-on-header);
+      border-color: var(--border-gold);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+    }
+
+    .swatch {
+      display: inline-block;
+      inline-size: 10px;
+      block-size: 10px;
+      border-radius: 50%;
+    }
+
+    .swatch-primeval { background-color: var(--era-primeval); }
+    .swatch-abraham { background-color: var(--era-abraham); }
+    .swatch-isaac_jacob { background-color: var(--era-isaac-jacob); }
+    .swatch-joseph { background-color: var(--era-joseph); }
+
+    .toolbar-select {
+      padding-block: 0.3rem;
+      padding-inline: 0.65rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-size: 0.76rem;
+      font-weight: 500;
+      font-family: inherit;
+    }
+
+    .toggles-group {
+      gap: 0.85rem;
+    }
+
+    .toggle-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    /* Map Container */
+    .map-wrapper {
+      position: relative;
+      inline-size: 100%;
+      block-size: 100%;
+      min-block-size: 0;
+    }
+
+    #minard-map {
+      inline-size: 100%;
+      block-size: 100%;
+      background-color: #dfd5c0;
+      z-index: 1;
+    }
+
+    [data-theme="lapis"] #minard-map {
+      background-color: #0b1322;
+    }
+
+    .leaflet-tile-pane {
+      filter: var(--map-tile-filter);
+    }
+
+    /* Floating Map Legend (Bottom Right) */
+    .map-legend {
+      position: absolute;
+      inset-block-end: 16px;
+      inset-inline-end: 16px;
+      z-index: 500;
+      max-inline-size: 290px;
+      padding: 0.7rem 0.9rem;
+      background-color: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      box-shadow: var(--shadow-card);
+      font-size: 0.75rem;
+    }
+
+    .legend-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      border-block-end: 1px solid var(--border-subtle);
+      padding-block-end: 0.38rem;
+      margin-block-end: 0.48rem;
+    }
+
+    .map-legend.is-collapsed .legend-header {
+      border-block-end-color: transparent;
+      padding-block-end: 0;
+      margin-block-end: 0;
+    }
+
+    .legend-title {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .legend-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .legend-toggle-btn:hover {
+      background-color: var(--accent-gold);
+      color: #fff;
+      border-color: var(--accent-gold);
+    }
+
+    .legend-body {
+      block-size: auto;
+      overflow: hidden;
+      opacity: 1;
+      transition: block-size 0.3s ease, opacity 0.25s ease;
+    }
+
+    .map-legend.is-collapsed .legend-body {
+      block-size: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .legend-body {
+        transition: none !important;
+      }
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-block-end: 0.42rem;
+      color: var(--text-secondary);
+    }
+
+    .legend-marker-era {
+      display: inline-grid;
+      place-content: center;
+      inline-size: 21px;
+      block-size: 21px;
+      border-radius: 6px;
+      transform: rotate(45deg);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.64rem;
+      font-weight: 700;
+      color: #fff;
+      border: 1.5px solid #fff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+      flex-shrink: 0;
+    }
+
+    .legend-marker-era span {
+      transform: rotate(-45deg);
+    }
+
+    .legend-scale-note {
+      margin-block-start: 0.48rem;
+      padding-block-start: 0.38rem;
+      border-block-start: 1px dashed var(--border-subtle);
+      font-size: 0.69rem;
+      color: var(--text-muted);
+      line-height: 1.38;
+    }
+
+    /* Floating Active Place Spotlight Card (Top Left of Map) */
+    .active-spotlight {
+      position: absolute;
+      inset-block-start: 16px;
+      inset-inline-start: 56px;
+      z-index: 550;
+      inline-size: min(390px, calc(100% - 72px));
+      padding: 0.95rem 1.05rem;
+      background-color: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-gold);
+      border-block-start: 4px solid var(--border-gold);
+      border-radius: 12px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .spotlight-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-block-end: 0.4rem;
+    }
+
+    .phase-pill {
+      display: inline-block;
+      padding-block: 0.16rem;
+      padding-inline: 0.55rem;
+      border-radius: 999px;
+      font-size: 0.66rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .phase-pill.era-primeval {
+      background-color: var(--era-primeval-soft);
+      color: var(--era-primeval);
+      border: 1px solid var(--era-primeval);
+    }
+    .phase-pill.era-abraham {
+      background-color: var(--era-abraham-soft);
+      color: var(--era-abraham);
+      border: 1px solid var(--era-abraham);
+    }
+    .phase-pill.era-isaac_jacob {
+      background-color: var(--era-isaac-jacob-soft);
+      color: var(--era-isaac-jacob);
+      border: 1px solid var(--era-isaac-jacob);
+    }
+    .phase-pill.era-joseph {
+      background-color: var(--era-joseph-soft);
+      color: var(--era-joseph);
+      border: 1px solid var(--era-joseph);
+    }
+
+    .spotlight-date {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .spotlight-close {
+      margin-inline-start: auto;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      line-height: 1;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+
+    .spotlight-close:hover {
+      background-color: var(--bg-elevated);
+      color: var(--text-primary);
+    }
+
+    .spotlight-title {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-block-end: 0.15rem;
+    }
+
+    .spotlight-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-block-end: 0.55rem;
+    }
+
+    .metric-chip {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+    }
+
+    .spotlight-desc {
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 0.96rem;
+      line-height: 1.48;
+      color: var(--text-secondary);
+      margin-block: 0 0.75rem;
+      max-block-size: 140px;
+      overflow-y: auto;
+    }
+
+    .spotlight-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block-start: 0.55rem;
+      border-block-start: 1px solid var(--border-subtle);
+    }
+
+    .btn-step {
+      padding: 0.32rem 0.7rem;
+      font-family: inherit;
+      font-size: 0.74rem;
+      font-weight: 600;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    .btn-step:hover {
+      background-color: var(--bg-elevated);
+      border-color: var(--border-gold);
+    }
+
+    .spotlight-counter {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    /* Custom Rotated Seal / Diamond Map Markers */
+    .minard-waypoint-icon {
+      background: transparent;
+      border: none;
+    }
+
+    .waypoint-badge {
+      display: grid;
+      place-content: center;
+      inline-size: 26px;
+      block-size: 26px;
+      border-radius: 6px;
+      transform: rotate(45deg);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.38));
+    }
+
+    .waypoint-badge span {
+      transform: rotate(-45deg);
+      display: inline-block;
+    }
+
+    .waypoint-badge.era-primeval {
+      background-color: #157359;
+      color: #fff;
+      border: 2px solid #ecfdf5;
+    }
+    .waypoint-badge.era-abraham {
+      background-color: #b83b27;
+      color: #fff;
+      border: 2px solid #fff1f2;
+    }
+    .waypoint-badge.era-isaac_jacob {
+      background-color: #1d56b8;
+      color: #fff;
+      border: 2px solid #eff6ff;
+    }
+    .waypoint-badge.era-joseph {
+      background-color: #6e2dc4;
+      color: #fff;
+      border: 2px solid #f5f3ff;
+    }
+
+    .waypoint-badge.active-marker {
+      transform: rotate(45deg) scale(1.36);
+      border-color: #fbbf24;
+      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.45);
+      z-index: 999 !important;
+    }
+
+    .place-label-icon {
+      background: transparent;
+      border: none;
+      pointer-events: none;
+    }
+
+    .place-label-tag {
+      display: inline-block;
+      padding: 1px 6px;
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border-radius: 4px;
+      white-space: nowrap;
+      background-color: var(--bg-glass);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+    }
+
+    .river-label-icon {
+      background: transparent;
+      border: none;
+      pointer-events: none;
+    }
+
+    .river-label-text {
+      font-family: "EB Garamond", Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-water);
+      text-shadow: 0 0 4px var(--bg-surface), 0 0 6px var(--bg-surface);
+      white-space: nowrap;
+    }
+
+    /* ==========================================================================
+       Bottom Synchronized Scripture & Geography Panel
+       ========================================================================== */
+    .temperature-panel {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      background-color: var(--bg-surface);
+      border-block-start: 2px solid var(--border-gold);
+      padding-block: 0.5rem 0.35rem;
+      padding-inline: 1.1rem;
+      min-block-size: 0;
+    }
+
+    .temp-panel-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-block-end: 0.2rem;
+    }
+
+    .temp-panel-title {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .temp-panel-subtitle {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-block: 0;
+    }
+
+    .temp-unit-legend {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.73rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .temp-dot {
+      display: inline-block;
+      inline-size: 9px;
+      block-size: 9px;
+      border-radius: 2px;
+      transform: rotate(45deg);
+      margin-inline-end: 0.25rem;
+    }
+
+    .chart-svg-container {
+      inline-size: 100%;
+      block-size: 100%;
+      min-block-size: 0;
+    }
+
+    .chart-svg-container svg {
+      inline-size: 100%;
+      block-size: 100%;
+    }
+
+    /* Routes & Notes Cards */
+    .segments-summary p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-block: 0 0.65rem;
+      line-height: 1.45;
+    }
+
+    .segment-card {
+      padding: 0.65rem 0.8rem;
+      border-radius: 8px;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .segment-card:hover {
+      background-color: var(--bg-elevated);
+      border-color: var(--border-gold);
+    }
+
+    .segment-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-block-end: 0.35rem;
+      font-family: "Cinzel", serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .segment-bar-track {
+      inline-size: 100%;
+      block-size: 6px;
+      background-color: var(--bg-surface);
+      border-radius: 999px;
+      overflow: clip;
+      margin-block-end: 0.3rem;
+    }
+
+    .segment-bar-fill {
+      block-size: 100%;
+      border-radius: 999px;
+    }
+
+    .segment-sub {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .historical-article h3 {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 1.05rem;
+      margin-block: 0.65rem 0.35rem;
+      color: var(--text-primary);
+    }
+
+    .historical-article h3:first-child {
+      margin-block-start: 0;
+    }
+
+    .historical-article p,
+    .historical-article li {
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 0.95rem;
+      line-height: 1.52;
+      color: var(--text-secondary);
+    }
+
+    .historical-article ul {
+      padding-inline-start: 1.15rem;
+      margin-block: 0.4rem 0.9rem;
+    }
+
+    .historical-article li {
+      margin-block-end: 0.38rem;
+    }
+
+    /* Leaflet Popup Overrides */
+    .leaflet-popup-content-wrapper {
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .leaflet-popup-tip {
+      background-color: var(--bg-surface);
+    }
+
+    .minard-popup-title {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-block-end: 0.25rem;
+    }
+
+    .minard-popup-meta {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.73rem;
+      color: var(--accent-gold);
+      margin-block-end: 0.35rem;
+    }
+
+    /* Modal Dialog */
+    .original-map-dialog {
+      inline-size: min(94vw, 1280px);
+      max-block-size: 88dvb;
+      padding: 0;
+      border: 2px solid var(--border-gold);
+      border-radius: 12px;
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .original-map-dialog[open] {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .original-map-dialog::backdrop {
+      background-color: rgba(8, 15, 28, 0.72);
+      backdrop-filter: blur(4px);
+    }
+
+    .original-map-dialog-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      background: linear-gradient(135deg var(--in-oklab), var(--bg-header), var(--bg-header-end));
+      color: var(--text-on-header);
+      border-block-end: 2px solid var(--border-gold);
+    }
+
+    .original-map-dialog-title {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-on-header);
+    }
+
+    .original-map-dialog-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .original-map-dialog-body {
+      padding: 1.15rem;
+      overflow: auto;
+      background-color: var(--bg-canvas);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .geojson-Summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+      inline-size: 100%;
+    }
+
+    .geojson-stat-card {
+      padding: 0.85rem 1rem;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-block-start: 3px solid var(--border-gold);
+      border-radius: 8px;
+    }
+
+    .geojson-stat-card h4 {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 0.96rem;
+      margin-block: 0 0.35rem;
+      color: var(--text-primary);
+    }
+
+    .geojson-code-preview {
+      inline-size: 100%;
+      max-block-size: 300px;
+      overflow: auto;
+      padding: 0.85rem;
+      border-radius: 8px;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.74rem;
+      line-height: 1.45;
+      color: var(--text-primary);
+      margin-block-start: 0.5rem;
+      white-space: pre;
+    }
+
+    @media (max-width: 980px) {
+      .workspace-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(420px, 1fr) 340px;
+      }
+      .narrative-sidebar {
+        order: 2;
+        border-inline-end: none;
+        border-block-start: 1px solid var(--border-subtle);
+      }
+      .map-and-chart-col {
+        order: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Top Levantine Lapis & Gold Banner -->
+    <header class="top-header">
+      <div class="brand-block">
+        <span class="cartographer-badge" id="hdr-badge">✦ Atlas Biblicus · Book of Genesis (Bereshit 1–50) · GeoJSON Interactive Edition</span>
+        <h1 class="main-title" id="hdr-title">Sacred Geography of Genesis — From the Garden of Eden &amp; Ur to Canaan and Goshen</h1>
+      </div>
+
+      <div class="kpi-strip" aria-label="Genesis geographic summary metrics">
+        <button
+          id="btn-geojson-Modal"
+          class="kpi-item kpi-btn-original"
+          type="button"
+          commandfor="genesis-atlas-dialog"
+          command="show-modal"
+          title="Inspect Genesis GeoJSON dataset &amp; Biblical Geography summary"
+        >
+          <span class="kpi-label" id="geojson-btn-sub">data/genesis.geojson</span>
+          <span class="kpi-value kpi-gold" id="geojson-btn-label">🏺 GeoJSON Codex</span>
+        </button>
+        <div class="kpi-item">
+          <span class="kpi-label" id="kpi-places-label">Biblical Places</span>
+          <span class="kpi-value kpi-emerald"><span id="kpi-places-val">58</span> <small id="kpi-places-unit">sites</small></span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label" id="kpi-chapters-label">Scripture Span</span>
+          <span class="kpi-value kpi-gold">50 <small id="kpi-chapters-unit">chapters</small></span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label" id="kpi-routes-label">Patriarchal Journeys</span>
+          <span class="kpi-value kpi-crimson">3 <small id="kpi-routes-unit">major routes</small></span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label" id="kpi-rivers-label">Sacred Rivers</span>
+          <span class="kpi-value kpi-water">5 <small id="kpi-rivers-unit">waterways</small></span>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <button id="btn-tour-toggle" class="btn btn-primary" type="button" title="Play guided chronological tour of Genesis places">
+          <span class="icon-play" aria-hidden="true">▶</span>
+          <span id="tour-btn-label">Story Tour</span>
+        </button>
+        <button id="btn-canaan-view" class="btn" type="button" title="Zoom to Land of Canaan (Promised Land)">
+          Canaan Focus
+        </button>
+        <button id="btn-reset-view" class="btn" type="button" title="Reset map zoom to full Ancient Near East extent">
+          Full Extent
+        </button>
+        <button id="btn-theme-toggle" class="btn" type="button" title="Switch between Levant Limestone and Babylonian Lapis Night themes">
+          Theme: Limestone
+        </button>
+        <button id="btn-lang-toggle" class="btn" type="button" title="Switch language between English and Español">
+          🌐 ES / EN
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace: Left Biblical Gazetteer + Right Interactive Map & Bottom Profile -->
+    <main class="workspace-grid">
+      <!-- Left Column: Biblical Gazetteer, Patriarchal Journeys & Archaeological Notes -->
+      <aside class="narrative-sidebar" aria-label="Genesis Gazetteer and Biblical Explorer">
+        <div class="sidebar-tabs" role="tablist">
+          <button class="tab-btn active" role="tab" aria-selected="true" data-tab="places" type="button" id="tab-btn-places">
+            Gazetteer (58 Places)
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="routes" type="button" id="tab-btn-routes">
+            Journeys &amp; Rivers (8)
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="notes" type="button" id="tab-btn-notes">
+            Biblical Context
+          </button>
+        </div>
+
+        <!-- Search & Quick Filter inside Gazetteer -->
+        <div id="timeline-search-bar" class="sidebar-search">
+          <input
+            type="search"
+            id="search-places"
+            placeholder="Search biblical place, Hebrew name, chapter, or patriarch..."
+            aria-label="Search Genesis places"
+          />
+        </div>
+
+        <!-- Tab 1: Gazetteer Place List -->
+        <div id="tab-panel-places" class="tab-panel active" role="tabpanel">
+          <div id="places-list" class="timeline-list"></div>
+        </div>
+
+        <!-- Tab 2: Patriarchal Routes & Biblical Rivers -->
+        <div id="tab-panel-routes" class="tab-panel" role="tabpanel" hidden>
+          <div class="segments-summary" id="routes-summary">
+            <p>
+              <code>data/genesis.geojson</code> includes <strong>3 patriarchal journey corridors</strong> and <strong>5 sacred rivers</strong> alongside the 58 point locations. Click any route or river to highlight and zoom to its extent.
+            </p>
+          </div>
+          <div id="routes-list" class="segments-list"></div>
+        </div>
+
+        <!-- Tab 3: Biblical Geography & GeoJSON Notes -->
+        <div id="tab-panel-notes" class="tab-panel" role="tabpanel" hidden>
+          <article class="historical-article" id="notes-article"></article>
+        </div>
+      </aside>
+
+      <!-- Right Column: Map Canvas & Bottom Chapter-by-Chapter Distribution Graph -->
+      <section class="map-and-chart-col" aria-label="Interactive Genesis Map and Chapter Chronicle Graph">
+        <!-- Map Filter Bar -->
+        <div class="map-toolbar" role="toolbar" aria-label="Map era, category, and layer controls">
+          <div class="filter-group">
+            <span class="toolbar-label" id="lbl-era">Era:</span>
+            <button class="chip active" data-filter-era="all" type="button" id="chip-era-all">All Eras (58)</button>
+            <button class="chip" data-filter-era="primeval" type="button">
+              <span class="swatch swatch-primeval"></span><span id="chip-era-primeval">Primeval (Ch 1–11)</span>
+            </button>
+            <button class="chip" data-filter-era="abraham" type="button">
+              <span class="swatch swatch-abraham"></span><span id="chip-era-abraham">Abraham (Ch 12–25)</span>
+            </button>
+            <button class="chip" data-filter-era="isaac_jacob" type="button">
+              <span class="swatch swatch-isaac_jacob"></span><span id="chip-era-jacob">Isaac &amp; Jacob (Ch 25–36)</span>
+            </button>
+            <button class="chip" data-filter-era="joseph" type="button">
+              <span class="swatch swatch-joseph"></span><span id="chip-era-joseph">Joseph (Ch 37–50)</span>
+            </button>
+          </div>
+
+          <div class="filter-group">
+            <span class="toolbar-label" id="lbl-cat">Type:</span>
+            <select id="select-category" class="toolbar-select" aria-label="Filter by place type">
+              <option value="all" id="opt-cat-all">All Place Types (Cities, Regions, Wells, Mountains, Altars)</option>
+              <option value="city" id="opt-cat-city">Cities &amp; Kingdoms (25)</option>
+              <option value="region" id="opt-cat-region">Lands, Plains &amp; Deserts (11)</option>
+              <option value="altar_camp" id="opt-cat-altar">Altars, Camps &amp; Sacred Pillars (10)</option>
+              <option value="water_well" id="opt-cat-well">Wells, Springs &amp; Oases (8)</option>
+              <option value="mountain" id="opt-cat-mountain">Mountains &amp; Highlands (4)</option>
+            </select>
+          </div>
+
+          <div class="filter-group toggles-group">
+            <label class="toggle-label">
+              <input type="checkbox" id="chk-place-labels" checked />
+              <span id="lbl-chk-names">Place Names</span>
+            </label>
+            <label class="toggle-label">
+              <input type="checkbox" id="chk-routes" checked />
+              <span id="lbl-chk-routes">Patriarchal Routes</span>
+            </label>
+            <label class="toggle-label">
+              <input type="checkbox" id="chk-rivers" checked />
+              <span id="lbl-chk-rivers">Biblical Rivers</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Leaflet Map Container -->
+        <div class="map-wrapper">
+          <div id="minard-map" role="application" aria-label="Interactive Leaflet map of all places in the Book of Genesis"></div>
+
+          <!-- Floating Legend on Map -->
+          <aside id="map-legend" class="map-legend" aria-label="Map Legend">
+            <div class="legend-header">
+              <h2 class="legend-title" id="legend-title">Genesis Eras &amp; Seals</h2>
+              <button
+                id="btn-legend-toggle"
+                class="legend-toggle-btn"
+                type="button"
+                aria-expanded="true"
+                aria-controls="legend-body"
+                title="Hide / Show Legend"
+              >
+                <span id="legend-toggle-label">Hide</span>
+              </button>
+            </div>
+            <div id="legend-body" class="legend-body">
+              <div class="legend-row">
+                <span class="legend-marker-era" style="background-color: #157359;"><span>1</span></span>
+                <span id="leg-era-1"><strong>Primeval</strong> (Gen 1–11: Eden, Flood, Babel)</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-marker-era" style="background-color: #b83b27;"><span>17</span></span>
+                <span id="leg-era-2"><strong>Abraham</strong> (Gen 12–25: Ur to Beersheba)</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-marker-era" style="background-color: #1d56b8;"><span>43</span></span>
+                <span id="leg-era-3"><strong>Isaac &amp; Jacob</strong> (Gen 25–36: Haran &amp; Peniel)</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-marker-era" style="background-color: #6e2dc4;"><span>52</span></span>
+                <span id="leg-era-4"><strong>Joseph</strong> (Gen 37–50: Dothan to Goshen)</span>
+              </div>
+              <div class="legend-scale-note" id="legend-note">
+                Click any diamond seal, caravan route, or node on the bottom chart to inspect Hebrew names, Scripture references, and archaeological context.
+              </div>
+            </div>
+          </aside>
+
+          <!-- Floating Active Place Card (when stepping through story or clicking) -->
+          <div id="active-spotlight" class="active-spotlight" hidden>
+            <div class="spotlight-header">
+              <span id="spotlight-badge" class="phase-pill era-primeval">Primeval</span>
+              <span id="spotlight-verses" class="spotlight-date">Gen 2:8–15</span>
+              <button id="spotlight-close" class="spotlight-close" type="button" aria-label="Close spotlight">×</button>
+            </div>
+            <h3 id="spotlight-title" class="spotlight-title">Garden of Eden</h3>
+            <div id="spotlight-hebrew" class="hebrew-subtitle">גַּן־עֵדֶן · Gan-ʿĒden</div>
+            <div id="spotlight-metrics" class="spotlight-metrics"></div>
+            <p id="spotlight-desc" class="spotlight-desc"></p>
+            <div class="spotlight-nav">
+              <button id="btn-prev-step" class="btn-step" type="button">← Previous Place</button>
+              <span id="spotlight-counter" class="spotlight-counter">1 / 58</span>
+              <button id="btn-next-step" class="btn-step" type="button">Next Place →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Synchronized Panel: Genesis Narrative Sequence & Longitude/Latitude Profile -->
+        <section class="temperature-panel" aria-label="Chronological Genesis Chapters and Geographic Longitude Profile">
+          <div class="temp-panel-header">
+            <div>
+              <h2 class="temp-panel-title" id="chart-title">
+                Scripture &amp; Geography Profile — All 58 Places by Genesis Chapter (Ch. 1 → 50) &amp; Longitude (Nile 31°E ↔ Mesopotamia 54°E)
+              </h2>
+              <p class="temp-panel-subtitle" id="chart-subtitle">
+                Traces the geographic sweep from Mesopotamia (Ur &amp; Haran) into Canaan and down to Egypt (Goshen). Hover or click any node to locate the biblical site on the map.
+              </p>
+            </div>
+            <div class="temp-unit-legend">
+              <span><span class="temp-dot" style="background:var(--era-primeval);"></span> <span id="c-leg-1">Primeval</span></span>
+              <span><span class="temp-dot" style="background:var(--era-abraham);"></span> <span id="c-leg-2">Abraham</span></span>
+              <span><span class="temp-dot" style="background:var(--era-isaac-jacob);"></span> <span id="c-leg-3">Isaac &amp; Jacob</span></span>
+              <span><span class="temp-dot" style="background:var(--era-joseph);"></span> <span id="c-leg-4">Joseph</span></span>
+            </div>
+          </div>
+          <div id="genesis-chart-container" class="chart-svg-container"></div>
+        </section>
+      </section>
+    </main>
+
+    <!-- Modal Dialog for GeoJSON Dataset & Biblical Cartography Overview -->
+    <dialog id="genesis-atlas-dialog" class="original-map-dialog" closedby="any" aria-labelledby="genesis-dialog-title">
+      <div class="original-map-dialog-header">
+        <div class="original-map-dialog-titles">
+          <span class="cartographer-badge" id="dialog-badge">data/genesis.geojson · WGS84 (EPSG:4326)</span>
+          <h2 id="genesis-dialog-title" class="original-map-dialog-title">Book of Genesis GeoJSON Codex &amp; Cartographic Index</h2>
+        </div>
+        <div class="original-map-dialog-actions">
+          <a href="data/genesis.geojson" download="genesis.geojson" class="btn" id="btn-download-geojson" style="text-decoration:none;">
+            ⬇ Download genesis.geojson
+          </a>
+          <a href="index.html" class="btn" id="btn-goto-minard" style="text-decoration:none;">
+            🗺 Minard 1812 Map
+          </a>
+          <button
+            id="btn-close-genesis-dialog"
+            type="button"
+            class="btn btn-primary"
+            commandfor="genesis-atlas-dialog"
+            command="close"
+            aria-label="Close dialog"
+          >
+            ✕ Close
+          </button>
+        </div>
+      </div>
+      <div class="original-map-dialog-body">
+        <div class="geojson-Summary-grid" id="dialog-summary-grid">
+          <div class="geojson-stat-card" style="border-block-start-color: var(--era-primeval);">
+            <h4>I. Primeval History (Gen 1–11)</h4>
+            <p style="font-size:0.82rem; margin:0; color:var(--text-secondary);">
+              <strong>16 places</strong> across Mesopotamia, Anatolia, Arabia &amp; the Levant: Garden of Eden, Havilah, Cush, Asshur, Land of Nod, Mountains of Ararat, Land of Shinar, Babel, Erech (Uruk), Accad, Calneh, Nineveh, Calah, Sidon, Lasha, and Sephar.
+            </p>
+          </div>
+          <div class="geojson-stat-card" style="border-block-start-color: var(--era-abraham);">
+            <h4>II. Abraham &amp; Sarah (Gen 12–25)</h4>
+            <p style="font-size:0.82rem; margin:0; color:var(--text-secondary);">
+              <strong>26 places</strong> tracing the Covenant journey: Ur of the Chaldeans, Haran, City of Nahor, Shechem, Bethel, Ai, Negev, Sodom, Gomorrah, Zoar, Valley of Siddim, Hebron (Mamre &amp; Machpelah), Dan, Damascus, Salem &amp; Mount Moriah, Beer-lahai-roi, Gerar, and Beersheba.
+            </p>
+          </div>
+          <div class="geojson-stat-card" style="border-block-start-color: var(--era-isaac-jacob);">
+            <h4>III. Isaac, Jacob &amp; Esau (Gen 25–36)</h4>
+            <p style="font-size:0.82rem; margin:0; color:var(--text-secondary);">
+              <strong>9 distinctive sites</strong> (plus shared patriarchal centers): Wells of Esek, Sitnah &amp; Rehoboth, Galeed / Mizpah in Gilead, Mahanaim, Peniel (Ford of the Jabbok), Succoth, Ephrath / Bethlehem (Rachel's Tomb), Migdal-Eder, and Bozrah in Edom.
+            </p>
+          </div>
+          <div class="geojson-stat-card" style="border-block-start-color: var(--era-joseph);">
+            <h4>IV. Joseph &amp; Egypt (Gen 37–50)</h4>
+            <p style="font-size:0.82rem; margin:0; color:var(--text-secondary);">
+              <strong>7 distinctive sites</strong> (plus Hebron, Shechem &amp; Beersheba): Dothan, Gilead spice route, Adullam &amp; Chezib, Timnah &amp; Enaim, On (Heliopolis), Land of Goshen (Rameses), and the Threshing Floor of Atad (Abel-Mizraim).
+            </p>
+          </div>
+        </div>
+        <div style="inline-size: 100%;">
+          <strong style="font-size: 0.82rem; color: var(--text-secondary);" id="dialog-preview-label">Live GeoJSON Preview (<code>data/genesis.geojson</code>):</strong>
+          <pre class="geojson-code-preview" id="geojson-code-preview">Loading data/genesis.geojson...</pre>
+        </div>
+      </div>
+    </dialog>
+  </div>
+
+  <!-- Invoker Commands Polyfill (loaded conditionally only if lacking native support) -->
+  <script type="module">
+    if (!("commandForElement" in HTMLButtonElement.prototype)) {
+      import("https://esm.run/invokers-polyfill").catch(() => {});
+    }
+  </script>
+  <!-- Leaflet 1.9.4 JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Pre-bundled GeoJSON fallback for direct file:// opening alongside fetch('data/genesis.geojson') -->
+  <script src="data/genesis-fallback.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      // =========================================================================
+      // 1. Bilingual UI Dictionary (EN / ES)
+      // =========================================================================
+      const UI_STRINGS = {
+        en: {
+          hdrBadge: "✦ Atlas Biblicus · Book of Genesis (Bereshit 1–50) · GeoJSON Interactive Edition",
+          hdrTitle: "Sacred Geography of Genesis — From the Garden of Eden & Ur to Canaan and Goshen",
+          geojsonBtnSub: "data/genesis.geojson",
+          geojsonBtnLabel: "🏺 GeoJSON Codex",
+          kpiPlacesLabel: "Biblical Places",
+          kpiPlacesUnit: "sites",
+          kpiChaptersLabel: "Scripture Span",
+          kpiChaptersUnit: "chapters",
+          kpiRoutesLabel: "Patriarchal Journeys",
+          kpiRoutesUnit: "major routes",
+          kpiRiversLabel: "Sacred Rivers",
+          kpiRiversUnit: "waterways",
+          storyTour: "Story Tour",
+          pauseTour: "Pause Tour",
+          canaanFocus: "Canaan Focus",
+          fullExtent: "Full Extent",
+          themeLimestone: "Theme: Limestone",
+          themeLapis: "Theme: Lapis Night",
+          lblEra: "Era:",
+          eraAll: (n) => `All Eras (${n})`,
+          eraPrimeval: "Primeval (Ch 1–11)",
+          eraAbraham: "Abraham (Ch 12–25)",
+          eraJacob: "Isaac & Jacob (Ch 25–36)",
+          eraJoseph: "Joseph (Ch 37–50)",
+          eraBadge: {
+            primeval: "Primeval (Gen 1–11)",
+            abraham: "Abraham (Gen 12–25)",
+            isaac_jacob: "Isaac & Jacob (Gen 25–36)",
+            joseph: "Joseph (Gen 37–50)"
+          },
+          catBadge: {
+            city: "🏛 City / Kingdom",
+            region: "🏜 Land / Region",
+            altar_camp: "⛺ Altar / Camp",
+            water_well: "💧 Well / Oasis",
+            mountain: "⛰ Mountain"
+          },
+          lblCat: "Type:",
+          optCatAll: "All Place Types (Cities, Regions, Wells, Mountains, Altars)",
+          optCatCity: "Cities & Kingdoms (25)",
+          optCatRegion: "Lands, Plains & Deserts (11)",
+          optCatAltar: "Altars, Camps & Sacred Pillars (10)",
+          optCatWell: "Wells, Springs & Oases (8)",
+          optCatMountain: "Mountains & Highlands (4)",
+          lblChkNames: "Place Names",
+          lblChkRoutes: "Patriarchal Routes",
+          lblChkRivers: "Biblical Rivers",
+          legendTitle: "Genesis Eras & Seals",
+          legendHide: "Hide",
+          legendShow: "Show",
+          legEra1: "<strong>Primeval</strong> (Gen 1–11: Eden, Flood, Babel)",
+          legEra2: "<strong>Abraham</strong> (Gen 12–25: Ur to Beersheba)",
+          legEra3: "<strong>Isaac &amp; Jacob</strong> (Gen 25–36: Haran &amp; Peniel)",
+          legEra4: "<strong>Joseph</strong> (Gen 37–50: Dothan to Goshen)",
+          legendNote: "Click any diamond seal, caravan route, or node on the bottom chart to inspect Hebrew names, Scripture references, and archaeological context.",
+          prevPlace: "← Previous Place",
+          nextPlace: "Next Place →",
+          chartTitle: "Scripture & Geography Profile — All 58 Places by Genesis Chapter (Ch. 1 → 50) & Longitude (Nile 31°E ↔ Mesopotamia 54°E)",
+          chartSubtitle: "Traces the geographic sweep from Mesopotamia (Ur & Haran) into Canaan and down to Egypt (Goshen). Hover or click any node to locate the biblical site on the map.",
+          cLeg1: "Primeval",
+          cLeg2: "Abraham",
+          cLeg3: "Isaac & Jacob",
+          cLeg4: "Joseph",
+          tabPlaces: (n) => `Gazetteer (${n} Places)`,
+          tabRoutes: "Journeys & Rivers (8)",
+          tabNotes: "Biblical Context",
+          searchPlaceholder: "Search biblical place, Hebrew name, chapter, or patriarch...",
+          noPlacesMatch: "No biblical places match your current filter.",
+          meaningWord: "Meaning",
+          modernWord: "Modern Site",
+          figuresWord: "Key Figures",
+          placeCounter: (curr, total) => `Place ${curr} of ${total}`,
+          routesSummaryHtml: `<p><code>data/genesis.geojson</code> includes <strong>3 patriarchal journey corridors</strong> and <strong>5 sacred rivers</strong> alongside the 58 point locations. Click any route or river to highlight and zoom to its extent.</p>`,
+          notesArticleHtml: `
+            <h3>The Fourfold Geographical Arc of Genesis</h3>
+            <p>
+              The Book of Genesis (<em>Bereshit</em>, Chapters 1–50) spans the entire Fertile Crescent—from the alluvial plains of Lower Mesopotamia and the mountains of Ararat to the central hill country of Canaan and the eastern Nile Delta of Egypt:
+            </p>
+            <ul>
+              <li><strong>I. Primeval Geography (Genesis 1–11):</strong> Centers on the Mesopotamian river system (Tigris/Hiddekel and Euphrates/Perath), the Mountains of Ararat where Noah's Ark rested, the Plain of Shinar (Babel, Erech/Uruk, Accad, Calneh), Assyria (Asshur, Nineveh, Calah), and the Table of Nations stretching from Sidon to Sephar.</li>
+              <li><strong>II. The Abrahamic Journey (Genesis 11:27–25:18):</strong> Follows Terah and Abram from <strong>Ur of the Chaldeans</strong> northwest to <strong>Haran</strong>, then south along the Levant ridge through <strong>Shechem</strong>, <strong>Bethel</strong>, <strong>Hebron (Mamre)</strong>, the <strong>Negev</strong>, and <strong>Beersheba</strong>, including the campaign of the Kings in the <strong>Valley of Siddim</strong> to <strong>Dan</strong> and <strong>Damascus</strong>, and the Binding of Isaac on <strong>Mount Moriah</strong>.</li>
+              <li><strong>III. Isaac, Jacob &amp; Esau (Genesis 25:19–36:43):</strong> Connects the wells of the Negev (<strong>Esek, Sitnah, Rehoboth, Beersheba</strong>) with Paddan-Aram and the Transjordanian highlands of <strong>Gilead (Mizpah)</strong>, <strong>Mahanaim</strong>, <strong>Peniel</strong> on the Jabbok River, <strong>Succoth</strong>, <strong>Bethlehem (Rachel's Tomb)</strong>, and Esau's domain in <strong>Mount Seir / Bozrah</strong>.</li>
+              <li><strong>IV. Joseph &amp; the Sojourn in Egypt (Genesis 37–50):</strong> Moves from <strong>Hebron</strong>, <strong>Shechem</strong>, and the cistern of <strong>Dothan</strong> down the international caravan route via <strong>Shur</strong> to <strong>On (Heliopolis)</strong> and the <strong>Land of Goshen</strong> in Egypt, concluding with Jacob's state funeral procession via <strong>Atad (Abel-Mizraim)</strong> back to the Cave of Machpelah in <strong>Hebron</strong>.</li>
+            </ul>
+            <h3>About <code>data/genesis.geojson</code></h3>
+            <p>
+              Every marker, patriarchal path, and river on this map is dynamically generated from <code>data/genesis.geojson</code>. Each feature includes WGS84 coordinates, Hebrew orthography and transliteration, etymological meaning, chapter/verse citations, associated biblical figures, and modern archaeological identifications.
+            </p>
+          `
+        },
+        es: {
+          hdrBadge: "✦ Atlas Biblicus · Libro del Génesis (Bereshit 1–50) · Edición Interactiva GeoJSON",
+          hdrTitle: "Geografía Sagrada del Génesis — Del Jardín del Edén y Ur a Canaán y Gosén",
+          geojsonBtnSub: "data/genesis.geojson",
+          geojsonBtnLabel: "🏺 Códice GeoJSON",
+          kpiPlacesLabel: "Lugares Bíblicos",
+          kpiPlacesUnit: "sitios",
+          kpiChaptersLabel: "Capítulos",
+          kpiChaptersUnit: "capítulos",
+          kpiRoutesLabel: "Rutas Patriarcales",
+          kpiRoutesUnit: "rutas",
+          kpiRiversLabel: "Ríos Bíblicos",
+          kpiRiversUnit: "ríos",
+          storyTour: "Recorrido Bíblico",
+          pauseTour: "Pausar Recorrido",
+          canaanFocus: "Enfocar Canaán",
+          fullExtent: "Vista Completa",
+          themeLimestone: "Tema: Caliza",
+          themeLapis: "Tema: Noche Lapislázuli",
+          lblEra: "Etapa:",
+          eraAll: (n) => `Todas (${n})`,
+          eraPrimeval: "Primigenia (Cap 1–11)",
+          eraAbraham: "Abraham (Cap 12–25)",
+          eraJacob: "Isaac y Jacob (Cap 25–36)",
+          eraJoseph: "José (Cap 37–50)",
+          eraBadge: {
+            primeval: "Historia Primigenia (Gén 1–11)",
+            abraham: "Ciclo de Abraham (Gén 12–25)",
+            isaac_jacob: "Isaac y Jacob (Gén 25–36)",
+            joseph: "Ciclo de José (Gén 37–50)"
+          },
+          catBadge: {
+            city: "🏛 Ciudad / Reino",
+            region: "🏜 Tierra / Región",
+            altar_camp: "⛺ Altar / Campamento",
+            water_well: "💧 Pozo / Oasis",
+            mountain: "⛰ Monte / Cordillera"
+          },
+          lblCat: "Tipo:",
+          optCatAll: "Todos los Tipos (Ciudades, Regiones, Pozos, Montes, Altares)",
+          optCatCity: "Ciudades y Reinos (25)",
+          optCatRegion: "Tierras, Llanuras y Desiertos (11)",
+          optCatAltar: "Altares, Campamentos y Pilares (10)",
+          optCatWell: "Pozos, Fuentes y Oasis (8)",
+          optCatMountain: "Montes y Tierras Altas (4)",
+          lblChkNames: "Nombres de Lugares",
+          lblChkRoutes: "Rutas Patriarcales",
+          lblChkRivers: "Ríos Bíblicos",
+          legendTitle: "Etapas y Sellos del Génesis",
+          legendHide: "Ocultar",
+          legendShow: "Mostrar",
+          legEra1: "<strong>Primigenia</strong> (Gén 1–11: Edén, Diluvio, Babel)",
+          legEra2: "<strong>Abraham</strong> (Gén 12–25: Ur a Beerseba)",
+          legEra3: "<strong>Isaac y Jacob</strong> (Gén 25–36: Harán y Peniel)",
+          legEra4: "<strong>José</strong> (Gén 37–50: Dotán a Gosén)",
+          legendNote: "Haz clic en cualquier sello en forma de diamante, ruta patriarcal o nodo del gráfico inferior para consultar el nombre hebreo, citas bíblicas y arqueología.",
+          prevPlace: "← Lugar Anterior",
+          nextPlace: "Siguiente Lugar →",
+          chartTitle: "Perfil Bíblico y Geográfico — Los 58 Lugares por Capítulo de Génesis (Cap. 1 → 50) y Longitud (Nilo 31°E ↔ Mesopotamia 54°E)",
+          chartSubtitle: "Traza el arco geográfico desde Mesopotamia (Ur y Harán) hacia Canaán y Egipto (Gosén). Pasa el cursor o haz clic en cualquier punto para ubicarlo en el mapa.",
+          cLeg1: "Primigenia",
+          cLeg2: "Abraham",
+          cLeg3: "Isaac y Jacob",
+          cLeg4: "José",
+          tabPlaces: (n) => `Índice (${n} Lugares)`,
+          tabRoutes: "Rutas y Ríos (8)",
+          tabNotes: "Contexto Bíblico",
+          searchPlaceholder: "Buscar lugar bíblico, nombre hebreo, capítulo o patriarca...",
+          noPlacesMatch: "Ningún lugar bíblico coincide con el filtro actual.",
+          meaningWord: "Significado",
+          modernWord: "Sitio Actual",
+          figuresWord: "Personajes",
+          placeCounter: (curr, total) => `Lugar ${curr} de ${total}`,
+          routesSummaryHtml: `<p>El archivo <code>data/genesis.geojson</code> incluye <strong>3 rutas patriarcales</strong> y <strong>5 ríos sagrados</strong> junto con las 58 ubicaciones puntuales. Haz clic en cualquier ruta o río para resaltarlo en el mapa.</p>`,
+          notesArticleHtml: `
+            <h3>El Arco Geográfico del Libro de Génesis</h3>
+            <p>
+              El Libro del Génesis (<em>Bereshit</em>, Capítulos 1–50) abarca toda la Media Luna Fértil: desde las llanuras aluviales de la Baja Mesopotamia y los montes de Ararat hasta la cordillera central de Canaán y el delta oriental del Nilo en Egipto:
+            </p>
+            <ul>
+              <li><strong>I. Geografía Primigenia (Génesis 1–11):</strong> Se centra en la cuenca del Tigris (Hidekel) y el Éufrates (Perat), los Montes de Ararat donde reposó el Arca de Noé, la llanura de Sinar (Babel, Erec/Uruk, Acad, Calne), Asiria (Asur, Nínive, Cala) y la Tabla de las Naciones desde Sidón hasta Sefar.</li>
+              <li><strong>II. El Peregrinaje de Abraham (Génesis 11:27–25:18):</strong> Sigue a Taré y Abram desde <strong>Ur de los Caldeos</strong> hasta <strong>Harán</strong>, y luego hacia el sur por <strong>Siquem</strong>, <strong>Bet-el</strong>, <strong>Hebrón (Mamre)</strong>, el <strong>Neguev</strong> y <strong>Beerseba</strong>, incluyendo la batalla del <strong>Valle de Sidim</strong>, el rescate de Lot hasta <strong>Dan</strong> y <strong>Damasco</strong>, y el sacrificio en el <strong>Monte Moriah</strong>.</li>
+              <li><strong>III. Isaac, Jacob y Esaú (Génesis 25:19–36:43):</strong> Conecta los pozos del Neguev (<strong>Esek, Sitna, Rehobot, Beerseba</strong>) con Padán-Aram y los montes de <strong>Galaad (Mizpa)</strong>, <strong>Mahanaim</strong>, <strong>Peniel</strong> junto al río Jaboc, <strong>Sucot</strong>, <strong>Belén (Efrata)</strong> y el territorio de Esaú en el <strong>Monte de Seir / Bosra</strong>.</li>
+              <li><strong>IV. José y el Descenso a Egipto (Génesis 37–50):</strong> Va desde <strong>Hebrón</strong>, <strong>Siquem</strong> y la cisterna de <strong>Dotán</strong> por el camino de <strong>Shur</strong> hasta <strong>On (Heliópolis)</strong> y la <strong>Tierra de Gosén</strong> en Egipto, culminando con el cortejo fúnebre de Jacob por la <strong>Era de Atad (Abel-Mizraim)</strong> de regreso a la Cueva de Macpela en <strong>Hebrón</strong>.</li>
+            </ul>
+            <h3>Sobre el Archivo <code>data/genesis.geojson</code></h3>
+            <p>
+              Todos los marcadores, rutas patriarcales y ríos de este mapa se cargan directamente desde <code>data/genesis.geojson</code>. Cada elemento incluye coordenadas WGS84, nombre en hebreo, significado etimológico, capítulos y versículos, personajes bíblicos y su identificación arqueológica moderna.
+            </p>
+          `
+        }
+      };
+
+      const ERA_COLORS = {
+        primeval: "#157359",
+        abraham: "#b83b27",
+        isaac_jacob: "#1d56b8",
+        joseph: "#6e2dc4"
+      };
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialLang = urlParams.get("lang") === "es" ? "es" : "en";
+
+      const state = {
+        lang: initialLang,
+        map: null,
+        geojson: null,
+        places: [],
+        routes: [],
+        rivers: [],
+        activeEraFilter: "all",
+        activeCategoryFilter: "all",
+        searchQuery: "",
+        showPlaceLabels: true,
+        showRoutes: true,
+        showRivers: true,
+        selectedOrder: null,
+        tourInterval: null,
+        theme: "limestone",
+        layers: {
+          rivers: null,
+          routes: null,
+          markers: null,
+          labels: null,
+          highlightLine: null
+        },
+        markerByOrder: new Map(),
+        routeLayerById: new Map()
+      };
+
+      function t() {
+        return UI_STRINGS[state.lang] || UI_STRINGS.en;
+      }
+
+      // =========================================================================
+      // 2. Fetch GeoJSON with Fallback
+      // =========================================================================
+      async function loadGenesisGeoJSON() {
+        try {
+          const res = await fetch("data/genesis.geojson");
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return await res.json();
+        } catch (err) {
+          if (window.GENESIS_GEOJSON_FALLBACK) {
+            return window.GENESIS_GEOJSON_FALLBACK;
+          }
+          throw err;
+        }
+      }
+
+      // =========================================================================
+      // 3. Filter Helpers
+      // =========================================================================
+      function getFilteredPlaces() {
+        const q = state.searchQuery.trim().toLowerCase();
+        return state.places.filter((p) => {
+          if (state.activeEraFilter !== "all" && p.era !== state.activeEraFilter) {
+            return false;
+          }
+          if (state.activeCategoryFilter !== "all" && p.category !== state.activeCategoryFilter) {
+            return false;
+          }
+          if (q) {
+            const haystack = [
+              p.name,
+              p.nameEs,
+              p.hebrew,
+              p.verses,
+              p.description,
+              p.descriptionEs,
+              p.modernLocation?.en || "",
+              p.modernLocation?.es || "",
+              (p.characters || []).join(" ")
+            ]
+              .join(" ")
+              .toLowerCase();
+            if (!haystack.includes(q)) return false;
+          }
+          return true;
+        });
+      }
+
+      // =========================================================================
+      // 4. Initialize Leaflet Map & Layers
+      // =========================================================================
+      function initMap() {
+        state.map = L.map("minard-map", {
+          center: [32.3, 38.5],
+          zoom: 6,
+          minZoom: 4,
+          maxZoom: 14,
+          zoomControl: true
+        });
+
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a> · Genesis GeoJSON Atlas',
+          subdomains: "abcd",
+          maxZoom: 19
+        }).addTo(state.map);
+
+        state.layers.rivers = L.layerGroup().addTo(state.map);
+        state.layers.routes = L.layerGroup().addTo(state.map);
+        state.layers.labels = L.layerGroup().addTo(state.map);
+        state.layers.markers = L.layerGroup().addTo(state.map);
+        state.layers.highlightLine = L.layerGroup().addTo(state.map);
+      }
+
+      function renderMapLayers() {
+        state.layers.rivers.clearLayers();
+        state.layers.routes.clearLayers();
+        state.layers.labels.clearLayers();
+        state.layers.markers.clearLayers();
+        state.markerByOrder.clear();
+        state.routeLayerById.clear();
+
+        // 1. Biblical Rivers
+        if (state.showRivers) {
+          state.rivers.forEach((rv) => {
+            const latlngs = rv.coords.map((c) => [c[1], c[0]]);
+            const poly = L.polyline(latlngs, {
+              color: "#0e7490",
+              weight: 3.2,
+              opacity: 0.78,
+              dashArray: "6, 4"
+            }).addTo(state.layers.rivers);
+
+            const rvName = state.lang === "es" ? rv.nameEs : rv.name;
+            const rvDesc = state.lang === "es" ? rv.descriptionEs : rv.description;
+            poly.bindPopup(
+              `<div class="minard-popup-title">🌊 ${rvName}</div>` +
+              `<div class="minard-popup-meta">${rv.verses}</div>` +
+              `<div style="font-size:0.8rem;line-height:1.42;">${rvDesc}</div>`
+            );
+
+            // River label at midpoint
+            const mid = latlngs[Math.floor(latlngs.length / 2)];
+            if (mid) {
+              const icon = L.divIcon({
+                className: "river-label-icon",
+                html: `<span class="river-label-text">${rvName}</span>`,
+                iconSize: [120, 20],
+                iconAnchor: [60, 10]
+              });
+              L.marker(mid, { icon, interactive: false }).addTo(state.layers.rivers);
+            }
+
+            state.routeLayerById.set(rv.id, poly);
+          });
+        }
+
+        // 2. Patriarchal Journey Routes
+        if (state.showRoutes) {
+          state.routes.forEach((rt) => {
+            if (state.activeEraFilter !== "all" && rt.era !== state.activeEraFilter) {
+              return;
+            }
+            const latlngs = rt.coords.map((c) => [c[1], c[0]]);
+            const color = ERA_COLORS[rt.era] || "#c48b28";
+
+            // Subtle halo under route
+            L.polyline(latlngs, {
+              color: state.theme === "lapis" ? "#0b1322" : "#faf7f0",
+              weight: 6.5,
+              opacity: 0.55
+            }).addTo(state.layers.routes);
+
+            const poly = L.polyline(latlngs, {
+              color,
+              weight: 3.4,
+              opacity: 0.88,
+              dashArray: "9, 6"
+            }).addTo(state.layers.routes);
+
+            const rtName = state.lang === "es" ? rt.nameEs : rt.name;
+            poly.bindPopup(
+              `<div class="minard-popup-title">🐪 ${rtName}</div>` +
+              `<div class="minard-popup-meta">${rt.verses}</div>`
+            );
+
+            state.routeLayerById.set(rt.id, poly);
+          });
+        }
+
+        // 3. Filtered Places (Diamond Seal Markers & Labels)
+        const visiblePlaces = getFilteredPlaces();
+        const kpiEl = document.getElementById("kpi-places-val");
+        if (kpiEl) kpiEl.textContent = String(visiblePlaces.length);
+
+        visiblePlaces.forEach((p) => {
+          const [lon, lat] = p.coords;
+          const isSelected = state.selectedOrder === p.order;
+          const placeName = state.lang === "es" ? p.nameEs : p.name;
+          const shortName = placeName.split(" (")[0].split(" &")[0];
+
+          const markerIcon = L.divIcon({
+            className: "minard-waypoint-icon",
+            html: `<div class="waypoint-badge era-${p.era}${isSelected ? " active-marker" : ""}" title="${placeName}"><span>${p.order}</span></div>`,
+            iconSize: [26, 26],
+            iconAnchor: [13, 13]
+          });
+
+          const marker = L.marker([lat, lon], {
+            icon: markerIcon,
+            zIndexOffset: isSelected ? 900 : 100
+          }).addTo(state.layers.markers);
+
+          marker.on("click", () => {
+            selectPlaceByOrder(p.order, { pan: true });
+          });
+
+          state.markerByOrder.set(p.order, marker);
+
+          if (state.showPlaceLabels) {
+            const labelIcon = L.divIcon({
+              className: "place-label-icon",
+              html: `<span class="place-label-tag">${shortName}</span>`,
+              iconSize: null,
+              iconAnchor: [-17, 10]
+            });
+            L.marker([lat, lon], { icon: labelIcon, interactive: false }).addTo(state.layers.labels);
+          }
+        });
+      }
+
+      // =========================================================================
+      // 5. Gazetteer Sidebar & Routes List Rendering
+      // =========================================================================
+      function renderGazetteerList() {
+        const listEl = document.getElementById("places-list");
+        if (!listEl) return;
+
+        const filtered = getFilteredPlaces();
+        const strings = t();
+
+        const tabPlacesBtn = document.getElementById("tab-btn-places");
+        if (tabPlacesBtn) {
+          tabPlacesBtn.textContent = strings.tabPlaces(filtered.length);
+        }
+
+        if (filtered.length === 0) {
+          listEl.innerHTML = `<div style="padding:1rem;color:var(--text-muted);font-size:0.84rem;">${strings.noPlacesMatch}</div>`;
+          return;
+        }
+
+        listEl.innerHTML = filtered
+          .map((p) => {
+            const isSelected = state.selectedOrder === p.order;
+            const title = state.lang === "es" ? p.nameEs : p.name;
+            const desc = state.lang === "es" ? p.descriptionEs : p.description;
+            const eraLabel = strings.eraBadge[p.era] || p.era;
+            const catLabel = strings.catBadge[p.category] || p.category;
+            const modLoc = state.lang === "es" ? p.modernLocation.es : p.modernLocation.en;
+
+            return `
+              <article
+                class="timeline-card era-${p.era}${isSelected ? " active" : ""}"
+                data-order="${p.order}"
+                tabindex="0"
+                role="button"
+                aria-label="${p.order}. ${title} (${p.verses})"
+              >
+                <div class="timeline-card-header">
+                  <span class="timeline-step-num" style="color:${ERA_COLORS[p.era]};">
+                    #${p.order} · ${eraLabel}
+                  </span>
+                  <span class="timeline-date-badge">${p.verses}</span>
+                </div>
+                <h3 class="timeline-title">${title}</h3>
+                <div class="hebrew-subtitle">${p.hebrew}</div>
+                <div class="timeline-meta-row">
+                  <span>${catLabel}</span>
+                  <span>· 📍 ${modLoc}</span>
+                </div>
+                <p class="timeline-desc">${desc}</p>
+              </article>
+            `;
+          })
+          .join("");
+
+        listEl.querySelectorAll(".timeline-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            const order = Number(card.getAttribute("data-order"));
+            selectPlaceByOrder(order, { pan: true });
+          });
+          card.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              const order = Number(card.getAttribute("data-order"));
+              selectPlaceByOrder(order, { pan: true });
+            }
+          });
+        });
+      }
+
+      function renderRoutesAndRiversList() {
+        const container = document.getElementById("routes-list");
+        if (!container) return;
+        const strings = t();
+
+        const routeCards = state.routes.map((rt) => {
+          const name = state.lang === "es" ? rt.nameEs : rt.name;
+          const color = ERA_COLORS[rt.era] || "#c48b28";
+          return `
+            <div class="segment-card" data-feature-id="${rt.id}" tabindex="0" role="button">
+              <div class="segment-top">
+                <span>🐪 ${name}</span>
+              </div>
+              <div class="segment-bar-track">
+                <div class="segment-bar-fill" style="inline-size:100%;background-color:${color};"></div>
+              </div>
+              <div class="segment-sub">
+                <span>${strings.eraBadge[rt.era] || rt.era}</span>
+                <span>${rt.verses}</span>
+              </div>
+            </div>
+          `;
+        });
+
+        const riverCards = state.rivers.map((rv) => {
+          const name = state.lang === "es" ? rv.nameEs : rv.name;
+          const desc = state.lang === "es" ? rv.descriptionEs : rv.description;
+          return `
+            <div class="segment-card" data-feature-id="${rv.id}" tabindex="0" role="button">
+              <div class="segment-top">
+                <span>🌊 ${name}</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent-water);">${rv.verses}</span>
+              </div>
+              <div class="segment-bar-track">
+                <div class="segment-bar-fill" style="inline-size:100%;background-color:#0e7490;"></div>
+              </div>
+              <p style="font-family:'EB Garamond',serif;font-size:0.88rem;color:var(--text-secondary);margin:0.25rem 0 0;">${desc}</p>
+            </div>
+          `;
+        });
+
+        container.innerHTML = routeCards.concat(riverCards).join("");
+
+        container.querySelectorAll(".segment-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            const id = card.getAttribute("data-feature-id");
+            const layer = state.routeLayerById.get(id);
+            if (layer && state.map) {
+              state.map.fitBounds(layer.getBounds(), { padding: [50, 50] });
+              layer.openPopup();
+            }
+          });
+        });
+      }
+
+      // =========================================================================
+      // 6. Active Spotlight Card & Navigation
+      // =========================================================================
+      function selectPlaceByOrder(order, options = {}) {
+        const place = state.places.find((p) => p.order === order);
+        if (!place) return;
+
+        state.selectedOrder = order;
+        const strings = t();
+
+        // Update spotlight card
+        const spotlight = document.getElementById("active-spotlight");
+        const badge = document.getElementById("spotlight-badge");
+        const verses = document.getElementById("spotlight-verses");
+        const title = document.getElementById("spotlight-title");
+        const hebrew = document.getElementById("spotlight-hebrew");
+        const metrics = document.getElementById("spotlight-metrics");
+        const desc = document.getElementById("spotlight-desc");
+        const counter = document.getElementById("spotlight-counter");
+
+        if (spotlight) spotlight.hidden = false;
+        if (badge) {
+          badge.className = `phase-pill era-${place.era}`;
+          badge.textContent = strings.eraBadge[place.era] || place.era;
+        }
+        if (verses) verses.textContent = place.verses;
+        if (title) title.textContent = state.lang === "es" ? place.nameEs : place.name;
+        if (hebrew) hebrew.textContent = place.hebrew;
+
+        const meaningText = state.lang === "es" ? place.meaning.es : place.meaning.en;
+        const modernText = state.lang === "es" ? place.modernLocation.es : place.modernLocation.en;
+        const catText = strings.catBadge[place.category] || place.category;
+
+        if (metrics) {
+          metrics.innerHTML = `
+            <span class="metric-chip">${catText}</span>
+            <span class="metric-chip">${strings.meaningWord}: "${meaningText}"</span>
+            <span class="metric-chip">📍 ${modernText}</span>
+            <span class="metric-chip">👤 ${(place.characters || []).slice(0, 3).join(", ")}</span>
+          `;
+        }
+        if (desc) {
+          desc.textContent = state.lang === "es" ? place.descriptionEs : place.description;
+        }
+
+        const filtered = getFilteredPlaces();
+        const idxInFiltered = filtered.findIndex((p) => p.order === order);
+        if (counter) {
+          counter.textContent =
+            idxInFiltered >= 0
+              ? strings.placeCounter(idxInFiltered + 1, filtered.length)
+              : `#${order} / ${state.places.length}`;
+        }
+
+        // Update marker active styling
+        state.markerByOrder.forEach((marker, mOrder) => {
+          const el = marker.getElement();
+          if (!el) return;
+          const badgeEl = el.querySelector(".waypoint-badge");
+          if (badgeEl) {
+            badgeEl.classList.toggle("active-marker", mOrder === order);
+          }
+        });
+
+        // Pan map if requested
+        if (options.pan && state.map) {
+          const [lon, lat] = place.coords;
+          const targetZoom = Math.max(state.map.getZoom(), 7);
+          state.map.flyTo([lat, lon], targetZoom, { duration: 0.85 });
+        }
+
+        // Highlight active card in sidebar
+        const cards = document.querySelectorAll("#places-list .timeline-card");
+        cards.forEach((c) => {
+          const isMatch = Number(c.getAttribute("data-order")) === order;
+          c.classList.toggle("active", isMatch);
+          if (isMatch && options.scrollSidebar !== false) {
+            c.scrollIntoView({ block: "nearest", behavior: "smooth" });
+          }
+        });
+
+        // Update SVG chart highlight
+        renderBottomChart();
+      }
+
+      function stepPlace(delta) {
+        const filtered = getFilteredPlaces();
+        if (filtered.length === 0) return;
+
+        let currentIndex = filtered.findIndex((p) => p.order === state.selectedOrder);
+        if (currentIndex === -1) {
+          currentIndex = delta > 0 ? 0 : filtered.length - 1;
+        } else {
+          currentIndex = (currentIndex + delta + filtered.length) % filtered.length;
+        }
+        selectPlaceByOrder(filtered[currentIndex].order, { pan: true });
+      }
+
+      // =========================================================================
+      // 7. Synchronized Bottom SVG Chart (Genesis Chapters & Longitude Profile)
+      // =========================================================================
+      function renderBottomChart() {
+        const container = document.getElementById("genesis-chart-container");
+        if (!container) return;
+
+        const filtered = getFilteredPlaces();
+        const width = Math.max(container.clientWidth || 860, 620);
+        const height = Math.max(container.clientHeight || 145, 125);
+        const padLeft = 48;
+        const padRight = 24;
+        const padTop = 18;
+        const padBottom = 26;
+
+        const plotW = width - padLeft - padRight;
+        const plotH = height - padTop - padBottom;
+
+        const minLon = 30.0;
+        const maxLon = 55.0;
+
+        const xForOrder = (ord) => padLeft + ((ord - 1) / Math.max(state.places.length - 1, 1)) * plotW;
+        const yForLon = (lon) => padTop + (1 - (Math.min(Math.max(lon, minLon), maxLon) - minLon) / (maxLon - minLon)) * plotH;
+
+        const refBands = [
+          { lon: 46.0, labelEn: "Mesopotamia (Ur 46°E)", labelEs: "Mesopotamia (Ur 46°E)" },
+          { lon: 39.0, labelEn: "Haran (39°E)", labelEs: "Harán (39°E)" },
+          { lon: 35.2, labelEn: "Canaan (35°E)", labelEs: "Canaán (35°E)" },
+          { lon: 31.5, labelEn: "Egypt (31°E)", labelEs: "Egipto (31°E)" }
+        ];
+
+        const gridLinesSvg = refBands
+          .map((b) => {
+            const y = yForLon(b.lon).toFixed(1);
+            const lbl = state.lang === "es" ? b.labelEs : b.labelEn;
+            return `
+              <line x1="${padLeft}" y1="${y}" x2="${width - padRight}" y2="${y}" stroke="var(--border-subtle)" stroke-dasharray="3,3" stroke-width="1" />
+              <text x="${padLeft + 4}" y="${Number(y) - 3}" fill="var(--text-muted)" font-family="JetBrains Mono, monospace" font-size="9.5">${lbl}</text>
+            `;
+          })
+          .join("");
+
+        const pathPoints = filtered.map((p) => `${xForOrder(p.order).toFixed(1)},${yForLon(p.coords[0]).toFixed(1)}`);
+        const polylineSvg =
+          pathPoints.length > 1
+            ? `<polyline fill="none" stroke="var(--border-gold)" stroke-width="1.8" opacity="0.75" points="${pathPoints.join(" ")}" />`
+            : "";
+
+        const chapterTicks = [
+          { order: 1, label: "Gen 1–2 (Eden)" },
+          { order: 8, label: "Gen 11 (Babel)" },
+          { order: 17, label: "Gen 12 (Ur → Canaan)" },
+          { order: 28, label: "Gen 18–23 (Hebron)" },
+          { order: 43, label: "Gen 26–35 (Jacob)" },
+          { order: 52, label: "Gen 37–50 (Joseph → Goshen)" }
+        ];
+
+        const xTicksSvg = chapterTicks
+          .map((tk) => {
+            const x = xForOrder(tk.order).toFixed(1);
+            return `
+              <line x1="${x}" y1="${padTop}" x2="${x}" y2="${height - padBottom}" stroke="var(--border-subtle)" stroke-width="1" opacity="0.6" />
+              <text x="${x}" y="${height - 8}" text-anchor="start" fill="var(--text-secondary)" font-family="JetBrains Mono, monospace" font-size="9.5">${tk.label}</text>
+            `;
+          })
+          .join("");
+
+        const nodesSvg = filtered
+          .map((p) => {
+            const cx = xForOrder(p.order).toFixed(1);
+            const cy = yForLon(p.coords[0]).toFixed(1);
+            const isSelected = state.selectedOrder === p.order;
+            const r = isSelected ? 6.5 : 4.3;
+            const color = ERA_COLORS[p.era] || "#c48b28";
+            const placeName = state.lang === "es" ? p.nameEs : p.name;
+            const shortName = placeName.split(" (")[0].split(" &")[0];
+
+            return `
+              <g class="chart-node" data-order="${p.order}" style="cursor:pointer;">
+                <circle
+                  cx="${cx}"
+                  cy="${cy}"
+                  r="${r}"
+                  fill="${color}"
+                  stroke="${isSelected ? "var(--border-gold)" : "#fff"}"
+                  stroke-width="${isSelected ? "2.4" : "1.2"}"
+                >
+                  <title>#${p.order} ${placeName} (${p.verses})</title>
+                </circle>
+                ${
+                  isSelected
+                    ? `<text x="${cx}" y="${Math.max(Number(cy) - 9, 12)}" text-anchor="middle" fill="var(--text-primary)" font-family="Cinzel, serif" font-weight="700" font-size="11">${shortName}</text>`
+                    : ""
+                }
+              </g>
+            `;
+          })
+          .join("");
+
+        container.innerHTML = `
+          <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Genesis places chronological and geographic longitude chart">
+            ${gridLinesSvg}
+            ${xTicksSvg}
+            ${polylineSvg}
+            ${nodesSvg}
+          </svg>
+        `;
+
+        container.querySelectorAll(".chart-node").forEach((node) => {
+          node.addEventListener("click", () => {
+            const ord = Number(node.getAttribute("data-order"));
+            selectPlaceByOrder(ord, { pan: true });
+          });
+        });
+      }
+
+      // =========================================================================
+      // 8. Story Tour & UI Language/Theme Synchronization
+      // =========================================================================
+      function toggleStoryTour() {
+        const btn = document.getElementById("btn-tour-toggle");
+        const label = document.getElementById("tour-btn-label");
+        const strings = t();
+
+        if (state.tourInterval) {
+          clearInterval(state.tourInterval);
+          state.tourInterval = null;
+          if (btn) btn.classList.remove("playing");
+          if (label) label.textContent = strings.storyTour;
+          return;
+        }
+
+        if (btn) btn.classList.add("playing");
+        if (label) label.textContent = strings.pauseTour;
+
+        if (!state.selectedOrder) {
+          const filtered = getFilteredPlaces();
+          if (filtered.length > 0) {
+            selectPlaceByOrder(filtered[0].order, { pan: true });
+          }
+        } else {
+          stepPlace(1);
+        }
+
+        state.tourInterval = setInterval(() => {
+          stepPlace(1);
+        }, 3800);
+      }
+
+      function applyLanguageUI() {
+        const s = t();
+        document.documentElement.lang = state.lang;
+
+        const setTxt = (id, val) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = val;
+        };
+        const setHtml = (id, val) => {
+          const el = document.getElementById(id);
+          if (el) el.innerHTML = val;
+        };
+
+        setTxt("hdr-badge", s.hdrBadge);
+        setTxt("hdr-title", s.hdrTitle);
+        setTxt("geojson-btn-sub", s.geojsonBtnSub);
+        setTxt("geojson-btn-label", s.geojsonBtnLabel);
+        setTxt("kpi-places-label", s.kpiPlacesLabel);
+        setTxt("kpi-places-unit", s.kpiPlacesUnit);
+        setTxt("kpi-chapters-label", s.kpiChaptersLabel);
+        setTxt("kpi-chapters-unit", s.kpiChaptersUnit);
+        setTxt("kpi-routes-label", s.kpiRoutesLabel);
+        setTxt("kpi-routes-unit", s.kpiRoutesUnit);
+        setTxt("kpi-rivers-label", s.kpiRiversLabel);
+        setTxt("kpi-rivers-unit", s.kpiRiversUnit);
+
+        setTxt("tour-btn-label", state.tourInterval ? s.pauseTour : s.storyTour);
+        setTxt("btn-canaan-view", s.canaanFocus);
+        setTxt("btn-reset-view", s.fullExtent);
+        setTxt("btn-theme-toggle", state.theme === "limestone" ? s.themeLimestone : s.themeLapis);
+
+        setTxt("lbl-era", s.lblEra);
+        setTxt("chip-era-all", s.eraAll(state.places.length));
+        setTxt("chip-era-primeval", s.eraPrimeval);
+        setTxt("chip-era-abraham", s.eraAbraham);
+        setTxt("chip-era-jacob", s.eraJacob);
+        setTxt("chip-era-joseph", s.eraJoseph);
+
+        setTxt("lbl-cat", s.lblCat);
+        setTxt("opt-cat-all", s.optCatAll);
+        setTxt("opt-cat-city", s.optCatCity);
+        setTxt("opt-cat-region", s.optCatRegion);
+        setTxt("opt-cat-altar", s.optCatAltar);
+        setTxt("opt-cat-well", s.optCatWell);
+        setTxt("opt-cat-mountain", s.optCatMountain);
+
+        setTxt("lbl-chk-names", s.lblChkNames);
+        setTxt("lbl-chk-routes", s.lblChkRoutes);
+        setTxt("lbl-chk-rivers", s.lblChkRivers);
+
+        setTxt("legend-title", s.legendTitle);
+        const legendEl = document.getElementById("map-legend");
+        const isCollapsed = legendEl && legendEl.classList.contains("is-collapsed");
+        setTxt("legend-toggle-label", isCollapsed ? s.legendShow : s.legendHide);
+        setHtml("leg-era-1", s.legEra1);
+        setHtml("leg-era-2", s.legEra2);
+        setHtml("leg-era-3", s.legEra3);
+        setHtml("leg-era-4", s.legEra4);
+        setTxt("legend-note", s.legendNote);
+
+        setTxt("btn-prev-step", s.prevPlace);
+        setTxt("btn-next-step", s.nextPlace);
+
+        setTxt("chart-title", s.chartTitle);
+        setTxt("chart-subtitle", s.chartSubtitle);
+        setTxt("c-leg-1", s.cLeg1);
+        setTxt("c-leg-2", s.cLeg2);
+        setTxt("c-leg-3", s.cLeg3);
+        setTxt("c-leg-4", s.cLeg4);
+
+        setTxt("tab-btn-routes", s.tabRoutes);
+        setTxt("tab-btn-notes", s.tabNotes);
+
+        const searchInput = document.getElementById("search-places");
+        if (searchInput) searchInput.placeholder = s.searchPlaceholder;
+
+        setHtml("routes-summary", s.routesSummaryHtml);
+        setHtml("notes-article", s.notesArticleHtml);
+
+        renderMapLayers();
+        renderGazetteerList();
+        renderRoutesAndRiversList();
+        renderBottomChart();
+
+        if (state.selectedOrder) {
+          selectPlaceByOrder(state.selectedOrder, { pan: false, scrollSidebar: false });
+        }
+      }
+
+      // =========================================================================
+      // 9. Event Listeners & Dialog Fallbacks
+      // =========================================================================
+      function bindUIEvents() {
+        document.querySelectorAll("[data-filter-era]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll("[data-filter-era]").forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            state.activeEraFilter = btn.getAttribute("data-filter-era") || "all";
+            renderMapLayers();
+            renderGazetteerList();
+            renderBottomChart();
+          });
+        });
+
+        const catSelect = document.getElementById("select-category");
+        if (catSelect) {
+          catSelect.addEventListener("change", () => {
+            state.activeCategoryFilter = catSelect.value;
+            renderMapLayers();
+            renderGazetteerList();
+            renderBottomChart();
+          });
+        }
+
+        const chkLabels = document.getElementById("chk-place-labels");
+        if (chkLabels) {
+          chkLabels.addEventListener("change", () => {
+            state.showPlaceLabels = chkLabels.checked;
+            renderMapLayers();
+          });
+        }
+        const chkRoutes = document.getElementById("chk-routes");
+        if (chkRoutes) {
+          chkRoutes.addEventListener("change", () => {
+            state.showRoutes = chkRoutes.checked;
+            renderMapLayers();
+          });
+        }
+        const chkRivers = document.getElementById("chk-rivers");
+        if (chkRivers) {
+          chkRivers.addEventListener("change", () => {
+            state.showRivers = chkRivers.checked;
+            renderMapLayers();
+          });
+        }
+
+        const searchInput = document.getElementById("search-places");
+        if (searchInput) {
+          searchInput.addEventListener("input", () => {
+            state.searchQuery = searchInput.value;
+            renderMapLayers();
+            renderGazetteerList();
+            renderBottomChart();
+          });
+        }
+
+        document.querySelectorAll(".sidebar-tabs .tab-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const targetTab = btn.getAttribute("data-tab");
+            document.querySelectorAll(".sidebar-tabs .tab-btn").forEach((b) => {
+              const active = b === btn;
+              b.classList.toggle("active", active);
+              b.setAttribute("aria-selected", String(active));
+            });
+            ["places", "routes", "notes"].forEach((tabName) => {
+              const panel = document.getElementById(`tab-panel-${tabName}`);
+              if (panel) panel.hidden = tabName !== targetTab;
+            });
+            const searchBar = document.getElementById("timeline-search-bar");
+            if (searchBar) searchBar.hidden = targetTab !== "places";
+          });
+        });
+
+        document.getElementById("spotlight-close")?.addEventListener("click", () => {
+          const sp = document.getElementById("active-spotlight");
+          if (sp) sp.hidden = true;
+          state.selectedOrder = null;
+          renderMapLayers();
+          renderGazetteerList();
+          renderBottomChart();
+        });
+        document.getElementById("btn-prev-step")?.addEventListener("click", () => stepPlace(-1));
+        document.getElementById("btn-next-step")?.addEventListener("click", () => stepPlace(1));
+
+        document.getElementById("btn-tour-toggle")?.addEventListener("click", toggleStoryTour);
+
+        document.getElementById("btn-canaan-view")?.addEventListener("click", () => {
+          if (state.map) {
+            state.map.flyTo([31.85, 35.25], 8, { duration: 0.9 });
+          }
+        });
+
+        document.getElementById("btn-reset-view")?.addEventListener("click", () => {
+          if (state.map) {
+            state.map.flyTo([32.3, 38.5], 6, { duration: 0.9 });
+          }
+        });
+
+        document.getElementById("btn-theme-toggle")?.addEventListener("click", () => {
+          state.theme = state.theme === "limestone" ? "lapis" : "limestone";
+          document.documentElement.setAttribute("data-theme", state.theme);
+          const s = t();
+          const btn = document.getElementById("btn-theme-toggle");
+          if (btn) btn.textContent = state.theme === "limestone" ? s.themeLimestone : s.themeLapis;
+          renderMapLayers();
+        });
+
+        document.getElementById("btn-lang-toggle")?.addEventListener("click", () => {
+          state.lang = state.lang === "en" ? "es" : "en";
+          applyLanguageUI();
+        });
+
+        const legendEl = document.getElementById("map-legend");
+        const legendBody = document.getElementById("legend-body");
+        const legendBtn = document.getElementById("btn-legend-toggle");
+        const legendLabel = document.getElementById("legend-toggle-label");
+
+        if (legendEl && legendBody && legendBtn) {
+          legendBody.addEventListener("transitionend", (e) => {
+            if (e.propertyName === "block-size" && legendEl.classList.contains("is-collapsed")) {
+              legendBody.hidden = true;
+            }
+          });
+
+          legendBtn.addEventListener("click", () => {
+            const willCollapse = !legendEl.classList.contains("is-collapsed");
+            if (!willCollapse) {
+              legendBody.hidden = false;
+            }
+            legendEl.classList.toggle("is-collapsed", willCollapse);
+            legendBtn.setAttribute("aria-expanded", String(!willCollapse));
+            if (legendLabel) {
+              legendLabel.textContent = willCollapse ? t().legendShow : t().legendHide;
+            }
+          });
+        }
+
+        const dialog = document.getElementById("genesis-atlas-dialog");
+        if (dialog && !("closedBy" in HTMLDialogElement.prototype)) {
+          dialog.addEventListener("click", (event) => {
+            if (event.target !== dialog) return;
+            const rect = dialog.getBoundingClientRect();
+            const isDialogContent =
+              rect.top <= event.clientY &&
+              event.clientY <= rect.top + rect.height &&
+              rect.left <= event.clientX &&
+              event.clientX <= rect.left + rect.width;
+            if (isDialogContent) return;
+            dialog.close();
+          });
+        }
+
+        window.addEventListener("resize", () => {
+          renderBottomChart();
+        });
+      }
+
+      // =========================================================================
+      // 10. Bootstrap Application
+      // =========================================================================
+      async function bootstrap() {
+        initMap();
+        bindUIEvents();
+
+        try {
+          const geojson = await loadGenesisGeoJSON();
+          state.geojson = geojson;
+
+          state.places = [];
+          state.routes = [];
+          state.rivers = [];
+
+          (geojson.features || []).forEach((feat) => {
+            const props = feat.properties || {};
+            if (props.featureType === "place" && feat.geometry?.type === "Point") {
+              state.places.push({
+                ...props,
+                coords: feat.geometry.coordinates
+              });
+            } else if (props.featureType === "route" && feat.geometry?.type === "LineString") {
+              state.routes.push({
+                ...props,
+                coords: feat.geometry.coordinates
+              });
+            } else if (props.featureType === "river" && feat.geometry?.type === "LineString") {
+              state.rivers.push({
+                ...props,
+                coords: feat.geometry.coordinates
+              });
+            }
+          });
+
+          state.places.sort((a, b) => a.order - b.order);
+
+          const previewEl = document.getElementById("geojson-code-preview");
+          if (previewEl) {
+            previewEl.textContent = JSON.stringify(
+              {
+                type: geojson.type,
+                name: geojson.name,
+                metadata: geojson.metadata,
+                sampleFeatures: geojson.features.slice(0, 6)
+              },
+              null,
+              2
+            );
+          }
+
+          applyLanguageUI();
+          if (state.places.length > 0) {
+            selectPlaceByOrder(state.places[0].order, { pan: false, scrollSidebar: false });
+          }
+        } catch (err) {
+          console.error("Failed to load Genesis GeoJSON:", err);
+        }
+      }
+
+      bootstrap();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,2766 @@
+{
+  "type": "FeatureCollection",
+  "name": "genesis-biblical-places",
+  "metadata": {
+    "book": "Genesis (Bereshit)",
+    "chapters": "1–50",
+    "totalPlaces": 58,
+    "totalRoutes": 3,
+    "totalRivers": 5,
+    "crs": "EPSG:4326 (WGS84)"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "eden",
+        "order": 1,
+        "name": "Garden of Eden / Land of Eden",
+        "nameEs": "Jardín del Edén / Tierra de Edén",
+        "hebrew": "גַּן־עֵדֶן · Gan-ʿĒden",
+        "meaning": {
+          "en": "Garden of Delight / Pleasure",
+          "es": "Jardín de Delicias / Placer"
+        },
+        "era": "primeval",
+        "category": "region",
+        "chapters": [
+          2,
+          3,
+          4
+        ],
+        "verses": "Gen 2:8–15; 3:23–24; 4:16",
+        "modernLocation": {
+          "en": "Mesopotamian Confluence (Al-Qurnah, Iraq) / Armenian Highlands tradition",
+          "es": "Confluencia Mesopotámica (Al-Qurnah, Irak) / Tradición de las Tierras Altas de Armenia"
+        },
+        "characters": [
+          "Adam",
+          "Eve"
+        ],
+        "description": "Planted by God 'in the east' as the original sanctuary-home of humanity. A river flowed out of Eden to water the garden and divided into four headstreams: Pishon, Gihon, Hiddekel (Tigris), and Perath (Euphrates).",
+        "descriptionEs": "Plantado por Dios 'al oriente' como el santuario y hogar original de la humanidad. De Edén salía un río para regar el huerto, y de allí se repartía en cuatro brazos: Pisón, Gihón, Hidekel (Tigris) y Éufrates."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.433,
+          31.005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "havilah",
+        "order": 2,
+        "name": "Land of Havilah",
+        "nameEs": "Tierra de Havila",
+        "hebrew": "חֲוִילָה · Ḥăwîlāh",
+        "meaning": {
+          "en": "Stretch of Sand / Circle",
+          "es": "Extensión de Arena / Círculo"
+        },
+        "era": "primeval",
+        "category": "region",
+        "chapters": [
+          2,
+          10,
+          25
+        ],
+        "verses": "Gen 2:11–12; 10:7, 29; 25:18",
+        "modernLocation": {
+          "en": "Western/Northwestern Arabian Peninsula (Mahd adh-Dhahab region, Saudi Arabia)",
+          "es": "Península Arábiga Noroccidental (región de Mahd adh-Dhahab, Arabia Saudita)"
+        },
+        "characters": [
+          "Cush",
+          "Joktan",
+          "Ishmaelites"
+        ],
+        "description": "Encompassed by the Pishon River and celebrated for its pure gold, aromatic bdellium resin, and onyx stone. Later marks the southeastern boundary of the Ishmaelite tribes.",
+        "descriptionEs": "Rodeada por el río Pisón y célebre por su oro puro, bedelio aromático y piedra de ónice. Más tarde señala el límite suroriental donde habitaron los descendientes de Ismael."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.858,
+          23.498
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "cush",
+        "order": 3,
+        "name": "Land of Cush",
+        "nameEs": "Tierra de Cus",
+        "hebrew": "כּוּשׁ · Kûš",
+        "meaning": {
+          "en": "Cush (Nubia / Ethiopia or Kassite lands)",
+          "es": "Cus (Nubia / Etiopía o tierras casitas)"
+        },
+        "era": "primeval",
+        "category": "region",
+        "chapters": [
+          2,
+          10
+        ],
+        "verses": "Gen 2:13; 10:6–8",
+        "modernLocation": {
+          "en": "Upper Nile / Nubia (Sudan) or Zagros Kassite Highlands",
+          "es": "Alto Nilo / Nubia (Sudán) o Tierras Altas Casitas de los Zagros"
+        },
+        "characters": [
+          "Cush",
+          "Nimrod"
+        ],
+        "description": "The land encircled by the second river of Eden, the Gihon. In the Table of Nations (Gen 10:6–8), Cush is the eldest son of Ham and father of Nimrod.",
+        "descriptionEs": "La tierra rodeada por el segundo río del Edén, el Gihón. En la Tabla de las Naciones (Gén 10:6–8), Cus es el hijo primogénito de Cam y padre de Nimrod."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.82,
+          18.53
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "asshur-region",
+        "order": 4,
+        "name": "Asshur / Assyria",
+        "nameEs": "Asur / Asiria",
+        "hebrew": "אַשּׁוּר · ʾAššûr",
+        "meaning": {
+          "en": "Step / Level Plain (Named after Asshur)",
+          "es": "Paso / Llanura (Tierra de Asur)"
+        },
+        "era": "primeval",
+        "category": "city",
+        "chapters": [
+          2,
+          10,
+          25
+        ],
+        "verses": "Gen 2:14; 10:11, 22; 25:18",
+        "modernLocation": {
+          "en": "Qal'at Sherqat (Ancient Assur on the Tigris, Iraq)",
+          "es": "Qal'at Sherqat (Antigua Asur sobre el Tigris, Irak)"
+        },
+        "characters": [
+          "Asshur",
+          "Nimrod"
+        ],
+        "description": "Ancient capital on the western bank of the Tigris (Hiddekel), which Genesis 2:14 describes as flowing 'east of Assyria.' From here Asshur (or Nimrod) went forth to build Nineveh and Calah.",
+        "descriptionEs": "Antigua capital en la ribera occidental del río Tigris (Hidekel), que Génesis 2:14 describe corriendo 'al oriente de Asiria'. Desde aquí se edificaron Nínive y Cala."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.259,
+          35.456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "nod-enoch",
+        "order": 5,
+        "name": "Land of Nod & City of Enoch",
+        "nameEs": "Tierra de Nod y Ciudad de Enoc",
+        "hebrew": "אֶרֶץ־נוֹד · ʾEreṣ-Nôd",
+        "meaning": {
+          "en": "Land of Wandering / Exile",
+          "es": "Tierra de Errantes / Exilio"
+        },
+        "era": "primeval",
+        "category": "city",
+        "chapters": [
+          4
+        ],
+        "verses": "Gen 4:16–17",
+        "modernLocation": {
+          "en": "East of Eden (Susiana / Elam plain, Southwestern Iran)",
+          "es": "Al oriente del Edén (Llanura de Susiana / Elam, suroeste de Irán)"
+        },
+        "characters": [
+          "Cain",
+          "Enoch (son of Cain)"
+        ],
+        "description": "Located east of Eden where Cain settled after going out from the Lord's presence. Here Cain built the first city mentioned in Scripture and named it after his son Enoch.",
+        "descriptionEs": "Situada al oriente de Edén, donde Caín habitó tras salir de la presencia de Jehová. Allí Caín edificó la primera ciudad mencionada en la Biblia y la llamó Enoc, como su hijo."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          48.25,
+          32.19
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "ararat",
+        "order": 6,
+        "name": "Mountains of Ararat",
+        "nameEs": "Montes de Ararat",
+        "hebrew": "הָרֵי אֲרָרָט · Hārê ʾĂrārāṭ",
+        "meaning": {
+          "en": "Highland / Sacred Land (Urartu)",
+          "es": "Tierra Alta / Tierra Sagrada (Urartu)"
+        },
+        "era": "primeval",
+        "category": "mountain",
+        "chapters": [
+          8
+        ],
+        "verses": "Gen 8:4",
+        "modernLocation": {
+          "en": "Mount Ararat / Ağrı Dağı & Eastern Anatolian Highlands (Turkey)",
+          "es": "Monte Ararat / Ağrı Dağı y Tierras Altas de Anatolia Oriental (Turquía)"
+        },
+        "characters": [
+          "Noah",
+          "Shem",
+          "Ham",
+          "Japheth"
+        ],
+        "description": "In the seventh month, on the seventeenth day of the month, Noah's Ark came to rest upon the mountains of Ararat (ancient Urartu) as the floodwaters receded.",
+        "descriptionEs": "En el mes séptimo, a los diecisiete días del mes, el arca de Noé reposó sobre los montes de Ararat (antiguo Urartu) cuando las aguas del diluvio decrecieron."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.298,
+          39.702
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "shinar",
+        "order": 7,
+        "name": "Plain in the Land of Shinar",
+        "nameEs": "Llanura en la Tierra de Sinar",
+        "hebrew": "אֶרֶץ שִׁנְעָר · ʾEreṣ Šinʿār",
+        "meaning": {
+          "en": "Land of Sumer / Babylonia",
+          "es": "Tierra de Sumeria / Babilonia"
+        },
+        "era": "primeval",
+        "category": "region",
+        "chapters": [
+          10,
+          11,
+          14
+        ],
+        "verses": "Gen 10:10; 11:2; 14:1, 9",
+        "modernLocation": {
+          "en": "Southern Mesopotamian Alluvial Plain (Iraq)",
+          "es": "Llanura Aluvial del Sur de Mesopotamia (Irak)"
+        },
+        "characters": [
+          "Nimrod",
+          "Amraphel king of Shinar"
+        ],
+        "description": "The fertile alluvial plain between the Tigris and Euphrates where post-Flood humanity migrated from the east, baked mudbricks with bitumen, and later Amraphel ruled.",
+        "descriptionEs": "La fértil llanura aluvial entre el Tigris y el Éufrates donde la humanidad posdiluviana halló una vega, coció ladrillos con asfalto y donde más tarde reinó Amrafel."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.1,
+          31.85
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "babel",
+        "order": 8,
+        "name": "Babel (Babylon)",
+        "nameEs": "Babel (Babilonia)",
+        "hebrew": "בָּבֶל · Bāḇel",
+        "meaning": {
+          "en": "Confusion (Hebrew play on bālal) / Gate of God (Akkadian Bāb-ilim)",
+          "es": "Confusión (heb. bālal) / Puerta de Dios (acadio Bāb-ilim)"
+        },
+        "era": "primeval",
+        "category": "city",
+        "chapters": [
+          10,
+          11
+        ],
+        "verses": "Gen 10:10; 11:1–9",
+        "modernLocation": {
+          "en": "Ancient Babylon near Hillah (Babil Governorate, Iraq)",
+          "es": "Antigua Babilonia cerca de Hillah (Gobernación de Babil, Irak)"
+        },
+        "characters": [
+          "Nimrod"
+        ],
+        "description": "First stronghold of Nimrod's kingdom and site of the Tower of Babel ('a tower with its top in the heavens'), where the Lord confused human speech and scattered the nations across the earth.",
+        "descriptionEs": "Primer centro del reino de Nimrod y emplazamiento de la Torre de Babel ('una torre cuya cúspide llegue al cielo'), donde Jehová confundió el lenguaje humano y los esparció por toda la tierra."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.421,
+          32.536
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "erech",
+        "order": 9,
+        "name": "Erech (Uruk)",
+        "nameEs": "Erec (Uruk)",
+        "hebrew": "אֶרֶךְ · ʾEreḵ",
+        "meaning": {
+          "en": "Length / Ancient Uruk",
+          "es": "Longitud / Antigua Uruk"
+        },
+        "era": "primeval",
+        "category": "city",
+        "chapters": [
+          10
+        ],
+        "verses": "Gen 10:10",
+        "modernLocation": {
+          "en": "Warka (Muthanna Governorate, Iraq)",
+          "es": "Warka (Gobernación de Muthanna, Irak)"
+        },
+        "characters": [
+          "Nimrod"
+        ],
+        "description": "One of the four foundational cities of Nimrod's kingdom in the land of Shinar; archaeologically known as Uruk, one of the world's oldest monumental urban centers.",
+        "descriptionEs": "Una de las cuatro ciudades fundacionales del reino de Nimrod en la tierra de Sinar; conocida arqueológicamente como Uruk, una de las metrópolis más antiguas de la historia."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.638,
+          31.322
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "accad",
+        "order": 10,
+        "name": "Accad (Akkad)",
+        "nameEs": "Acad (Agadé)",
+        "hebrew": "אַכַּד · ʾAkkad",
+        "meaning": {
+          "en": "Fortress / Royal City of Akkad",
+          "es": "Fortaleza / Ciudad Real de Acad"
+        },
+        "era": "primeval",
+        "category": "city",
+        "chapters": [
+          10
+        ],
+        "verses": "Gen 10:10",
+        "modernLocation": {
+          "en": "Northern Babylonia near Sippar / Baghdad (Iraq)",
+          "es": "Norte de Babilonia cerca de Sippar / Bagdad (Irak)"
+        },
+        "characters": [
+          "Nimrod"
+        ],
+        "description": "Third city of Nimrod's beginning kingdom in Shinar, giving its name to the northern Mesopotamian region of Akkad and the Semitic Akkadian language.",
+        "descriptionEs": "Tercera ciudad del comienzo del reino de Nimrod en Sinar, que dio nombre a la región septentrional de Acad y a la lengua semítica acadia."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.28,
+          33.15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "calneh",
+        "order": 11,
+        "name": "Calneh (Nippur / Kulunu)",
+        "nameEs": "Calne (Nippur / Kulunu)",
+        "hebrew": "כַּלְנֵה · Kalnēh",
+        "meaning": {
+          "en": "Fortress of Anu / All of Them",
+          "es": "Fortaleza / Todos ellos"
+        },
+        "era": "primeval",
+        "category": "city",
+        "chapters": [
+          10
+        ],
+        "verses": "Gen 10:10",
+        "modernLocation": {
+          "en": "Nuffar (Ancient Nippur, Al-Qādisiyyah Governorate, Iraq)",
+          "es": "Nuffar (Antigua Nippur, Gobernación de Al-Qadisiyyah, Irak)"
+        },
+        "characters": [
+          "Nimrod"
+        ],
+        "description": "Listed as the fourth center of Nimrod's realm in Shinar (traditionally identified with Nippur or Kulunu in Babylonia, or translated 'all of them in the land of Shinar').",
+        "descriptionEs": "Mencionada como el cuarto centro del reino de Nimrod en Sinar (identificada tradicionalmente con Nippur o Kulunu en Babilonia)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.231,
+          32.126
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "nineveh",
+        "order": 12,
+        "name": "Nineveh",
+        "nameEs": "Nínive",
+        "hebrew": "נִינְוֵה · Nînwēh",
+        "meaning": {
+          "en": "House of Nin / Fish Sanctuary",
+          "es": "Morada de Nin / Santuario"
+        },
+        "era": "primeval",
+        "category": "city",
+        "chapters": [
+          10
+        ],
+        "verses": "Gen 10:11–12",
+        "modernLocation": {
+          "en": "Tell Kuyunjik & Nebi Yunus (East Mosul, Iraq)",
+          "es": "Tell Kuyunjik y Nebi Yunus (Mosul Oriental, Irak)"
+        },
+        "characters": [
+          "Asshur",
+          "Nimrod"
+        ],
+        "description": "Founded in Assyria along the eastern bank of the Tigris together with Rehoboth-Ir, Calah, and Resen, forming the great urban tetrapolis of upper Mesopotamia.",
+        "descriptionEs": "Edificada en Asiria sobre la margen oriental del Tigris junto con Rehobot, Cala y Resén, conformando la gran metrópoli del norte mesopotámico."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.152,
+          36.359
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "calah",
+        "order": 13,
+        "name": "Calah (Nimrud) & Resen",
+        "nameEs": "Cala (Nimrud) y Resén",
+        "hebrew": "כָּלַח וְרֶסֶן · Kālaḥ wə-Resen",
+        "meaning": {
+          "en": "Vigor / Bridle-Fountain",
+          "es": "Vigor / Fuente del Freno"
+        },
+        "era": "primeval",
+        "category": "city",
+        "chapters": [
+          10
+        ],
+        "verses": "Gen 10:11–12",
+        "modernLocation": {
+          "en": "Nimrud (Calah) & Karamles (Resen), Nineveh Plains, Iraq",
+          "es": "Nimrud (Cala) y Karamles (Resén), Llanura de Nínive, Irak"
+        },
+        "characters": [
+          "Asshur",
+          "Nimrod"
+        ],
+        "description": "Major Assyrian cities built south of Nineveh near the Upper Zab confluence; Resen stood between Nineveh and Calah as part of 'the great city.'",
+        "descriptionEs": "Grandes ciudades asirias edificadas al sur de Nínive cerca de la confluencia del Gran Zab; Resén estaba situada entre Nínive y Cala."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.329,
+          36.098
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "sidon",
+        "order": 14,
+        "name": "Sidon",
+        "nameEs": "Sidón",
+        "hebrew": "צִידוֹן · Ṣîḏôn",
+        "meaning": {
+          "en": "Fishing / Fishery",
+          "es": "Pesquería / Lugar de Pesca"
+        },
+        "era": "primeval",
+        "category": "city",
+        "chapters": [
+          10,
+          49
+        ],
+        "verses": "Gen 10:15, 19; 49:13",
+        "modernLocation": {
+          "en": "Saida (Southern Lebanon)",
+          "es": "Saida (Sur del Líbano)"
+        },
+        "characters": [
+          "Canaan",
+          "Sidon",
+          "Zebulun"
+        ],
+        "description": "Named after Sidon, the firstborn son of Canaan. Marks the northern coastal boundary of the Canaanite territory (Gen 10:19) and is later referenced in Jacob's blessing over Zebulun (Gen 49:13).",
+        "descriptionEs": "Nombrada por Sidón, el primogénito de Canaán. Marca el límite costero septentrional del territorio cananeo (Gén 10:19) y reaparece en la bendición de Jacob sobre Zabulón (Gén 49:13)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.371,
+          33.563
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "lasha",
+        "order": 15,
+        "name": "Lasha (Callirrhoe)",
+        "nameEs": "Lasa (Calírroe)",
+        "hebrew": "לָשַׁע · Lāšaʿ",
+        "meaning": {
+          "en": "Fissure / Hot Spring",
+          "es": "Fisura / Manantial Termal"
+        },
+        "era": "primeval",
+        "category": "water_well",
+        "chapters": [
+          10
+        ],
+        "verses": "Gen 10:19",
+        "modernLocation": {
+          "en": "Hammamat Ma'in / Zara Hot Springs East of the Dead Sea (Jordan)",
+          "es": "Termas de Ma'in / Zara al este del Mar Muerto (Jordania)"
+        },
+        "characters": [
+          "Canaanites"
+        ],
+        "description": "Marks the southeastern corner of Canaanite territory in the Table of Nations: 'from Sidon, in the direction of Gerar, as far as Gaza, and in the direction of Sodom, Gomorrah, Admah, and Zeboiim, as far as Lasha.'",
+        "descriptionEs": "Marca el extremo suroriental del territorio de los cananeos en la Tabla de las Naciones: desde Sidón hacia Gerar y Gaza, y en dirección de Sodoma y Gomorra hasta Lasa."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.61,
+          31.609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "sephar",
+        "order": 16,
+        "name": "Mesha & Sephar (Hill Country of the East)",
+        "nameEs": "Mesa y Sefar (Monte de Oriente)",
+        "hebrew": "מֵשָׁא וּסְפָרָה · Mēšāʾ û-Səp̄ārāh",
+        "meaning": {
+          "en": "Numbering / Coastline of Dhofar",
+          "es": "Enumeración / Costa de Dhofar"
+        },
+        "era": "primeval",
+        "category": "mountain",
+        "chapters": [
+          10
+        ],
+        "verses": "Gen 10:30",
+        "modernLocation": {
+          "en": "Zufar / Dhofar Mountains (Southern Arabia / Oman)",
+          "es": "Montañas de Zufar / Dhofar (Sur de Arabia / Omán)"
+        },
+        "characters": [
+          "Joktan",
+          "Eber"
+        ],
+        "description": "The territory where the thirteen Arabian tribes descended from Joktan (son of Eber) settled: 'from Mesha in the direction of Sephar to the hill country of the east.'",
+        "descriptionEs": "El territorio donde habitaron los trece linajes descendientes de Joctán (hijo de Heber): 'desde Mesa viniendo de Sefar, al monte de oriente'."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.092,
+          17.015
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "ur",
+        "order": 17,
+        "name": "Ur of the Chaldeans",
+        "nameEs": "Ur de los Caldeos",
+        "hebrew": "אוּר כַּשְׂדִּים · ʾÛr Kaśdîm",
+        "meaning": {
+          "en": "Light / City of the Chaldeans",
+          "es": "Luz / Ciudad de los Caldeos"
+        },
+        "era": "abraham",
+        "category": "city",
+        "chapters": [
+          11,
+          15
+        ],
+        "verses": "Gen 11:28, 31; 15:7",
+        "modernLocation": {
+          "en": "Tell el-Muqayyar near Nasiriyah (Dhi Qar Governorate, Iraq)",
+          "es": "Tell el-Muqayyar cerca de Nasiriya (Gobernación de Dhi Qar, Irak)"
+        },
+        "characters": [
+          "Terah",
+          "Abraham",
+          "Sarah",
+          "Lot",
+          "Haran"
+        ],
+        "description": "Prosperous Sumerian port city where Abraham (Abram) was born, his brother Haran died, and from which Terah led his family northwest along the Euphrates toward the land of Canaan.",
+        "descriptionEs": "Próspera metrópoli sumeria donde nació Abraham (Abram), murió su hermano Harán, y desde donde Taré partió con su familia rumbo a la tierra de Canaán."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.103,
+          30.963
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "haran",
+        "order": 18,
+        "name": "Haran (Paddan-Aram)",
+        "nameEs": "Harán (Padán-Aram)",
+        "hebrew": "חָרָן · Ḥārān",
+        "meaning": {
+          "en": "Crossroads / Caravan Route",
+          "es": "Encrucijada / Ruta de Caravanas"
+        },
+        "era": "abraham",
+        "category": "city",
+        "chapters": [
+          11,
+          12,
+          24,
+          27,
+          28,
+          29
+        ],
+        "verses": "Gen 11:31–32; 12:4–5; 24:10; 27:43; 28:10; 29:4",
+        "modernLocation": {
+          "en": "Harran (Şanlıurfa Province, Southeastern Turkey)",
+          "es": "Harran (Provincia de Şanlıurfa, Sureste de Turquía)"
+        },
+        "characters": [
+          "Terah",
+          "Abraham",
+          "Sarah",
+          "Lot",
+          "Rebekah",
+          "Laban",
+          "Jacob",
+          "Rachel",
+          "Leah"
+        ],
+        "description": "Strategic Upper Mesopotamian trade hub in Paddan-Aram where Terah died at age 205, God called Abram at age 75 ('Go from your country...'), Abraham's servant found Rebekah, and Jacob served Laban for 20 years.",
+        "descriptionEs": "Centro comercial estratégico en la Alta Mesopotamia (Padán-Aram) donde murió Taré, Dios llamó a Abram a los 75 años, el siervo de Abraham halló a Rebeca y Jacob sirvió a Labán durante 20 años."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.031,
+          36.865
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "nahor-city",
+        "order": 19,
+        "name": "City of Nahor (Aram-Naharaim)",
+        "nameEs": "Ciudad de Nacor (Aram-Naharaim)",
+        "hebrew": "עִיר נָחוֹר · ʿÎr Nāḥôr",
+        "meaning": {
+          "en": "City of Nahor (Aram of the Two Rivers)",
+          "es": "Ciudad de Nacor (Aram de los Dos Ríos)"
+        },
+        "era": "abraham",
+        "category": "water_well",
+        "chapters": [
+          24
+        ],
+        "verses": "Gen 24:10–61",
+        "modernLocation": {
+          "en": "Balikh River Valley near Harran (Tilakh / Nakhuru, Turkey–Syria border)",
+          "es": "Valle del río Balij cerca de Harán (Tilakh / Nakhuru, frontera Turquía–Siria)"
+        },
+        "characters": [
+          "Eliezer (Abraham's servant)",
+          "Rebekah",
+          "Bethuel",
+          "Laban"
+        ],
+        "description": "Town in Aram-Naharaim (Mesopotamia) where Abraham's chief servant knelt ten camels by the spring at evening and met Rebekah, who drew water for him and all his camels.",
+        "descriptionEs": "Población en Aram-Naharaim (Mesopotamia) donde el siervo mayor de Abraham hizo arrodillar diez camellos junto al pozo de agua al caer la tarde y conoció a Rebeca."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.12,
+          36.68
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "shechem",
+        "order": 20,
+        "name": "Shechem & Oak of Moreh",
+        "nameEs": "Siquem y Encino de More",
+        "hebrew": "שְׁכֶם · Šəḵem",
+        "meaning": {
+          "en": "Shoulder / Mountain Pass",
+          "es": "Hombro / Paso entre Montes"
+        },
+        "era": "abraham",
+        "category": "altar_camp",
+        "chapters": [
+          12,
+          33,
+          34,
+          35,
+          37
+        ],
+        "verses": "Gen 12:6–7; 33:18–20; 34:1–31; 35:4; 37:12–14",
+        "modernLocation": {
+          "en": "Tell Balata (East Nablus, between Mt. Ebal and Mt. Gerizim)",
+          "es": "Tell Balata (Este de Nablus, entre los montes Ebal y Gerizim)"
+        },
+        "characters": [
+          "Abraham",
+          "Jacob",
+          "Dinah",
+          "Simeon",
+          "Levi",
+          "Joseph"
+        ],
+        "description": "First recorded stop of Abram inside Canaan. At the Oak of Moreh the Lord appeared and promised, 'To your offspring I will give this land,' and Abram built his first altar. Later Jacob bought a parcel of land here and erected the altar El-Elohe-Israel.",
+        "descriptionEs": "Primera parada registrada de Abram en Canaán. Junto al encino de More se le apareció Jehová prometiendo dar esa tierra a su descendencia, y Abram edificó su primer altar. Más tarde Jacob compró allí una parcela y erigió el altar El-Elohe-Israel."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.276,
+          32.214
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "bethel",
+        "order": 21,
+        "name": "Bethel (Ancient Luz)",
+        "nameEs": "Bet-el (Antigua Luz)",
+        "hebrew": "בֵּית־אֵל · Bêṯ-ʾĒl",
+        "meaning": {
+          "en": "House of God (formerly Luz: Almond Tree)",
+          "es": "Casa de Dios (antes Luz: Almendro)"
+        },
+        "era": "abraham",
+        "category": "altar_camp",
+        "chapters": [
+          12,
+          13,
+          28,
+          31,
+          35
+        ],
+        "verses": "Gen 12:8; 13:3–4; 28:10–22; 31:13; 35:1–15",
+        "modernLocation": {
+          "en": "Beitin (Central Hill Country, north of Jerusalem)",
+          "es": "Beitin (Región montañosa central, al norte de Jerusalén)"
+        },
+        "characters": [
+          "Abraham",
+          "Lot",
+          "Jacob",
+          "Deborah (Rebekah's nurse)"
+        ],
+        "description": "On the mountain ridge with Bethel on the west and Ai on the east, Abram pitched his tent, built an altar, and called upon the name of the Lord. Here Lot separated from Abram (ch. 13), and generations later Jacob dreamed of the heavenly ladder and anointed the stone pillar (ch. 28, 35).",
+        "descriptionEs": "En el monte con Bet-el al occidente y Hai al oriente, Abram plantó su tienda, edificó un altar e invocó el nombre de Jehová. Allí se separaron Abram y Lot (cap. 13), y Jacob soñó con la escalera celestial y ungió la piedra como Casa de Dios (cap. 28, 35)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.222,
+          31.931
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "ai",
+        "order": 22,
+        "name": "Ai",
+        "nameEs": "Hai",
+        "hebrew": "הָעַי · Hā-ʿAy",
+        "meaning": {
+          "en": "The Ruin / Heap of Stones",
+          "es": "La Ruina / Montón de Piedras"
+        },
+        "era": "abraham",
+        "category": "city",
+        "chapters": [
+          12,
+          13
+        ],
+        "verses": "Gen 12:8; 13:3",
+        "modernLocation": {
+          "en": "et-Tell (Deir Dibwan, east of Beitin)",
+          "es": "et-Tell (Deir Dibwan, al este de Beitin)"
+        },
+        "characters": [
+          "Abraham",
+          "Lot"
+        ],
+        "description": "Canaanite landmark immediately east of Abram's highland campsite between Bethel and Ai, where Abram returned after his sojourn in Egypt.",
+        "descriptionEs": "Hito cananeo situado inmediatamente al oriente del campamento de Abram entre Bet-el y Hai, adonde regresó tras su estancia en Egipto."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.261,
+          31.917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "negev",
+        "order": 23,
+        "name": "The Negev (The Southland)",
+        "nameEs": "El Neguev (Tierra del Sur)",
+        "hebrew": "הַנֶּגֶב · Han-Neḡeḇ",
+        "meaning": {
+          "en": "Dry / Parched Southland",
+          "es": "Tierra Seca / El Sur"
+        },
+        "era": "abraham",
+        "category": "region",
+        "chapters": [
+          12,
+          13,
+          20,
+          24
+        ],
+        "verses": "Gen 12:9; 13:1; 20:1; 24:62",
+        "modernLocation": {
+          "en": "Negev Desert Highlands & Basin (Southern Israel)",
+          "es": "Desierto y Tierras Altas del Neguev (Sur de Israel)"
+        },
+        "characters": [
+          "Abraham",
+          "Sarah",
+          "Isaac"
+        ],
+        "description": "Semi-arid southern grazing region through which Abraham journeyed by stages toward Egypt and back, and where Isaac meditated in the fields when Rebekah arrived.",
+        "descriptionEs": "Región semiárida de pastoreo en el sur por donde Abram caminó en sus jornadas hacia Egipto y de regreso, y donde habitaba Isaac."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78,
+          30.85
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "sodom",
+        "order": 24,
+        "name": "Sodom & Plain of the Jordan",
+        "nameEs": "Sodoma y Llanura del Jordán",
+        "hebrew": "סְדֹם · Səḏōm",
+        "meaning": {
+          "en": "Scorched / Fortified Place",
+          "es": "Lugar Abrasado / Fortificado"
+        },
+        "era": "abraham",
+        "category": "city",
+        "chapters": [
+          10,
+          13,
+          14,
+          18,
+          19
+        ],
+        "verses": "Gen 10:19; 13:10–13; 14:1–24; 18:16–33; 19:1–29",
+        "modernLocation": {
+          "en": "Southeastern Dead Sea Plain (Bab edh-Dhra / Tall el-Hammam traditions, Jordan)",
+          "es": "Llanura Suroriental del Mar Muerto (Bab edh-Dhra / Tall el-Hammam, Jordania)"
+        },
+        "characters": [
+          "Lot",
+          "Abraham",
+          "Bera king of Sodom"
+        ],
+        "description": "Principal city of the Plain chosen by Lot because the Jordan valley was 'well watered everywhere like the garden of the Lord.' Captured in the war of the kings (ch. 14) and later overthrown with sulfur and fire from heaven due to its grave wickedness (ch. 19).",
+        "descriptionEs": "Ciudad principal de la llanura elegida por Lot por ser tierra de riego 'como el huerto de Jehová'. Saqueada en la guerra de los reyes (cap. 14) y luego destruida con azufre y fuego del cielo por su gran maldad (cap. 19)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.533,
+          31.253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "gomorrah",
+        "order": 25,
+        "name": "Gomorrah, Admah & Zeboiim",
+        "nameEs": "Gomorra, Adma y Zeboim",
+        "hebrew": "עֲמֹרָה · ʿĂmōrāh",
+        "meaning": {
+          "en": "Submersion / Abundant Sheaf",
+          "es": "Sumersión / Gavilla"
+        },
+        "era": "abraham",
+        "category": "city",
+        "chapters": [
+          10,
+          13,
+          14,
+          18,
+          19
+        ],
+        "verses": "Gen 10:19; 13:10; 14:2, 8; 18:20; 19:24–28",
+        "modernLocation": {
+          "en": "Numeira & Southern Dead Sea Escarpment (Jordan)",
+          "es": "Numeira y Ribera Suroriental del Mar Muerto (Jordania)"
+        },
+        "characters": [
+          "Birsha king of Gomorrah",
+          "Shinab king of Admah",
+          "Shemeber king of Zeboiim"
+        ],
+        "description": "Allied cities of the Plain ruled by Birsha, Shinab, and Shemeber, who rebelled against Chedorlaomer after twelve years of tribute and perished in the judgment of the Plain.",
+        "descriptionEs": "Ciudades aliadas de la llanura gobernadas por Birsa, Sinab y Semeber, que se rebelaron contra Quedorlaomer tras doce años de tributo y perecieron en la destrucción de la llanura."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.525,
+          31.132
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "zoar",
+        "order": 26,
+        "name": "Zoar (Ancient Bela)",
+        "nameEs": "Zoar (Antigua Bela)",
+        "hebrew": "צֹעַר / בֶּלַע · Ṣōʿar / Belaʿ",
+        "meaning": {
+          "en": "Smallness / Insignificant (formerly Bela)",
+          "es": "Pequeñez (antes llamada Bela)"
+        },
+        "era": "abraham",
+        "category": "city",
+        "chapters": [
+          13,
+          14,
+          19
+        ],
+        "verses": "Gen 13:10; 14:2, 8; 19:20–30",
+        "modernLocation": {
+          "en": "Ghor es-Safi (South end of the Dead Sea, Jordan)",
+          "es": "Ghor es-Safi (Extremo sur del Mar Muerto, Jordania)"
+        },
+        "characters": [
+          "Lot",
+          "Lot's daughters"
+        ],
+        "description": "Originally named Bela, the fifth city of the Plain. Spared at Lot's plea—'Is it not a little one?'—therefore the town was called Zoar ('Small') when the sun rose upon the earth as Lot entered it.",
+        "descriptionEs": "Originalmente llamada Bela, la quinta ciudad de la llanura. Fue perdonada ante la súplica de Lot ('¿No es ella pequeña?'), por lo cual se llamó Zoar ('Pequeña')."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.483,
+          31.034
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "valley-siddim",
+        "order": 27,
+        "name": "Valley of Siddim (The Salt Sea)",
+        "nameEs": "Valle de Sidim (El Mar Salado)",
+        "hebrew": "עֵמֶק הַשִּׂדִּים · ʿĒmeq haś-Śiddîm",
+        "meaning": {
+          "en": "Valley of Furrows / Bitumen Pits (Dead Sea)",
+          "es": "Valle de los Surcos / Pozos de Asfalto (Mar Muerto)"
+        },
+        "era": "abraham",
+        "category": "region",
+        "chapters": [
+          14
+        ],
+        "verses": "Gen 14:3, 8, 10",
+        "modernLocation": {
+          "en": "Dead Sea / Lisan Basin (Israel–Jordan)",
+          "es": "Mar Muerto / Península de Lisán (Israel–Jordania)"
+        },
+        "characters": [
+          "Chedorlaomer",
+          "Amraphel",
+          "Arioch",
+          "Tidal",
+          "Lot"
+        ],
+        "description": "Explicitly identified in Genesis 14:3 as 'the Salt Sea.' Full of bitumen (asphalt) pits into which the kings of Sodom and Gomorrah fell during the Battle of the Nine Kings.",
+        "descriptionEs": "Identificado explícitamente en Génesis 14:3 como 'el Mar Salado'. Estaba lleno de pozos de asfalto (betún) donde cayeron los reyes de Sodoma y Gomorra durante la batalla de los nueve reyes."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.44,
+          31.32
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "hebron-mamre",
+        "order": 28,
+        "name": "Hebron (Oaks of Mamre & Cave of Machpelah)",
+        "nameEs": "Hebrón (Encinares de Mamre y Cueva de Macpela)",
+        "hebrew": "חֶבְרוֹן / קִרְיַת אַרְבַּע · Ḥeḇrôn / Qiryaṯ ʾArbaʿ",
+        "meaning": {
+          "en": "Confederacy / Friendship (formerly Kiriath-Arba)",
+          "es": "Alianza / Amistad (antes Quiriat-Arba)"
+        },
+        "era": "abraham",
+        "category": "altar_camp",
+        "chapters": [
+          13,
+          14,
+          18,
+          23,
+          25,
+          35,
+          37,
+          49,
+          50
+        ],
+        "verses": "Gen 13:18; 18:1; 23:2, 17–20; 25:9; 35:27; 37:14; 49:30; 50:13",
+        "modernLocation": {
+          "en": "Hebron / Al-Khalil & Ramat el-Khalil (Judean Hills)",
+          "es": "Hebrón / Al-Jalil y Ramat el-Jalil (Montes de Judea)"
+        },
+        "characters": [
+          "Abraham",
+          "Sarah",
+          "Isaac",
+          "Rebekah",
+          "Jacob",
+          "Leah",
+          "Ephron the Hittite"
+        ],
+        "description": "Patriarchal heartland of Genesis. By the Oaks of Mamre in Hebron, Abraham built an altar, received the three heavenly visitors (ch. 18), and purchased the Cave of Machpelah for 400 silver shekels from Ephron the Hittite—the burial tomb of Sarah, Abraham, Isaac, Rebekah, Leah, and Jacob.",
+        "descriptionEs": "Corazón patriarcal del Génesis. Junto al encinar de Mamre en Hebrón, Abraham edificó un altar, recibió a los tres varones celestiales (cap. 18) y compró la cueva de Macpela por 400 siclos de plata: sepulcro de Sara, Abraham, Isaac, Rebeca, Lea y Jacob."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.111,
+          31.525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "ashteroth-karnaim",
+        "order": 29,
+        "name": "Ashteroth-Karnaim",
+        "nameEs": "Astarot-Karnaim",
+        "hebrew": "עַשְׁתְּרֹת קַרְנַיִם · ʿAštərōṯ Qarnayim",
+        "meaning": {
+          "en": "Ashtaroth of the Two Horns",
+          "es": "Astarot de los Dos Cuernos"
+        },
+        "era": "abraham",
+        "category": "city",
+        "chapters": [
+          14
+        ],
+        "verses": "Gen 14:5",
+        "modernLocation": {
+          "en": "Tell Ashtara (Bashan / Daraa Governorate, Southern Syria)",
+          "es": "Tell Ashtara (Basán / Gobernación de Daraa, Sur de Siria)"
+        },
+        "characters": [
+          "Chedorlaomer",
+          "Rephaim"
+        ],
+        "description": "Northern Transjordanian stronghold in Bashan where Chedorlaomer and the eastern kings defeated the giant Rephaim on their southward campaign along the King's Highway.",
+        "descriptionEs": "Fortaleza septentrional en Basán donde Quedorlaomer y los reyes aliados derrotaron a los gigantes refaítas en su campaña hacia el sur por el Camino Real."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.017,
+          32.815
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "ham-transjordan",
+        "order": 30,
+        "name": "Ham (Stronghold of the Zuzim)",
+        "nameEs": "Ham (Territorio de los Zuzitas)",
+        "hebrew": "הָם · Hām",
+        "meaning": {
+          "en": "Warm / Ancient Town of Ham",
+          "es": "Cálido / Antigua Villa de Ham"
+        },
+        "era": "abraham",
+        "category": "city",
+        "chapters": [
+          14
+        ],
+        "verses": "Gen 14:5",
+        "modernLocation": {
+          "en": "Ham (Irbid Governorate, Northern Gilead, Jordan)",
+          "es": "Ham (Gobernación de Irbid, Galaad del Norte, Jordania)"
+        },
+        "characters": [
+          "Chedorlaomer",
+          "Zuzim"
+        ],
+        "description": "Ancient town in northern Gilead along the King's Highway where Chedorlaomer defeated the Zuzim (Zamzummim) during the campaign of Genesis 14.",
+        "descriptionEs": "Antigua población en el norte de Galaad sobre el Camino Real donde Quedorlaomer derrotó a los zuzitas durante la campaña de Génesis 14."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.676,
+          32.495
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "shaveh-kiriathaim",
+        "order": 31,
+        "name": "Shaveh-Kiriathaim",
+        "nameEs": "Save-Quiriataim",
+        "hebrew": "שָׁוֵה קִרְיָתַיִם · Šāwēh Qiryāṯayim",
+        "meaning": {
+          "en": "Plain of the Double City",
+          "es": "Llanura de la Ciudad Doble"
+        },
+        "era": "abraham",
+        "category": "region",
+        "chapters": [
+          14
+        ],
+        "verses": "Gen 14:5",
+        "modernLocation": {
+          "en": "Plateau near Kiriathaim / Al-Quraiyat (Madaba Governorate, Moab, Jordan)",
+          "es": "Meseta cerca de Quiriataim / Al-Quraiyat (Moab, Jordania)"
+        },
+        "characters": [
+          "Chedorlaomer",
+          "Emim"
+        ],
+        "description": "Open plateau in Moab where the eastern coalition struck down the Emim on their march southward toward Mount Seir.",
+        "descriptionEs": "Llanura abierta en la meseta de Moab donde la coalición oriental derrotó a los emitas en su marcha hacia el monte de Seir."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.73,
+          31.565
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "mount-seir",
+        "order": 32,
+        "name": "Mount Seir (Land of Edom)",
+        "nameEs": "Monte de Seir (Tierra de Edom)",
+        "hebrew": "הַר־שֵׂעִיר · Har-Śēʿîr",
+        "meaning": {
+          "en": "Rugged / Wooded Mountain Range",
+          "es": "Cordillera Escarpada / Velluda"
+        },
+        "era": "abraham",
+        "category": "mountain",
+        "chapters": [
+          14,
+          32,
+          33,
+          36
+        ],
+        "verses": "Gen 14:6; 32:3; 33:14, 16; 36:8–9, 20–30",
+        "modernLocation": {
+          "en": "Jabal ash-Sharah / Petra Highlands (Southern Jordan)",
+          "es": "Jabal ash-Sharah / Montañas de Petra (Sur de Jordania)"
+        },
+        "characters": [
+          "Horites",
+          "Chedorlaomer",
+          "Esau (Edom)"
+        ],
+        "description": "Red sandstone mountain range southeast of the Dead Sea inhabited originally by the Horites (Gen 14:6; 36:20) and later settled permanently by Esau ('Esau is Edom').",
+        "descriptionEs": "Cordillera de arenisca roja al sureste del Mar Muerto habitada originalmente por los horeos (Gén 14:6; 36:20) y luego heredada por Esaú ('Esaú es Edom')."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.478,
+          30.328
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "el-paran",
+        "order": 33,
+        "name": "El-Paran & Wilderness of Paran",
+        "nameEs": "El-Parán y Desierto de Parán",
+        "hebrew": "אֵיל פָּארָן · ʾÊl Pāʾrān",
+        "meaning": {
+          "en": "Terebinth / Oak of Paran (Caverns)",
+          "es": "Encino / Terebinto de Parán"
+        },
+        "era": "abraham",
+        "category": "region",
+        "chapters": [
+          14,
+          21
+        ],
+        "verses": "Gen 14:6; 21:21",
+        "modernLocation": {
+          "en": "Gulf of Aqaba Headwaters (Elath) & East-Central Sinai",
+          "es": "Cabecera del Golfo de Áqaba (Elat) y Sinaí Centro-Oriental"
+        },
+        "characters": [
+          "Chedorlaomer",
+          "Ishmael",
+          "Hagar"
+        ],
+        "description": "Southernmost turning point of Chedorlaomer's campaign on the border of the wilderness (Gen 14:6). In the Wilderness of Paran, Ishmael grew up, became an expert archer, and took a wife from Egypt (Gen 21:21).",
+        "descriptionEs": "Punto más meridional alcanzado por la campaña de Quedorlaomer junto al desierto (Gén 14:6). En el desierto de Parán creció Ismael, se hizo arquero y tomó mujer de Egipto (Gén 21:21)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95,
+          29.55
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "kadesh",
+        "order": 34,
+        "name": "Kadesh (En-Mishpat)",
+        "nameEs": "Cades (En-Mispat)",
+        "hebrew": "קָדֵשׁ / עֵין מִשְׁפָּט · Qāḏēš / ʿÊn Mišpāṭ",
+        "meaning": {
+          "en": "Sanctuary / Spring of Judgment",
+          "es": "Santuario / Fuente del Juicio"
+        },
+        "era": "abraham",
+        "category": "water_well",
+        "chapters": [
+          14,
+          16,
+          20
+        ],
+        "verses": "Gen 14:7; 16:14; 20:1",
+        "modernLocation": {
+          "en": "Ein el-Qudeirat (Kadesh-Barnea Oasis, Northeastern Sinai)",
+          "es": "Ein el-Qudeirat (Oasis de Cades-Barnea, Noreste del Sinaí)"
+        },
+        "characters": [
+          "Chedorlaomer",
+          "Abraham",
+          "Hagar"
+        ],
+        "description": "Major desert oasis called both En-Mishpat ('Spring of Judgment') and Kadesh. Struck by the four kings in Gen 14:7, and later Abraham dwelt between Kadesh and Shur (Gen 20:1).",
+        "descriptionEs": "Gran oasis del desierto llamado En-Mispat ('Fuente del Juicio') y Cades. Asolado por los cuatro reyes en Gén 14:7, y más tarde Abraham habitó entre Cades y Shur (Gén 20:1)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.422,
+          30.648
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "hazazon-tamar",
+        "order": 35,
+        "name": "Hazazon-Tamar (En-Gedi)",
+        "nameEs": "Hazezontamar (En-Gadi)",
+        "hebrew": "חַצְצֹן תָּמָר · Ḥaṣəṣōn Tāmār",
+        "meaning": {
+          "en": "Dividing of the Palm Trees (En-Gedi)",
+          "es": "Hilera de Palmeras (En-Gadi)"
+        },
+        "era": "abraham",
+        "category": "water_well",
+        "chapters": [
+          14
+        ],
+        "verses": "Gen 14:7",
+        "modernLocation": {
+          "en": "En-Gedi Oasis (Western Shore of the Dead Sea)",
+          "es": "Oasis de En-Gadi (Costa Occidental del Mar Muerto)"
+        },
+        "characters": [
+          "Amorites",
+          "Chedorlaomer"
+        ],
+        "description": "Verdant spring oasis on the western cliffs of the Dead Sea inhabited by the Amorites, whom Chedorlaomer defeated immediately before engaging the five kings in the Valley of Siddim.",
+        "descriptionEs": "Oasis de manantiales en la costa occidental del Mar Muerto habitado por los amorreos, a quienes Quedorlaomer derrotó justo antes de la batalla en el valle de Sidim."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.388,
+          31.462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "dan-laish",
+        "order": 36,
+        "name": "Dan (Laish)",
+        "nameEs": "Dan (Lais)",
+        "hebrew": "דָּן · Dān",
+        "meaning": {
+          "en": "Judge (Ancient Laish at Mount Hermon springs)",
+          "es": "Juez (Antigua Lais en las fuentes del Jordán)"
+        },
+        "era": "abraham",
+        "category": "city",
+        "chapters": [
+          14
+        ],
+        "verses": "Gen 14:14",
+        "modernLocation": {
+          "en": "Tel Dan (Upper Galilee / Foot of Mount Hermon)",
+          "es": "Tel Dan (Alta Galilea / Pie del Monte Hermón)"
+        },
+        "characters": [
+          "Abraham",
+          "Lot",
+          "318 trained men"
+        ],
+        "description": "When Abraham heard that his nephew Lot had been taken captive, he led 318 trained men born in his house and pursued the four Mesopotamian kings north as far as Dan, launching a night attack.",
+        "descriptionEs": "Al oír que su sobrino Lot había sido llevado cautivo, Abraham armó a 318 criados nacidos en su casa y persiguió a los reyes invasores hasta Dan, cayendo sobre ellos de noche."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.652,
+          33.249
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "hobah-damascus",
+        "order": 37,
+        "name": "Hobah & Damascus",
+        "nameEs": "Hoba y Damasco",
+        "hebrew": "חוֹבָה וְדַמֶּשֶׂק · Ḥôḇāh wə-Dammeśeq",
+        "meaning": {
+          "en": "Hiding Place north of Damascus",
+          "es": "Escondite al norte de Damasco"
+        },
+        "era": "abraham",
+        "category": "city",
+        "chapters": [
+          14,
+          15
+        ],
+        "verses": "Gen 14:15; 15:2",
+        "modernLocation": {
+          "en": "Damascus & Barada Oasis North of Damascus (Syria)",
+          "es": "Damasco y Oasis al Norte de Damasco (Siria)"
+        },
+        "characters": [
+          "Abraham",
+          "Lot",
+          "Eliezer of Damascus"
+        ],
+        "description": "Abraham routed the four kings and pursued them to Hobah, north of Damascus, recovering Lot, his goods, the women, and the people. Damascus is also the hometown of Abraham's steward Eliezer (Gen 15:2).",
+        "descriptionEs": "Abraham derrotó a los cuatro reyes y los siguió hasta Hoba, al norte de Damasco, recobrando a Lot, sus bienes y toda la gente. Damasco era también la ciudad de Eliezer, mayordomo de Abraham (Gén 15:2)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.292,
+          33.513
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "salem-moriah",
+        "order": 38,
+        "name": "Salem (Jerusalem) & Mount Moriah",
+        "nameEs": "Salem (Jerusalén) y Monte Moriah",
+        "hebrew": "שָׁלֵם / הַר הַמֹּרִיָּה · Šālēm / Har ham-Mōriyyāh",
+        "meaning": {
+          "en": "Peace (Salem) & Seen/Chosen by the Lord (Moriah / YHWH-Jireh)",
+          "es": "Paz (Salem) y Jehová Proveerá (Moriah / YHWH-Jireh)"
+        },
+        "era": "abraham",
+        "category": "mountain",
+        "chapters": [
+          14,
+          22
+        ],
+        "verses": "Gen 14:17–20; 22:1–19",
+        "modernLocation": {
+          "en": "Jerusalem (City of David, Kidron/Shaveh Valley & Temple Mount)",
+          "es": "Jerusalén (Ciudad de David, Valle de Save y Monte del Templo)"
+        },
+        "characters": [
+          "Melchizedek",
+          "Abraham",
+          "Isaac"
+        ],
+        "description": "Two foundational episodes in Genesis: (1) In the Valley of Shaveh (King's Valley), Melchizedek king of Salem and priest of God Most High brought bread and wine and blessed Abram (ch. 14); (2) In the Land of Moriah, Abraham bound Isaac on the altar until the Angel stayed his hand and provided a ram, naming the site 'The Lord Will Provide' (YHWH-Jireh, ch. 22).",
+        "descriptionEs": "Dos episodios cumbre del Génesis: (1) En el valle de Save, Melquisedec rey de Salem y sacerdote del Dios Altísimo sacó pan y vino y bendijo a Abram (cap. 14); (2) En la tierra de Moriah, Abraham ofreció el carnero en lugar de Isaac y llamó aquel lugar 'Jehová-jireh' ('En el monte de Jehová será provisto', cap. 22)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.235,
+          31.778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "beer-lahai-roi",
+        "order": 39,
+        "name": "Beer-lahai-roi",
+        "nameEs": "Pozo del Viviente-que-me-ve (Beer-lahai-roi)",
+        "hebrew": "בְּאֵר לַחַי רֹאִי · Bəʾēr Laḥay Rōʾî",
+        "meaning": {
+          "en": "Well of the Living One Who Sees Me",
+          "es": "Pozo del Viviente que me ve"
+        },
+        "era": "abraham",
+        "category": "water_well",
+        "chapters": [
+          16,
+          24,
+          25
+        ],
+        "verses": "Gen 16:7, 13–14; 24:62; 25:11",
+        "modernLocation": {
+          "en": "Between Kadesh and Bered on the Way to Shur (Western Negev)",
+          "es": "Entre Cades y Bered en el camino de Shur (Neguev Occidental)"
+        },
+        "characters": [
+          "Hagar",
+          "Angel of the Lord",
+          "Ishmael",
+          "Isaac",
+          "Rebekah"
+        ],
+        "description": "Spring in the wilderness on the road to Shur where the Angel of the Lord found Hagar, promised her a multitude of descendants through Ishmael, and she declared, 'You are a God of seeing (El-Roi).' Later Isaac lived here and welcomed Rebekah (Gen 24:62; 25:11).",
+        "descriptionEs": "Fuente de agua en el camino de Shur donde el Ángel de Jehová halló a Agar, le anunció el nacimiento de Ismael y ella proclamó 'Tú eres Dios que ve'. Más tarde Isaac habitó junto a este pozo cuando recibió a Rebeca (Gén 24:62; 25:11)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.55,
+          30.82
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "shur",
+        "order": 40,
+        "name": "Wilderness & Way of Shur",
+        "nameEs": "Desierto y Camino de Shur",
+        "hebrew": "שׁוּר · Šûr",
+        "meaning": {
+          "en": "Wall / Border Fortification",
+          "es": "Muro / Línea Fronteriza"
+        },
+        "era": "abraham",
+        "category": "region",
+        "chapters": [
+          16,
+          20,
+          25
+        ],
+        "verses": "Gen 16:7; 20:1; 25:18",
+        "modernLocation": {
+          "en": "Northwestern Sinai Frontier (East of the Eastern Nile Delta, Egypt)",
+          "es": "Frontera Noroccidental del Sinaí (Al este del Delta del Nilo, Egipto)"
+        },
+        "characters": [
+          "Hagar",
+          "Abraham",
+          "Ishmaelites"
+        ],
+        "description": "Desert frontier region along the caravan road connecting southwestern Canaan to Egypt ('Shur, which is opposite Egypt in the direction of Assyria').",
+        "descriptionEs": "Región fronteriza a lo largo de la ruta de caravanas que unía el suroeste de Canaán con Egipto ('Shur, que está delante de Egipto viniendo de Asiria')."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.4,
+          30.65
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "gerar",
+        "order": 41,
+        "name": "Gerar & Valley of Gerar",
+        "nameEs": "Gerar y Valle de Gerar",
+        "hebrew": "גְּרָר · Gərār",
+        "meaning": {
+          "en": "Lodging Place / Sojourn",
+          "es": "Lugar de Hospedaje / Morada"
+        },
+        "era": "abraham",
+        "category": "city",
+        "chapters": [
+          10,
+          20,
+          26
+        ],
+        "verses": "Gen 10:19; 20:1–18; 26:1–31",
+        "modernLocation": {
+          "en": "Tel Haror (Nahal Gerar, Northwestern Negev)",
+          "es": "Tel Haror (Nahal Gerar, Noroeste del Neguev)"
+        },
+        "characters": [
+          "Abraham",
+          "Sarah",
+          "Abimelech king of Gerar",
+          "Phicol",
+          "Isaac",
+          "Rebekah"
+        ],
+        "description": "Royal city of Abimelech king of the Philistines. Both Abraham (ch. 20) and Isaac (ch. 26) sojourned in Gerar; here Isaac sowed crops and reaped a hundredfold in the same year as the Lord blessed him.",
+        "descriptionEs": "Ciudad real de Abimelec, rey de los filisteos. Tanto Abraham (cap. 20) como Isaac (cap. 26) habitaron en Gerar; allí sembró Isaac y cosechó ciento por uno en aquel mismo año."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.607,
+          31.385
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "beersheba",
+        "order": 42,
+        "name": "Beersheba",
+        "nameEs": "Beerseba",
+        "hebrew": "בְּאֵר שָׁבַע · Bəʾēr Šāḇaʿ",
+        "meaning": {
+          "en": "Well of the Oath / Well of the Seven",
+          "es": "Pozo del Juramento / Pozo de las Siete"
+        },
+        "era": "abraham",
+        "category": "water_well",
+        "chapters": [
+          21,
+          22,
+          26,
+          28,
+          46
+        ],
+        "verses": "Gen 21:14, 31–33; 22:19; 26:23–33; 28:10; 46:1–5",
+        "modernLocation": {
+          "en": "Tel Be'er Sheva (Beersheba Basin, Northern Negev)",
+          "es": "Tel Be'er Sheva (Cuenca de Beerseba, Norte del Neguev)"
+        },
+        "characters": [
+          "Abraham",
+          "Abimelech",
+          "Hagar",
+          "Ishmael",
+          "Isaac",
+          "Jacob"
+        ],
+        "description": "Named where Abraham gave seven ewe lambs as witness of the well he dug and swore a covenant with Abimelech, planting a tamarisk tree and calling on the Everlasting God (El-Olam). Later God appeared here to Isaac (ch. 26) and to Jacob before Israel went down to Egypt (ch. 46).",
+        "descriptionEs": "Nombrada donde Abraham entregó siete corderas como testimonio del pozo y juró alianza con Abimelec, plantando un árbol tamarisco e invocando al Dios Eterno (El-Olam). Más tarde Dios se apareció allí a Isaac (cap. 26) y a Jacob antes de bajar a Egipto (cap. 46)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.841,
+          31.245
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "esek-sitnah",
+        "order": 43,
+        "name": "Wells of Esek & Sitnah",
+        "nameEs": "Pozos de Esek y Sitna",
+        "hebrew": "עֵשֶׂק וְשִׂטְנָה · ʿĒśeq wə-Śiṭnāh",
+        "meaning": {
+          "en": "Contention (Esek) & Enmity/Opposition (Sitnah)",
+          "es": "Contienda (Esek) y Enemistad (Sitna)"
+        },
+        "era": "isaac_jacob",
+        "category": "water_well",
+        "chapters": [
+          26
+        ],
+        "verses": "Gen 26:19–21",
+        "modernLocation": {
+          "en": "Wadi / Nahal Gerar (between Tel Haror and Beersheba)",
+          "es": "Uadi / Nahal Gerar (entre Tel Haror y Beerseba)"
+        },
+        "characters": [
+          "Isaac",
+          "Herdsmen of Gerar"
+        ],
+        "description": "Two springs of running water dug by Isaac's servants in the Valley of Gerar over which the herdsmen of Gerar quarreled ('The water is ours!'), prompting Isaac to move on peacefully.",
+        "descriptionEs": "Dos pozos de aguas vivas cavados por los siervos de Isaac en el valle de Gerar por los cuales riñeron los pastores de Gerar ('El agua es nuestra'), llevando a Isaac a apartarse en paz."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.675,
+          31.335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "rehoboth-well",
+        "order": 44,
+        "name": "Well of Rehoboth",
+        "nameEs": "Pozo de Rehobot",
+        "hebrew": "רְחֹבוֹת · Rəḥōḇôṯ",
+        "meaning": {
+          "en": "Broad Places / Room Enough",
+          "es": "Lugares Amplios / Anchura"
+        },
+        "era": "isaac_jacob",
+        "category": "water_well",
+        "chapters": [
+          26
+        ],
+        "verses": "Gen 26:22",
+        "modernLocation": {
+          "en": "Ruheibeh / Rehovot-in-the-Negev (Southwest of Beersheba)",
+          "es": "Ruheibeh / Rehovot del Neguev (Suroeste de Beerseba)"
+        },
+        "characters": [
+          "Isaac"
+        ],
+        "description": "The third well dug by Isaac after leaving Esek and Sitnah, over which no one quarreled. Isaac named it Rehoboth, saying, 'For now the Lord has made room for us, and we shall be fruitful in the land.'",
+        "descriptionEs": "El tercer pozo cavado por Isaac tras dejar Esek y Sitna, por el cual no riñeron. Isaac lo llamó Rehobot diciendo: 'Porque ahora nos ha hecho ensanchar Jehová, y fructificaremos en la tierra'."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.565,
+          31.028
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "mizpah-galeed",
+        "order": 45,
+        "name": "Galeed / Mizpah (Mount of Gilead)",
+        "nameEs": "Galaad / Mizpa (Monte de Galaad)",
+        "hebrew": "גַּלְעֵד / הַמִּצְפָּה · Galʿēḏ / ham-Miṣpāh",
+        "meaning": {
+          "en": "Heap of Witness (Galeed / Jegar-sahadutha) & Watchtower (Mizpah)",
+          "es": "Montón del Testimonio (Galaad) y Atalaya (Mizpa)"
+        },
+        "era": "isaac_jacob",
+        "category": "altar_camp",
+        "chapters": [
+          31
+        ],
+        "verses": "Gen 31:21–25, 45–55",
+        "modernLocation": {
+          "en": "Northern Gilead Highlands (Ajloun / Jerash region, Jordan)",
+          "es": "Tierras Altas del Norte de Galaad (región de Ajloun / Gerasa, Jordania)"
+        },
+        "characters": [
+          "Jacob",
+          "Laban",
+          "Rachel",
+          "Leah"
+        ],
+        "description": "In the hill country of Gilead, Laban overtook Jacob after his flight from Paddan-Aram. They set up a stone pillar and heap of stones—called Jegar-sahadutha in Aramaic by Laban and Galeed/Mizpah in Hebrew by Jacob—saying, 'The Lord watch between you and me.'",
+        "descriptionEs": "En el monte de Galaad, Labán alcanzó a Jacob tras su huida de Padán-Aram. Allí levantaron majano y señal de piedras—Jegar-sahaduta en arameo y Galaad/Mizpa en hebreo—diciendo: 'Atalaye Jehová entre tú y yo'."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.82,
+          32.285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "mahanaim",
+        "order": 46,
+        "name": "Mahanaim",
+        "nameEs": "Mahanaim",
+        "hebrew": "מַחֲנַיִם · Maḥănayim",
+        "meaning": {
+          "en": "Two Camps / Two Hosts",
+          "es": "Dos Campamentos"
+        },
+        "era": "isaac_jacob",
+        "category": "altar_camp",
+        "chapters": [
+          32
+        ],
+        "verses": "Gen 32:1–2",
+        "modernLocation": {
+          "en": "Tell edh-Dhahab el-Gharbi (Jabbok Valley, Jordan)",
+          "es": "Tell edh-Dhahab el-Gharbi (Valle del Jaboc, Jordania)"
+        },
+        "characters": [
+          "Jacob",
+          "Angels of God"
+        ],
+        "description": "As Jacob continued on his journey from Gilead, the angels of God met him. When Jacob saw them he exclaimed, 'This is God's camp!' and named the place Mahanaim ('Two Camps').",
+        "descriptionEs": "Mientras Jacob seguía su camino desde Galaad, le salieron al encuentro ángeles de Dios. Al verlos, Jacob dijo: 'Campamento de Dios es este', y llamó aquel lugar Mahanaim ('Dos Campamentos')."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.685,
+          32.185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "peniel",
+        "order": 47,
+        "name": "Peniel / Penuel (Ford of the Jabbok)",
+        "nameEs": "Peniel / Penuel (Vado de Jaboc)",
+        "hebrew": "פְּנִיאֵל / פְּנוּאֵל · Pənîʾēl / Pənûʾēl",
+        "meaning": {
+          "en": "Face of God",
+          "es": "Rostro de Dios"
+        },
+        "era": "isaac_jacob",
+        "category": "altar_camp",
+        "chapters": [
+          32
+        ],
+        "verses": "Gen 32:22–32",
+        "modernLocation": {
+          "en": "Tulul edh-Dhahab esh-Sharqi on the Zarqa (Jabbok) River (Jordan)",
+          "es": "Tulul edh-Dhahab esh-Sharqi sobre el río Zarqa / Jaboc (Jordania)"
+        },
+        "characters": [
+          "Jacob (Israel)"
+        ],
+        "description": "By the ford of the Jabbok River at night, Jacob wrestled with a mysterious Man until daybreak, receiving the new covenant name Israel ('He strives with God'). Jacob called the place Peniel: 'For I have seen God face to face, and yet my life has been delivered.'",
+        "descriptionEs": "Junto al vado de Jaboc durante la noche, Jacob luchó hasta rayar el alba y recibió el nuevo nombre de Israel ('El que lucha con Dios'). Jacob llamó el lugar Peniel: 'Porque vi a Dios cara a cara, y fue librada mi alma'."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.635,
+          32.192
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "succoth",
+        "order": 48,
+        "name": "Succoth",
+        "nameEs": "Sucot",
+        "hebrew": "סֻכּוֹת · Sukkôṯ",
+        "meaning": {
+          "en": "Booths / Shelters",
+          "es": "Cabañas / Enramadas"
+        },
+        "era": "isaac_jacob",
+        "category": "city",
+        "chapters": [
+          33
+        ],
+        "verses": "Gen 33:17",
+        "modernLocation": {
+          "en": "Tell Deir Alla (Eastern Jordan Valley near Jabbok confluence, Jordan)",
+          "es": "Tell Deir Alla (Valle oriental del Jordán cerca del Jaboc, Jordania)"
+        },
+        "characters": [
+          "Jacob",
+          "Esau"
+        ],
+        "description": "After reconciling peacefully with his twin brother Esau, Jacob journeyed to Succoth in the Jordan Valley, where he built himself a house and made booths (shelters) for his livestock.",
+        "descriptionEs": "Tras reconciliarse en paz con su hermano Esaú, Jacob fue a Sucot en el valle del Jordán, donde edificó casa para sí e hizo cabañas para su ganado."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.622,
+          32.196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "ephrath-bethlehem",
+        "order": 49,
+        "name": "Ephrath / Bethlehem (Rachel's Tomb)",
+        "nameEs": "Efrata / Belén (Tumba de Raquel)",
+        "hebrew": "אֶפְרָת / בֵּית לָחֶם · ʾEp̄rāṯ / Bêṯ Lāḥem",
+        "meaning": {
+          "en": "Fruitful (Ephrath) & House of Bread (Bethlehem)",
+          "es": "Fructífera (Efrata) y Casa del Pan (Belén)"
+        },
+        "era": "isaac_jacob",
+        "category": "altar_camp",
+        "chapters": [
+          35,
+          48
+        ],
+        "verses": "Gen 35:16–20; 48:7",
+        "modernLocation": {
+          "en": "Bethlehem & Northern Entrance of Bethlehem (Judea)",
+          "es": "Belén y Entrada Norte de Belén (Judea)"
+        },
+        "characters": [
+          "Rachel",
+          "Benjamin",
+          "Jacob"
+        ],
+        "description": "While journeying from Bethel with some distance still to reach Ephrath (that is, Bethlehem), Rachel gave birth to Benjamin ('Son of My Right Hand') and died. Jacob set up a pillar over her tomb, which remains a landmark on the road to Bethlehem.",
+        "descriptionEs": "Marchando desde Bet-el a poca distancia de llegar a Efrata (esto es, Belén), Raquel dio a luz a Benjamín y murió en el parto. Jacob erigió una señal sobre su sepultura en el camino de Efrata."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.202,
+          31.719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "migdal-eder",
+        "order": 50,
+        "name": "Migdal-Eder (Tower of the Flock)",
+        "nameEs": "Migdal-Edar (Torre del Rebaño)",
+        "hebrew": "מִגְדַּל־עֵדֶר · Miḡdal-ʿĒḏer",
+        "meaning": {
+          "en": "Watchtower of the Flock",
+          "es": "Torre del Rebaño"
+        },
+        "era": "isaac_jacob",
+        "category": "altar_camp",
+        "chapters": [
+          35
+        ],
+        "verses": "Gen 35:21–22",
+        "modernLocation": {
+          "en": "Outskirts of Bethlehem / Shepherds' Field (Beit Sahour)",
+          "es": "Cercanías de Belén / Campo de los Pastores (Beit Sahour)"
+        },
+        "characters": [
+          "Jacob (Israel)",
+          "Reuben",
+          "Bilhah"
+        ],
+        "description": "Pastoral watchtower just beyond Ephrath (Bethlehem) where Israel journeyed and pitched his tent before returning to his father Isaac at Mamre in Hebron.",
+        "descriptionEs": "Torre de pastoreo más allá de Efrata (Belén) donde Israel extendió su tienda antes de llegar junto a su padre Isaac en Mamre (Hebrón)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.218,
+          31.703
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "bozrah-edom",
+        "order": 51,
+        "name": "Bozrah & Royal Cities of Edom (Dinhabah, Avith, Pau)",
+        "nameEs": "Bosra y Ciudades Reales de Edom (Dinhaba, Avit, Pau)",
+        "hebrew": "בָּצְרָה · Boṣrāh",
+        "meaning": {
+          "en": "Sheepfold / Inaccessible Fortress",
+          "es": "Redil / Fortaleza Inexpugnable"
+        },
+        "era": "isaac_jacob",
+        "category": "city",
+        "chapters": [
+          36
+        ],
+        "verses": "Gen 36:31–39",
+        "modernLocation": {
+          "en": "Buseirah (Tafilah Governorate, Edomite Plateau, Jordan)",
+          "es": "Buseirah (Gobernación de Tafila, Meseta de Edom, Jordania)"
+        },
+        "characters": [
+          "Esau's descendants",
+          "Jobab son of Zerah of Bozrah",
+          "Hadad",
+          "Bela"
+        ],
+        "description": "Highland citadel of Edom listed in Genesis 36 among the capitals of the kings who reigned in the land of Edom before any king reigned over the Israelites (alongside Dinhabah, Avith, Masrekah, Rehoboth-on-the-River, and Pau).",
+        "descriptionEs": "Ciudadela principal de Edom mencionada en Génesis 36 entre las capitales de los reyes que reinaron en la tierra de Edom antes que reinase rey sobre los hijos de Israel."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.605,
+          30.733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "dothan",
+        "order": 52,
+        "name": "Dothan",
+        "nameEs": "Dotán",
+        "hebrew": "דֹּתָן · Dōṯān",
+        "meaning": {
+          "en": "Two Wells / Two Cisterns",
+          "es": "Dos Pozos / Dos Cisternas"
+        },
+        "era": "joseph",
+        "category": "water_well",
+        "chapters": [
+          37
+        ],
+        "verses": "Gen 37:17–28",
+        "modernLocation": {
+          "en": "Tel Dothan (Dothan Valley, Northern Samaria)",
+          "es": "Tel Dotán (Valle de Dotán, Norte de Samaria)"
+        },
+        "characters": [
+          "Joseph",
+          "Reuben",
+          "Judah",
+          "Joseph's brothers",
+          "Ishmaelite/Midianite traders"
+        ],
+        "description": "Fertile valley north of Shechem along the international caravan trunk road. Here Joseph found his brothers pasturing their father's flock, was stripped of his tunic of many colors, cast into an empty cistern, and sold for 20 shekels of silver to a caravan bound for Egypt.",
+        "descriptionEs": "Fértil valle al norte de Siquem sobre la ruta internacional de caravanas. Allí José encontró a sus hermanos, fue despojado de su túnica de colores, arrojado en una cisterna vacía y vendido por 20 piezas de plata rumbo a Egipto."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.239,
+          32.414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "gilead-region",
+        "order": 53,
+        "name": "Gilead (Balm & Spice Caravan Region)",
+        "nameEs": "Galaad (Región del Bálsamo y Especias)",
+        "hebrew": "גִּלְעָד · Gilʿāḏ",
+        "meaning": {
+          "en": "Rugged Highland / Heap of Testimony",
+          "es": "Región Escarpada / Tierra del Bálsamo"
+        },
+        "era": "joseph",
+        "category": "region",
+        "chapters": [
+          31,
+          37
+        ],
+        "verses": "Gen 31:21; 37:25",
+        "modernLocation": {
+          "en": "Gilead Mountains East of the Jordan River (Jordan)",
+          "es": "Montañas de Galaad al Este del Río Jordán (Jordania)"
+        },
+        "characters": [
+          "Ishmaelite caravan",
+          "Joseph",
+          "Jacob"
+        ],
+        "description": "Forested highland region east of the Jordan renowned for its aromatic resin and medicinal balm. The caravan of Ishmaelites that bought Joseph at Dothan was coming from Gilead with camels bearing gum, balm, and myrrh down to Egypt.",
+        "descriptionEs": "Región montañosa al este del Jordán famosa por sus resinas aromáticas y bálsamo medicinal. La compañía de ismaelitas que compró a José venía de Galaad con camellos cargados de aromas, bálsamo y mirra hacia Egipto."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.75,
+          32.35
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "adullam",
+        "order": 54,
+        "name": "Adullam & Chezib (Achzib)",
+        "nameEs": "Adulam y Quezib (Aczib)",
+        "hebrew": "עֲדֻלָּם וּכְזִיב · ʿĂḏullām û-Ḵəzîḇ",
+        "meaning": {
+          "en": "Refuge / Justice of the People",
+          "es": "Refugio / Retiro"
+        },
+        "era": "joseph",
+        "category": "city",
+        "chapters": [
+          38
+        ],
+        "verses": "Gen 38:1–5, 12, 20",
+        "modernLocation": {
+          "en": "Tel Adullam & Tel Achzib (Elah Valley / Judean Shephelah)",
+          "es": "Tel Adulam y Tel Aczib (Valle de Ela / Sefela de Judea)"
+        },
+        "characters": [
+          "Judah",
+          "Hirah the Adullamite",
+          "Shelah"
+        ],
+        "description": "Foothill towns in the Judean Shephelah where Judah went down from his brothers, befriended Hirah the Adullamite, married Bath-shua, and where his third son Shelah was born at Chezib.",
+        "descriptionEs": "Poblaciones en la Sefela de Judea adonde Judá descendió apartándose de sus hermanos, trabó amistad con Hira el adulamita, y donde nació su tercer hijo Sela en Quezib."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.996,
+          31.649
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "timnah-enaim",
+        "order": 55,
+        "name": "Timnah & Entrance of Enaim",
+        "nameEs": "Timnat y Entrada de Enaim",
+        "hebrew": "תִּמְנָתָה וּפֶתַח עֵינַיִם · Timnāṯāh û-P̄eṯaḥ ʿÊnayim",
+        "meaning": {
+          "en": "Allotted Portion (Timnah) & Double Spring (Enaim)",
+          "es": "Porción Asignada (Timnat) y Fuente Doble (Enaim)"
+        },
+        "era": "joseph",
+        "category": "city",
+        "chapters": [
+          38
+        ],
+        "verses": "Gen 38:12–26",
+        "modernLocation": {
+          "en": "Khirbet Tibneh (Upper Sorek / Elah Ridge, West of Bethlehem)",
+          "es": "Khirbet Tibneh (Colinas al oeste de Belén)"
+        },
+        "characters": [
+          "Judah",
+          "Tamar",
+          "Perez",
+          "Zerah"
+        ],
+        "description": "Hill country road where Tamar sat veiled at the Entrance of Enaim ('Double Spring') as Judah went up to his sheepshearers at Timnah, leading to the birth of twin sons Perez and Zerah—ancestors of King David.",
+        "descriptionEs": "Camino montañoso donde Tamar se sentó cubierta con un velo a la entrada de Enaim mientras Judá subía a los trasquiladores de sus ovejas en Timnat; de allí nacieron los gemelos Fares y Zara, antepasados del rey David."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.03,
+          31.702
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "on-heliopolis",
+        "order": 56,
+        "name": "On (Heliopolis)",
+        "nameEs": "On (Heliópolis)",
+        "hebrew": "אֹן · ʾŌn",
+        "meaning": {
+          "en": "Light / Pillar City of the Sun (Egyptian Iunu)",
+          "es": "Luz / Ciudad del Sol (Egipcio Iunu)"
+        },
+        "era": "joseph",
+        "category": "city",
+        "chapters": [
+          41,
+          46
+        ],
+        "verses": "Gen 41:45, 50; 46:20",
+        "modernLocation": {
+          "en": "Al-Matariyyah / Ain Shams (Northeastern Cairo, Egypt)",
+          "es": "Al-Matariyyah / Ain Shams (Noreste de El Cairo, Egipto)"
+        },
+        "characters": [
+          "Joseph (Zaphenath-paneah)",
+          "Asenath",
+          "Potiphera priest of On",
+          "Manasseh",
+          "Ephraim"
+        ],
+        "description": "Premier religious center of Lower Egypt. When Pharaoh exalted Joseph as vizier over all Egypt, he gave him in marriage Asenath, daughter of Potiphera priest of On, who bore Manasseh and Ephraim before the years of famine.",
+        "descriptionEs": "Principal centro religioso del Bajo Egipto. Cuando Faraón engrandeció a José sobre toda la tierra de Egipto, le dio por mujer a Asenat, hija de Potifera sacerdote de On, madre de Manasés y Efraín."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.308,
+          30.129
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "goshen",
+        "order": 57,
+        "name": "Land of Goshen (Land of Rameses, Egypt)",
+        "nameEs": "Tierra de Gosén (Tierra de Ramesés, Egipto)",
+        "hebrew": "אֶרֶץ גֹּשֶׁן · ʾEreṣ Gōšen",
+        "meaning": {
+          "en": "Cultivated Pastureland (Eastern Nile Delta)",
+          "es": "Tierra Fértil de Pastoreo (Delta Oriental del Nilo)"
+        },
+        "era": "joseph",
+        "category": "region",
+        "chapters": [
+          12,
+          45,
+          46,
+          47,
+          50
+        ],
+        "verses": "Gen 12:10; 45:10; 46:28–34; 47:1–11, 27; 50:8",
+        "modernLocation": {
+          "en": "Wadi Tumilat & Tell el-Dab'a / Avaris (Sharqia Governorate, Eastern Nile Delta, Egypt)",
+          "es": "Wadi Tumilat y Tell el-Dab'a / Avaris (Delta Oriental del Nilo, Egipto)"
+        },
+        "characters": [
+          "Joseph",
+          "Jacob (Israel)",
+          "Pharaoh",
+          "The 70 members of Israel's house"
+        ],
+        "description": "'The best of the land of Egypt' in the fertile eastern Nile Delta. Here Joseph rode out in his chariot to reunite tearfully with his father Jacob after 22 years, and here Israel settled, acquired property, and multiplied exceedingly.",
+        "descriptionEs": "'Lo mejor de la tierra de Egipto' en el fértil delta oriental del Nilo. Allí subió José en su carro para reencontrarse entre lágrimas con su padre Jacob, y allí habitó Israel, adquirió posesión y se multiplicó en gran manera."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.831,
+          30.788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "place",
+        "id": "atad-abel-mizraim",
+        "order": 58,
+        "name": "Threshing Floor of Atad (Abel-Mizraim)",
+        "nameEs": "Era de Atad (Abel-Mizraim)",
+        "hebrew": "גֹּרֶן הָאָטָד / אָבֵל מִצְרַיִם · Gōren hā-ʾĀṭāḏ / ʾĀḇēl Miṣrayim",
+        "meaning": {
+          "en": "Threshing Floor of the Buckthorn & Meadow/Mourning of Egypt",
+          "es": "Era del Espino y Llanto de los Egipcios"
+        },
+        "era": "joseph",
+        "category": "altar_camp",
+        "chapters": [
+          50
+        ],
+        "verses": "Gen 50:10–11",
+        "modernLocation": {
+          "en": "Jordan River Crossing Region (Beth-hoglah / Lower Jordan Valley)",
+          "es": "Vado del Bajo Jordán (Bet-hogla / Valle del Jordán)"
+        },
+        "characters": [
+          "Joseph",
+          "Jacob's funeral cortege",
+          "Elders of Egypt"
+        ],
+        "description": "In the concluding chapter of Genesis, Joseph led a great state funeral procession of chariots and horsemen from Egypt to bury Jacob in Hebron. At the Threshing Floor of Atad they observed seven days of solemn lamentation, so the Canaanites named it Abel-Mizraim ('Mourning of the Egyptians').",
+        "descriptionEs": "En el capítulo final de Génesis, José encabezó un solemne cortejo fúnebre de carros y gente de a caballo desde Egipto para sepultar a Jacob en Hebrón. En la era de Atad hicieron duelo por siete días, por lo que los cananeos la llamaron Abel-Mizraim ('Llanto de los egipcios')."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.515,
+          31.825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "route",
+        "id": "route-abraham",
+        "era": "abraham",
+        "name": "Abraham's Journey of Faith (Ur → Haran → Canaan → Egypt → Hebron & Moriah)",
+        "nameEs": "Ruta de la Fe de Abraham (Ur → Harán → Canaán → Egipto → Hebrón y Moriah)",
+        "verses": "Gen 11:31–13:18; 14:14–18; 20:1; 21:31; 22:2"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            46.103,
+            30.963
+          ],
+          [
+            44.421,
+            32.536
+          ],
+          [
+            39.031,
+            36.865
+          ],
+          [
+            36.292,
+            33.513
+          ],
+          [
+            35.276,
+            32.214
+          ],
+          [
+            35.222,
+            31.931
+          ],
+          [
+            34.78,
+            30.85
+          ],
+          [
+            31.831,
+            30.788
+          ],
+          [
+            35.222,
+            31.931
+          ],
+          [
+            35.111,
+            31.525
+          ],
+          [
+            34.607,
+            31.385
+          ],
+          [
+            34.841,
+            31.245
+          ],
+          [
+            35.235,
+            31.778
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "route",
+        "id": "route-jacob",
+        "era": "isaac_jacob",
+        "name": "Jacob's Exile & Return (Beersheba → Bethel → Haran → Peniel → Shechem → Hebron)",
+        "nameEs": "Exilio y Retorno de Jacob (Beerseba → Bet-el → Harán → Peniel → Siquem → Hebrón)",
+        "verses": "Gen 28:10–35:27"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.841,
+            31.245
+          ],
+          [
+            35.222,
+            31.931
+          ],
+          [
+            39.031,
+            36.865
+          ],
+          [
+            35.82,
+            32.285
+          ],
+          [
+            35.685,
+            32.185
+          ],
+          [
+            35.635,
+            32.192
+          ],
+          [
+            35.622,
+            32.196
+          ],
+          [
+            35.276,
+            32.214
+          ],
+          [
+            35.222,
+            31.931
+          ],
+          [
+            35.202,
+            31.719
+          ],
+          [
+            35.111,
+            31.525
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "route",
+        "id": "route-joseph",
+        "era": "joseph",
+        "name": "Joseph & Israel's Descent to Egypt (Hebron → Dothan → Goshen & On → Hebron Burial)",
+        "nameEs": "José y el Descenso a Egipto (Hebrón → Dotán → Gosén y On → Cortejo a Hebrón)",
+        "verses": "Gen 37:14–28; 46:1–7; 50:7–13"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.111,
+            31.525
+          ],
+          [
+            35.276,
+            32.214
+          ],
+          [
+            35.239,
+            32.414
+          ],
+          [
+            34.607,
+            31.385
+          ],
+          [
+            33.4,
+            30.65
+          ],
+          [
+            31.831,
+            30.788
+          ],
+          [
+            31.308,
+            30.129
+          ],
+          [
+            31.831,
+            30.788
+          ],
+          [
+            34.841,
+            31.245
+          ],
+          [
+            35.515,
+            31.825
+          ],
+          [
+            35.111,
+            31.525
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "river",
+        "id": "river-euphrates",
+        "name": "Perath / Euphrates River",
+        "nameEs": "Río Éufrates (Perat)",
+        "verses": "Gen 2:14; 15:18; 31:21; 36:37",
+        "description": "The fourth river of Eden ('the great river, the river Euphrates'), marking the northeastern covenant boundary promised to Abraham's descendants (Gen 15:18).",
+        "descriptionEs": "El cuarto río del Edén ('el río grande, el río Éufrates'), límite nororiental del pacto prometido a la descendencia de Abraham (Gén 15:18)."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.8,
+            38.05
+          ],
+          [
+            38.05,
+            36.85
+          ],
+          [
+            39.02,
+            35.95
+          ],
+          [
+            40.15,
+            35.33
+          ],
+          [
+            41.0,
+            34.45
+          ],
+          [
+            43.15,
+            33.4
+          ],
+          [
+            44.42,
+            32.54
+          ],
+          [
+            45.64,
+            31.32
+          ],
+          [
+            46.1,
+            30.96
+          ],
+          [
+            47.43,
+            31.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "river",
+        "id": "river-tigris",
+        "name": "Hiddekel / Tigris River",
+        "nameEs": "Río Hidekel / Tigris",
+        "verses": "Gen 2:14",
+        "description": "The third river of Eden, which flows 'east of Assyria,' passing Nineveh, Calah, and Asshur before joining the Euphrates.",
+        "descriptionEs": "El tercer río del Edén, el cual 'va al oriente de Asiria', pasando por Nínive, Cala y Asur hasta unirse con el Éufrates."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.22,
+            37.91
+          ],
+          [
+            42.1,
+            37.3
+          ],
+          [
+            43.15,
+            36.36
+          ],
+          [
+            43.33,
+            36.1
+          ],
+          [
+            43.26,
+            35.46
+          ],
+          [
+            44.36,
+            33.31
+          ],
+          [
+            45.8,
+            32.5
+          ],
+          [
+            47.43,
+            31.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "river",
+        "id": "river-jordan",
+        "name": "Jordan River",
+        "nameEs": "Río Jordán",
+        "verses": "Gen 13:10–11; 32:10; 50:10–11",
+        "description": "Central river of the Levant watering the Plain of the Jordan; Jacob crossed it with only his staff and returned with two camps (Gen 32:10).",
+        "descriptionEs": "Río vertebral de Canaán que regaba la llanura del Jordán; Jacob lo pasó con solo su cayado y regresó con dos campamentos (Gén 32:10)."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.65,
+            33.25
+          ],
+          [
+            35.58,
+            32.85
+          ],
+          [
+            35.57,
+            32.7
+          ],
+          [
+            35.55,
+            32.2
+          ],
+          [
+            35.55,
+            31.76
+          ],
+          [
+            35.47,
+            31.3
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "river",
+        "id": "river-jabbok",
+        "name": "Jabbok River (Wadi Zarqa)",
+        "nameEs": "Río Jaboc (Uadi Zarqa)",
+        "verses": "Gen 32:22–24",
+        "description": "Eastern tributary of the Jordan flowing through Gilead; at its ford (Peniel), Jacob wrestled with God and was named Israel.",
+        "descriptionEs": "Afluente oriental del Jordán que atraviesa Galaad; en su vado (Peniel) luchó Jacob con el Ángel y recibió el nombre de Israel."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.05,
+            32.1
+          ],
+          [
+            35.88,
+            32.2
+          ],
+          [
+            35.635,
+            32.192
+          ],
+          [
+            35.55,
+            32.11
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "river",
+        "id": "river-nile",
+        "name": "River of Egypt / Nile River",
+        "nameEs": "Río de Egipto / Río Nilo",
+        "verses": "Gen 15:18; 41:1–3",
+        "description": "Lifeblood of Egypt where Pharaoh stood in his dream as seven sleek cows and seven gaunt cows came up out of the Nile (Gen 41:1–3).",
+        "descriptionEs": "Arteria vital de Egipto junto a la cual soñó Faraón que subían siete vacas hermosas y siete vacas flacas (Gén 41:1–3)."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.82,
+            18.53
+          ],
+          [
+            32.9,
+            24.09
+          ],
+          [
+            32.64,
+            25.69
+          ],
+          [
+            31.18,
+            27.18
+          ],
+          [
+            31.23,
+            30.04
+          ],
+          [
+            31.83,
+            30.79
+          ],
+          [
+            31.9,
+            31.45
+          ]
+        ]
+      }
+    }
+  ]
+}

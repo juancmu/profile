@@ -91,12 +91,13 @@
         </ul>
         <h3>Adaptations Made to the Dataset</h3>
         <p>
-          This interactive map directly loads the three workspace GeoJSON datasets in <code>data/</code> and enriches them with historical context:
+          This interactive map directly loads the workspace GeoJSON datasets in <code>data/</code> and enriches them with historical context:
         </p>
         <ul>
           <li><strong><code>data/napoleon-campain.geojson</code> (45 MultiPolygons):</strong> Rendered with proportional stroke/fill styling and interactive troop attrition calculations.</li>
           <li><strong><code>data/napoleon-Adv.geojson</code> (13 Waypoints):</strong> Standardized bilingual dates, reconciled calendar ordering around Borodino and Mozhaisk, and linked local troop estimates to each waypoint.</li>
           <li><strong><code>data/napoleon-ret.geojson</code> (14 Waypoints):</strong> Reordered chronologically from the surprise attack at Tarutino (18 Oct) and evacuation of Moscow (19 Oct) to the final bridge crossing at Kaunas (14 Dec), paired with Minard's temperature readings.</li>
+          <li><strong><code>data/rivers.geojson</code> (Key Waterways):</strong> Real hydrographic geometries for the Niemen, Berezina, Dnieper, and Moskva rivers with interactive tooltips and historical crossing context.</li>
         </ul>
       `,
     },
@@ -179,12 +180,13 @@
         </ul>
         <h3>Adaptaciones Realizadas a los Datos</h3>
         <p>
-          Este visor interactivo carga directamente los tres conjuntos de datos GeoJSON en <code>data/</code> y los enriquece con contexto histórico bilingüe:
+          Este visor interactivo carga directamente los conjuntos de datos GeoJSON en <code>data/</code> y los enriquece con contexto histórico bilingüe:
         </p>
         <ul>
           <li><strong><code>data/napoleon-campain.geojson</code> (45 MultiPolígonos):</strong> Representados con estilos proporcionales y cálculo interactivo de desgaste de tropas.</li>
           <li><strong><code>data/napoleon-Adv.geojson</code> (13 Hitos de Avance):</strong> Fechas estandarizadas, orden cronológico reconciliado en torno a Borodinó y Mozhaisk, y estimación de tropas vinculada a cada punto.</li>
           <li><strong><code>data/napoleon-ret.geojson</code> (14 Hitos de Retirada):</strong> Ordenados cronológicamente desde el ataque sorpresa en Tarútino (18 Oct) y la evacuación de Moscú (19 Oct) hasta el cruce final del puente en Kaunas (14 Dic), integrados con las lecturas térmicas de Minard.</li>
+          <li><strong><code>data/rivers.geojson</code> (Ríos Principales):</strong> Geometrías hidrográficas reales de los ríos Niemen, Berézina, Dniéper y Moscova con información emergente interactiva y contexto histórico.</li>
         </ul>
       `,
     },
@@ -205,7 +207,26 @@
     { lon: 24.14, lat: 54.75, tempR: -22, tempC: -27.5, date: "14 Dec", place: "Kowno", placeEs: "Kowno", troops: 4000 },
   ];
 
-  // Key historical rivers from Minard's map for geographic context
+  // Key historical rivers from Minard's map for fallback & geographic labels
+  const HISTORICAL_RIVER_LABELS = [
+    {
+      name: { en: "Niemen R.", es: "Río Niemen" },
+      pos: [55.02, 23.85],
+    },
+    {
+      name: { en: "Berezina R.", es: "Río Berézina" },
+      pos: [54.50, 28.35],
+    },
+    {
+      name: { en: "Dnieper R.", es: "Río Dniéper" },
+      pos: [54.55, 30.95],
+    },
+    {
+      name: { en: "Moskva R.", es: "Río Moscova" },
+      pos: [55.80, 37.35],
+    },
+  ];
+
   const HISTORICAL_RIVERS = [
     {
       name: { en: "Niemen R.", es: "Río Niemen" },
@@ -264,6 +285,7 @@
     lang: initialLangParam,
     map: null,
     campaignGeoJSON: null,
+    riversGeoJSON: null,
     waypoints: [],
     segments: [],
     activePhaseFilter: "all",
@@ -304,6 +326,15 @@
         return window.MINARD_FALLBACK_DATA[fallbackKey];
       }
       throw new Error(`Unable to load ${url}`);
+    }
+  }
+
+  async function fetchRiversData() {
+    try {
+      return await fetchJsonWithFallback("data/rivers.geojson", "rivers");
+    } catch (err) {
+      console.warn("Could not load data/rivers.geojson, using historical approximations:", err);
+      return null;
     }
   }
 
@@ -690,11 +721,14 @@
   }
 
   async function loadAndAdaptData() {
-    const [campaignRaw, advRaw, retRaw] = await Promise.all([
+    const [campaignRaw, advRaw, retRaw, riversRaw] = await Promise.all([
       fetchJsonWithFallback("data/napoleon-campain.geojson", "campaign"),
       fetchJsonWithFallback("data/napoleon-Adv.geojson", "advance"),
       fetchJsonWithFallback("data/napoleon-ret.geojson", "retreat"),
+      fetchRiversData(),
     ]);
+
+    state.riversGeoJSON = riversRaw;
 
     // 1. Adapt Flow Polygons (napoleon-campain.geojson)
     state.segments = campaignRaw.features.map((feat, idx) => {
@@ -883,27 +917,153 @@
       .addTo(state.map);
   }
 
+  function getRiverDisplayName(props, lang) {
+    const p = props || {};
+    const isEs = lang === "es";
+    const nameEn = p["name:en"] || p.int_name || p.name || "";
+    const nameFr = p["name:fr"] || "";
+    const nameEs = p["name:es"] || "";
+    const name = p.name || "";
+    const combined = `${nameEn} ${name} ${nameFr}`;
+
+    if (isEs) {
+      if (nameEs) return nameEs.startsWith("Río") ? nameEs : `Río ${nameEs}`;
+      if (/neman|niemen|неман|nemunas/i.test(combined) || /niémen/i.test(nameFr)) return "Río Niemen";
+      if (/western berezina|заходняя бярэзіна/i.test(combined)) return "Río Berézina Occidental";
+      if (/berezina|бярэзіна/i.test(combined)) return "Río Berézina";
+      if (/dnieper|dnipro|дняпро|дніпро|днепр/i.test(combined)) return "Río Dniéper";
+      if (/moskva|москва/i.test(combined)) return "Río Moscova";
+      return name;
+    }
+
+    if (/western berezina|заходняя бярэзіна/i.test(combined)) return "Western Berezina River";
+    if (/berezina|бярэзіна/i.test(combined)) return "Berezina River";
+    if (/neman|niemen|неман|nemunas/i.test(combined)) return "Niemen (Neman) River";
+    if (/dnieper|dnipro|дняпро|дніпро|днепр/i.test(combined)) return "Dnieper River";
+    if (/moskva|москва/i.test(combined)) return "Moskva River";
+    return nameEn || name;
+  }
+
+  function getRiverHistoricalContext(props, lang) {
+    const p = props || {};
+    const isEs = lang === "es";
+    const name = `${p["name:en"] || ""} ${p.name || ""} ${p["name:fr"] || ""}`;
+
+    if (/western berezina|заходняя бярэзіна/i.test(name)) {
+      return isEs
+        ? "Afluente en Bielorrusia que discurre por el flanco septentrional de la campaña."
+        : "Tributary in Belarus flowing across the northern flank of the campaign.";
+    }
+    if (/berezina|бярэзіна/i.test(name)) {
+      return isEs
+        ? "Sitio del catastrófico cruce en Studenka (26–29 nov 1812) bajo fuego artillero ruso."
+        : "Site of the catastrophic crossing at Studenka (26–29 Nov 1812) under Russian artillery fire.";
+    }
+    if (/neman|niemen|неман|nemunas/i.test(name)) {
+      return isEs
+        ? "Cruce de frontera en Kaunas (Kowno): inicio de la invasión (24 jun) y cruce final en retirada (14 dic 1812)."
+        : "Border river crossed at Kaunas (Kowno): start of the invasion (24 Jun) and final exit (14 Dec 1812).";
+    }
+    if (/dnieper|dnipro|дняпро|дніпро|днепр/i.test(name)) {
+      return isEs
+        ? "Eje defensivo fluvial ruso y escenario de intensos combates en Smolensk (16–18 ago 1812) y Orsha."
+        : "Russian river defensive line and theater of bitter fighting at Smolensk (16–18 Aug 1812) and Orsha.";
+    }
+    if (/moskva|москва/i.test(name)) {
+      return isEs
+        ? "Río que atraviesa Moscú; las tropas de Napoleón entraron en la capital el 14 de septiembre de 1812."
+        : "River flowing through Moscow; Napoleon entered the abandoned city near here on 14 September 1812.";
+    }
+    return null;
+  }
+
   function renderRiversLayer() {
     state.layers.rivers.clearLayers();
     if (!state.showRivers) return;
 
-    HISTORICAL_RIVERS.forEach((river) => {
-      L.polyline(river.coords, {
-        color: "#4a7c9b",
-        weight: 2.2,
-        opacity: 0.65,
-        dashArray: "4, 3",
-        interactive: false,
-      }).addTo(state.layers.rivers);
+    const riverColor = state.theme === "dark" ? "#5ca4d4" : "#4a7c9b";
 
+    if (state.riversGeoJSON && state.riversGeoJSON.features) {
+      const relIds = new Set(
+        state.riversGeoJSON.features
+          .filter((f) => f.geometry && f.geometry.type === "MultiLineString" && f.id)
+          .map((f) => parseInt(f.id.split("/")[1], 10))
+          .filter((n) => !isNaN(n))
+      );
+
+      const filteredFeatures = state.riversGeoJSON.features.filter((f) => {
+        if (!f.geometry || f.geometry.type === "Point") return false;
+        if (f.geometry.type === "MultiLineString") return true;
+        if (f.geometry.type === "LineString") {
+          const rels = (f.properties && f.properties["@relations"]) || [];
+          return !rels.some((r) => relIds.has(r.rel));
+        }
+        return false;
+      });
+
+      const riversGeoLayer = L.geoJSON(
+        { type: "FeatureCollection", features: filteredFeatures },
+        {
+          style: () => ({
+            color: riverColor,
+            weight: 2.3,
+            opacity: 0.78,
+            className: "historical-river-path",
+          }),
+          onEachFeature: (feature, layer) => {
+            const riverName = getRiverDisplayName(feature.properties, state.lang);
+            const riverNote = getRiverHistoricalContext(feature.properties, state.lang);
+
+            const tooltipHtml = `
+              <div style="font-family:'Cormorant Garamond',Georgia,serif; line-height:1.25; min-width:160px; max-width:240px;">
+                <div style="font-weight:700; font-size:15px; color:#1f3a52;">${riverName}</div>
+                ${riverNote ? `<div style="font-size:12px; margin-top:3px; color:#444; font-style:italic;">${riverNote}</div>` : ""}
+              </div>
+            `;
+            layer.bindTooltip(tooltipHtml, { sticky: true, opacity: 0.95 });
+
+            layer.on({
+              mouseover: (e) => {
+                const target = e.target;
+                target.setStyle({
+                  color: state.theme === "dark" ? "#8ad4ff" : "#1d587d",
+                  weight: 3.6,
+                  opacity: 0.95,
+                });
+                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                  target.bringToFront();
+                }
+              },
+              mouseout: (e) => {
+                riversGeoLayer.resetStyle(e.target);
+              },
+            });
+          },
+        }
+      );
+
+      riversGeoLayer.addTo(state.layers.rivers);
+    } else {
+      HISTORICAL_RIVERS.forEach((river) => {
+        L.polyline(river.coords, {
+          color: riverColor,
+          weight: 2.2,
+          opacity: 0.65,
+          dashArray: "4, 3",
+          interactive: false,
+        }).addTo(state.layers.rivers);
+      });
+    }
+
+    HISTORICAL_RIVER_LABELS.forEach((river) => {
       const riverName = river.name[state.lang] || river.name.en;
       const labelIcon = L.divIcon({
         className: "river-label-icon",
         html: `<span class="river-label-text">${riverName}</span>`,
-        iconSize: [90, 20],
-        iconAnchor: [45, 10],
+        iconSize: [110, 22],
+        iconAnchor: [55, 11],
       });
-      L.marker(river.labelPos, { icon: labelIcon, interactive: false }).addTo(state.layers.rivers);
+      L.marker(river.pos, { icon: labelIcon, interactive: false }).addTo(state.layers.rivers);
     });
   }
 
@@ -1730,6 +1890,7 @@
       document.body.setAttribute("data-theme", state.theme);
       e.currentTarget.textContent =
         state.theme === "parchment" ? t().themeParchment : t().themeDark;
+      renderRiversLayer();
     });
 
     // Original Map Dialog & Popup Window controls + fallbacks

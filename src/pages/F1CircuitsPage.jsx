@@ -109,7 +109,7 @@ export default function F1CircuitsPage() {
                     </div>
                 )}
                 <iframe
-                    src="/freelancer/F1/index.html"
+                    src="/freelancer/F1/app.html"
                     title="Formula 1 Grand Prix Circuits Atlas"
                     className="f1-app-iframe"
                     onLoad={() => setIsLoading(false)}

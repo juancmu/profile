@@ -133,7 +133,7 @@ export default function MinardMapPage() {
                 )}
                 <iframe
                     ref={iframeRef}
-                    src={`/freelancer/MINARD/index.html?lang=${initialLang}`}
+                    src={`/freelancer/MINARD/app.html?lang=${initialLang}`}
                     title="Carte Figurative — Napoleon's 1812 Russian Campaign (Minard Map)"
                     className="f1-app-iframe"
                     onLoad={handleIframeLoad}
