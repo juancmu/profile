@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29">
+  <path d="M7.5 6.8 L7.5 21.5 L22.2 21.5" fill="none" stroke="#222222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9.5 9.8 A11.5 11.5 0 0 1 19.2 19.3" fill="none" stroke="#222222" stroke-width="1.35" stroke-linecap="round"/>
+  <path d="M17.3 17.0 L19.3 19.5 L20.3 16.4" fill="none" stroke="#222222" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="19.8" y="10.8" font-family="Arial, Helvetica, sans-serif" font-size="5.4" font-weight="800" fill="#222222" text-anchor="middle">90°</text>
+</svg>

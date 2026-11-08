@@ -18,9 +18,9 @@
         "firstgp": 1991,
         "length": 4655,
         "altitude": 165,
-        "grandPrix": "Spanish Grand Prix",
+        "grandPrix": "Spanish Grand Prix, Barcelona Grand Prix",
         "f1Years": "1991–present",
-        "totalGps": 34,
+        "totalGps": 36,
         "yearsList": [
           1991,
           1992,
@@ -55,7 +55,9 @@
           2021,
           2022,
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

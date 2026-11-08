@@ -19,8 +19,8 @@
         "length": 5412,
         "altitude": -16,
         "grandPrix": "Bahrain Grand Prix, Sakhir Grand Prix",
-        "f1Years": "2004–2010, 2012–present",
-        "totalGps": 21,
+        "f1Years": "2004–2010, 2012–2025",
+        "totalGps": 22,
         "yearsList": [
           2004,
           2005,
@@ -41,7 +41,8 @@
           2021,
           2022,
           2023,
-          2024
+          2024,
+          2025
         ]
       },
       "bbox": [

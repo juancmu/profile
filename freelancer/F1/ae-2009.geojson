@@ -20,7 +20,7 @@
         "altitude": 9,
         "grandPrix": "Abu Dhabi Grand Prix",
         "f1Years": "2009–present",
-        "totalGps": 16,
+        "totalGps": 17,
         "yearsList": [
           2009,
           2010,
@@ -37,7 +37,9 @@
           2021,
           2022,
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

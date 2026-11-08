@@ -20,7 +20,7 @@
         "altitude": 47,
         "grandPrix": "Monaco Grand Prix",
         "f1Years": "1950, 1955–2019, 2021–present",
-        "totalGps": 70,
+        "totalGps": 72,
         "yearsList": [
           1950,
           1955,
@@ -91,7 +91,9 @@
           2021,
           2022,
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

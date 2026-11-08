@@ -20,7 +20,7 @@
         "altitude": 130,
         "grandPrix": "United States Grand Prix",
         "f1Years": "2012–2019, 2021–present",
-        "totalGps": 12,
+        "totalGps": 14,
         "yearsList": [
           2012,
           2013,
@@ -33,7 +33,9 @@
           2021,
           2022,
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

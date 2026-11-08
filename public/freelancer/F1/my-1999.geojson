@@ -18,9 +18,9 @@
         "firstgp": 1999,
         "length": 5543,
         "altitude": 39,
-        "grandPrix": "Malaysian Grand Prix",
-        "f1Years": "1999–2017",
-        "totalGps": 19,
+        "grandPrix": "Malaysian Grand Prix, Bahrain Grand Prix",
+        "f1Years": "1999–2017, 2026",
+        "totalGps": 20,
         "yearsList": [
           1999,
           2000,
@@ -40,7 +40,8 @@
           2014,
           2015,
           2016,
-          2017
+          2017,
+          2026
         ]
       },
       "bbox": [

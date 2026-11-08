@@ -2128,7 +2128,48 @@ if (rotateEl && rotateContainer) {
   rotateEl.style.border = 'none';
   rotateEl.style.boxShadow = 'none';
   rotateEl.title = 'Click and hold to rotate';
+  var rotateToggle = rotateEl.querySelector('.leaflet-control-rotate-toggle');
+  if (rotateToggle) {
+    rotateToggle.style.width = '34px';
+    rotateToggle.style.height = '34px';
+    rotateToggle.style.lineHeight = '34px';
+    rotateToggle.style.borderRadius = '50%';
+    rotateToggle.style.border = '1px solid #cbd5e1';
+    rotateToggle.title = 'Click and hold to rotate';
+    rotateToggle.setAttribute('aria-label', 'Click and hold to rotate map');
+  }
+  var rotateArrow = rotateEl.querySelector('.leaflet-control-rotate-arrow');
+  if (rotateArrow) {
+    rotateArrow.style.backgroundImage = "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' viewBox='0 0 29 29'%3E%3Cg fill='none' stroke='%23222222' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15.4 5.55 A9 9 0 0 1 20.86 20.86'/%3E%3Cpath d='M20.86 17.6 L20.86 20.86 L24.12 20.86'/%3E%3Cpath d='M13.6 23.45 A9 9 0 0 1 8.14 8.14'/%3E%3Cpath d='M4.88 8.14 L8.14 8.14 L8.14 11.4'/%3E%3C/g%3E%3Cpath d='M11.7 13.8 L14.5 8.2 L17.3 13.8 Z' fill='%23333333'/%3E%3Cpath d='M11.7 15.2 L14.5 20.8 L17.3 15.2 Z' fill='%23cccccc'/%3E%3C/svg%3E\")";
+    rotateArrow.style.backgroundSize = '26px 26px';
+  }
   rotateContainer.appendChild(rotateEl);
+
+  var btnRotate90 = document.createElement('button');
+  btnRotate90.type = 'button';
+  btnRotate90.className = 'rotate-step-btn rotate-90-btn';
+  btnRotate90.title = 'Rotate map 90°';
+  btnRotate90.setAttribute('aria-label', 'Rotate map 90 degrees');
+  btnRotate90.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var currentBearing = (map.getBearing && map.getBearing()) || 0;
+    map.setBearing((currentBearing + 90) % 360);
+  });
+  rotateContainer.appendChild(btnRotate90);
+
+  var btnRotate180 = document.createElement('button');
+  btnRotate180.type = 'button';
+  btnRotate180.className = 'rotate-step-btn rotate-180-btn';
+  btnRotate180.title = 'Rotate map 180°';
+  btnRotate180.setAttribute('aria-label', 'Rotate map 180 degrees');
+  btnRotate180.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var currentBearing = (map.getBearing && map.getBearing()) || 0;
+    map.setBearing((currentBearing + 180) % 360);
+  });
+  rotateContainer.appendChild(btnRotate180);
 }
 
 //! PROPERTIES PANEL

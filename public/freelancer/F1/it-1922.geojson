@@ -20,7 +20,7 @@
         "altitude": 142,
         "grandPrix": "Italian Grand Prix",
         "f1Years": "1950–1979, 1981–present",
-        "totalGps": 74,
+        "totalGps": 76,
         "yearsList": [
           1950,
           1951,
@@ -95,7 +95,9 @@
           2021,
           2022,
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

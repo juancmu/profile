@@ -20,7 +20,7 @@
         "altitude": 2232,
         "grandPrix": "Mexican Grand Prix, Mexico City Grand Prix",
         "f1Years": "1963–1970, 1986–1992, 2015–2019, 2021–present",
-        "totalGps": 24,
+        "totalGps": 26,
         "yearsList": [
           1963,
           1964,
@@ -45,7 +45,9 @@
           2021,
           2022,
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

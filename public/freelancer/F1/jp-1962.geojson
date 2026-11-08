@@ -20,7 +20,7 @@
         "altitude": 60,
         "grandPrix": "Japanese Grand Prix",
         "f1Years": "1987–2006, 2009–2019, 2022–present",
-        "totalGps": 34,
+        "totalGps": 36,
         "yearsList": [
           1987,
           1988,
@@ -55,7 +55,9 @@
           2019,
           2022,
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

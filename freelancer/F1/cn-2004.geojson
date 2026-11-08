@@ -20,7 +20,7 @@
         "altitude": 14,
         "grandPrix": "Chinese Grand Prix",
         "f1Years": "2004–2019, 2024–present",
-        "totalGps": 17,
+        "totalGps": 19,
         "yearsList": [
           2004,
           2005,
@@ -38,7 +38,9 @@
           2017,
           2018,
           2019,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

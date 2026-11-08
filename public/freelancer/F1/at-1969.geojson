@@ -20,7 +20,7 @@
         "altitude": 721,
         "grandPrix": "Austrian Grand Prix, Styrian Grand Prix",
         "f1Years": "1970–1987, 1997–2003, 2014–present",
-        "totalGps": 38,
+        "totalGps": 40,
         "yearsList": [
           1970,
           1971,
@@ -57,7 +57,9 @@
           2021,
           2022,
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

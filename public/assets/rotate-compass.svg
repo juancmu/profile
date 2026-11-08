@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29">
+  <!-- Clockwise curved rotation arrows -->
+  <g fill="none" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15.4 5.55 A9 9 0 0 1 20.86 20.86" />
+    <path d="M20.86 17.6 L20.86 20.86 L24.12 20.86" />
+    <path d="M13.6 23.45 A9 9 0 0 1 8.14 8.14" />
+    <path d="M4.88 8.14 L8.14 8.14 L8.14 11.4" />
+  </g>
+  <!-- Center compass triangles (North dark, South light) -->
+  <path d="M11.7 13.8 L14.5 8.2 L17.3 13.8 Z" fill="#333333" />
+  <path d="M11.7 15.2 L14.5 20.8 L17.3 15.2 Z" fill="#cccccc" />
+</svg>

@@ -147,13 +147,19 @@
   ];
 
   const CALENDAR_2026 = [
-    'es-2026', 'au-1953', 'bh-2002', 'sa-2021', 'jp-1962', 'cn-2004',
-    'us-2022', 'it-1953', 'mc-1929', 'ca-1978', 'at-1969', 'gb-1948',
-    'be-1925', 'hu-1986', 'nl-1948', 'it-1922', 'az-2016', 'sg-2008',
-    'us-2012', 'mx-1962', 'br-1940', 'us-2023', 'qa-2004', 'ae-2009'
+    'au-1953', 'cn-2004', 'jp-1962', 'us-2022', 'ca-1978', 'mc-1929',
+    'es-1991', 'at-1969', 'gb-1948', 'be-1925', 'hu-1986', 'nl-1948',
+    'it-1922', 'es-2026', 'az-2016', 'my-1999', 'sg-2008', 'us-2012',
+    'mx-1962', 'br-1940', 'us-2023', 'qa-2004', 'ae-2009'
   ];
 
-  const f1ResultsCache = {};
+  const UPCOMING_2026_INFO = {
+    'us-2023': { round: 21, name: 'Las Vegas Grand Prix', date: '22 Nov 2026' },
+    'qa-2004': { round: 22, name: 'Qatar Grand Prix', date: '29 Nov 2026' },
+    'ae-2009': { round: 23, name: 'Abu Dhabi Grand Prix', date: '6 Dec 2026' }
+  };
+
+  const f1ResultsCache = Object.assign({}, window.F1_RECENT_RESULTS || {});
 
   /**
    * Initialize Application
@@ -459,8 +465,12 @@
       let seasonBadgeHtml = '';
       if (c.id === 'es-2026') {
         seasonBadgeHtml = '<span class="card-season-pill new-2026" title="New 2026 Formula 1 Host Track">2026 NEW</span>';
+      } else if (c.id === 'my-1999') {
+        seasonBadgeHtml = '<span class="card-season-pill new-2026" title="2026 Formula 1 Host Track">2026</span>';
       } else if (CALENDAR_2024.includes(c.id) && CALENDAR_2026.includes(c.id)) {
-        seasonBadgeHtml = '<span class="card-season-pill" title="Contracted on 2024, 2025 & 2026 Calendars">2024-26</span>';
+        seasonBadgeHtml = '<span class="card-season-pill" title="2024, 2025 & 2026 Formula 1 Calendar Track">2024-26</span>';
+      } else if (CALENDAR_2024.includes(c.id) && CALENDAR_2025.includes(c.id)) {
+        seasonBadgeHtml = '<span class="card-season-pill" title="2024 & 2025 Formula 1 Calendar Track">2024-25</span>';
       } else if (CALENDAR_2024.includes(c.id)) {
         seasonBadgeHtml = '<span class="card-season-pill" title="2024 Formula 1 Calendar Track">2024</span>';
       }
@@ -1296,7 +1306,9 @@
         }
       }
 
-      f1ResultsCache[cacheKey] = foundRaces;
+      if (foundRaces.length > 0) {
+        f1ResultsCache[cacheKey] = foundRaces;
+      }
       renderRaceResults(foundRaces, year, circuit);
     } catch (err) {
       console.error('Failed to fetch race results:', err);
@@ -1313,13 +1325,14 @@
 
   function renderRaceResults(races, year, circuit) {
     if (!races || races.length === 0) {
-      dom.modalSub.textContent = `${circuit.flag || '🏁'} ${circuit.location}, ${circuit.country}`;
+      const upcoming = parseInt(year) === 2026 ? UPCOMING_2026_INFO[circuit.id] : null;
+      dom.modalSub.textContent = `${circuit.flag || '🏁'} ${circuit.location}, ${circuit.country}${upcoming ? ` • Round ${upcoming.round} • ${upcoming.date}` : ''}`;
       dom.modalBody.innerHTML = `
         <div class="f1-results-empty">
           <i class="fa fa-flag-checkered" style="color: var(--cyan-neon); font-size: 32px;"></i>
-          <h3 style="color: #fff; margin-bottom: 8px;">No Championship Results Found</h3>
-          <p>No official World Championship Grand Prix recorded for ${circuit.name} in ${year}.</p>
-          ${parseInt(year) >= 2025 ? '<p style="color: var(--gold-accent); font-size: 13px; margin-top: 8px;">Scheduled Future Formula 1 Season</p>' : ''}
+          <h3 style="color: #fff; margin-bottom: 8px;">${upcoming ? `Upcoming: 2026 ${upcoming.name}` : 'No Championship Results Found'}</h3>
+          <p>${upcoming ? `Round ${upcoming.round} of the 2026 FIA Formula One World Championship at ${circuit.name}.` : `No official World Championship Grand Prix recorded for ${circuit.name} in ${year}.`}</p>
+          ${upcoming ? `<p style="color: var(--gold-accent); font-size: 13px; margin-top: 8px;">Scheduled Race Date: ${upcoming.date}</p>` : (parseInt(year) >= 2026 ? '<p style="color: var(--gold-accent); font-size: 13px; margin-top: 8px;">Scheduled Future Formula 1 Season</p>' : '')}
         </div>
       `;
       return;

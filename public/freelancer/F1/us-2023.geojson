@@ -20,10 +20,12 @@
         "altitude": 610,
         "grandPrix": "Las Vegas Grand Prix",
         "f1Years": "2023–present",
-        "totalGps": 2,
+        "totalGps": 3,
         "yearsList": [
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

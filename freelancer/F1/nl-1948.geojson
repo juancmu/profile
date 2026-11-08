@@ -20,7 +20,7 @@
         "altitude": 3,
         "grandPrix": "Dutch Grand Prix",
         "f1Years": "1952–1953, 1955, 1958–1971, 1973–1985, 2021–present",
-        "totalGps": 34,
+        "totalGps": 36,
         "yearsList": [
           1952,
           1953,
@@ -55,7 +55,9 @@
           2021,
           2022,
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

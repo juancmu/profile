@@ -20,7 +20,7 @@
         "altitude": 13,
         "grandPrix": "Canadian Grand Prix",
         "f1Years": "1978–1986, 1988–2008, 2010–2019, 2022–present",
-        "totalGps": 43,
+        "totalGps": 45,
         "yearsList": [
           1978,
           1979,
@@ -64,7 +64,9 @@
           2019,
           2022,
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [

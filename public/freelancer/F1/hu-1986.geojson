@@ -20,7 +20,7 @@
         "altitude": 239,
         "grandPrix": "Hungarian Grand Prix",
         "f1Years": "1986–present",
-        "totalGps": 39,
+        "totalGps": 41,
         "yearsList": [
           1986,
           1987,
@@ -60,7 +60,9 @@
           2021,
           2022,
           2023,
-          2024
+          2024,
+          2025,
+          2026
         ]
       },
       "bbox": [
