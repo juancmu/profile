@@ -216,6 +216,8 @@
         "submit": "Send Message",
         "sending": "Sending...",
         "success": "Message sent! I'll get back to you soon.",
+        "activation": "First-time setup: Check jcmunozcastaneda@gmail.com (and Spam) and click 'Activate Form' in the email from FormSubmit.",
+        "activateBtn": "Resend activation email",
         "error": "There was an error sending your message. Please try again."
     },
     "footer": {

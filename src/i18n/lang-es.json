@@ -208,6 +208,8 @@
         "submit": "Enviar Mensaje",
         "sending": "Enviando...",
         "success": "¡Mensaje enviado! Me pondré en contacto pronto.",
+        "activation": "Activación inicial requerida: Revisa jcmunozcastaneda@gmail.com (incluyendo Spam) y haz clic en 'Activate Form' en el correo enviado por FormSubmit.",
+        "activateBtn": "Abrir página de activación",
         "error": "Hubo un error al enviar su mensaje. Por favor intente nuevamente."
     },
     "footer": {

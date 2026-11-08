@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useLang } from '../App'
 
-const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/jcmunozcastaneda@gmail.com'
+const FORMSUBMIT_AJAX_ENDPOINT = 'https://formsubmit.co/ajax/jcmunozcastaneda@gmail.com'
 
 export default function Contact() {
     const { data } = useLang()
     const { contact, form } = data
-    const [status, setStatus] = useState('idle') // 'idle' | 'sending' | 'success' | 'error'
+    const [status, setStatus] = useState('idle') // 'idle' | 'sending' | 'success' | 'activation' | 'error'
+    const [errorDetail, setErrorDetail] = useState('')
+    const formRef = useRef(null)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -16,43 +18,45 @@ export default function Contact() {
         // Honeypot spam check
         if (fd.get('_honey')) return
 
-        const name = fd.get('name')
         const email = fd.get('email')
         const subject = fd.get('subject')
-        const message = fd.get('message')
+        fd.set('_replyto', email)
+        fd.set('_subject', `[Portfolio Contact] ${subject}`)
 
         setStatus('sending')
+        setErrorDetail('')
 
         try {
-            const response = await fetch(FORMSUBMIT_ENDPOINT, {
+            const response = await fetch(FORMSUBMIT_AJAX_ENDPOINT, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     Accept: 'application/json',
                 },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    subject,
-                    message,
-                    _replyto: email,
-                    _subject: `[Portfolio Contact] ${subject}`,
-                    _template: 'table',
-                    _captcha: 'false',
-                }),
+                body: fd,
             })
 
             const result = await response.json()
+            const msg = String(result?.message || '')
 
             if (response.ok && result.success !== 'false' && result.success !== false) {
                 setStatus('success')
                 formEl.reset()
+            } else if (msg.toLowerCase().includes('activat')) {
+                setStatus('activation')
             } else {
+                setErrorDetail(msg)
                 setStatus('error')
             }
-        } catch {
+        } catch (err) {
+            setErrorDetail(err?.message || '')
             setStatus('error')
         }
+    }
+
+    const handleDirectActivation = () => {
+        if (!formRef.current) return
+        formRef.current.target = '_blank'
+        formRef.current.submit()
     }
 
     return (
@@ -98,6 +102,7 @@ export default function Contact() {
 
                     <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
                         <form
+                            ref={formRef}
                             className="contact-form"
                             action="https://formsubmit.co/jcmunozcastaneda@gmail.com"
                             method="POST"
@@ -105,6 +110,7 @@ export default function Contact() {
                             onInput={() => {
                                 if (status === 'success' || status === 'error') {
                                     setStatus('idle')
+                                    setErrorDetail('')
                                 }
                             }}
                         >
@@ -187,9 +193,28 @@ export default function Contact() {
                                             <i className="bi bi-check-circle-fill"></i> {form.success}
                                         </p>
                                     )}
+                                    {status === 'activation' && (
+                                        <div className="form-feedback form-feedback-warning">
+                                            <div>
+                                                <i className="bi bi-envelope-exclamation-fill"></i>{' '}
+                                                <span>{form.activation}</span>
+                                            </div>
+                                            <button
+                                                type="button"
+                                                className="btn-link-activate"
+                                                onClick={handleDirectActivation}
+                                            >
+                                                {form.activateBtn} <i className="bi bi-box-arrow-up-right"></i>
+                                            </button>
+                                        </div>
+                                    )}
                                     {status === 'error' && (
                                         <p className="form-feedback form-feedback-error">
-                                            <i className="bi bi-exclamation-triangle-fill"></i> {form.error}
+                                            <i className="bi bi-exclamation-triangle-fill"></i>{' '}
+                                            <span>
+                                                {form.error}
+                                                {errorDetail ? ` (${errorDetail})` : ''}
+                                            </span>
                                         </p>
                                     )}
                                 </div>
